@@ -1,7 +1,7 @@
 //public variables within the file
 let btnStart
 
-let aboutState = {
+let aboutScreen = {
     preload: preloadAbout,
     create: createAbout
 };
