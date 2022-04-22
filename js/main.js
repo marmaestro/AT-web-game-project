@@ -1,7 +1,7 @@
-const GAME_AREA_WIDTH = 500;
-const GAME_AREA_HEIGHT = 800;
+const GAME_AREA_WIDTH = 600;
+const GAME_AREA_HEIGHT = 900;
 
-let game;
+let game = new Phaser.Game(GAME_AREA_WIDTH, GAME_AREA_HEIGHT, Phaser.CANVAS, 'gameArea');
 
 // remember to attach the corresponding script in the HTML file through the cdnjs extension
 let wconfig = {
@@ -18,11 +18,12 @@ let wconfig = {
 }
 
 function startGame() {
-    game = new Phaser.Game(GAME_AREA_WIDTH, GAME_AREA_HEIGHT, Phaser.CANVAS, "gameArea");
+    game.state.add('startScreen', startScreen);
+    game.state.add('aboutScreen', aboutScreen);
+    game.state.add('stageA', stageA);
 
-    game.add.state("startScreen", startScreen);
-    game.add.state("aboutScreen", aboutScreen);
-    game.add.state("stageA", stageA);
-
-    game.state.start("startScreen");
+    game.state.start('startScreen');
 }
+
+//entry point
+window.onload = startGame;
