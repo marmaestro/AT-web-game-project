@@ -1,0 +1,16 @@
+{
+    "wave1": {
+        "small": [ {"amount": 5, "speed": speed-s} ]
+    },
+
+    "wave2": {
+        "small": [ {"amount": 7, "speed": speed-s} ],
+        "medium": [ {"amount": 3, "speed": speed-m} ]
+    },
+
+    "wave3": {
+        "small": [ {"amount": 10, "speed": speed-s} ],
+        "medium": [ {"amount": 5, "speed": speed-m} ],
+        "big": [ {"amount": 1, "speed": speed-b} ]
+    },
+}
