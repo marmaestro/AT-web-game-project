@@ -23,7 +23,7 @@ function createAbout() {
     //text describing the game (Ab-out)
     let titleAb = 'FROG TYPING GAME';
     let style = {
-        fontFamily: 'Open Sans',
+        font: 'Source Sans Pro',
         fontWeight: '600',
         fontSize: '40px'
     }
@@ -36,7 +36,7 @@ function createAbout() {
     textAb += 'to practice speed at typing in English.\n';
     textAb += 'Feed the frog to win!\n';
     style = {
-        fontFamily: 'Open Sans',
+        font: 'Source Sans Pro',
         fontWeight: '400',
         fontSize: '20px',
         align: 'center'
@@ -53,7 +53,7 @@ function createAbout() {
     //text and images explaining the game (A-bout T-utorial)
     let titleAT = 'HOW TO PLAY';
     style = {
-        fontFamily: 'Open Sans',
+        font: 'Source Sans Pro',
         fontWeight: '600',
         fontSize: '30px'
     }
@@ -76,7 +76,7 @@ function createAbout() {
     textAT += 'Each level will have waves that you will\n';
     textAT += 'have to survive to continue playing.\n';
     style = {
-        fontFamily: 'Open Sans',
+        font: 'Source Sans Pro',
         fontWeight: '400',
         fontSize: '20px',
         align: 'center'
@@ -103,7 +103,7 @@ function showCredits() {
     //credits of the images used and the programing (A-bout C-redits)
     let titleAC = 'CREDITS';
     let style = {
-        fontFamily: 'Open Sans',
+        font: 'Source Sans Pro',
         fontWeight: '600',
         fontSize: '40px'
     }
@@ -125,7 +125,7 @@ function showCredits() {
     textAC += 'All the art on this game has been\n';
     textAC += 'created by @brgfx.\n';
     style = {
-        fontFamily: 'Open Sans',
+        font: 'Source Sans Pro',
         fontWeight: '400',
         fontSize: '20px',
         align: 'center'
