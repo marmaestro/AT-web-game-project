@@ -8,12 +8,11 @@ let aboutScreen = {
 };
 
 function preloadAbout() {
-    game.load.image('bg', 'assets/imgs/background.png')
-    game.load.image('fly', 'assets/imgs/fly.png');
-    game.load.image('beetle', 'assets/imgs/beetle.png');
-    game.load.image('moth', 'assets/imgs/moth.png');
+    game.load.image('bg', 'assets/imgs/background.png');
     game.load.image('frog', 'assets/imgs/frog.png');
-    game.load.image('back', 'assets/imgs/return-main.png')
+    game.load.image('back', 'assets/imgs/return.png');
+    game.load.image('credits', 'assets/imgs/credits.png');
+    game.load.image('about', 'assets/imgs/about.png');
 }
 
 function createAbout() {
@@ -30,7 +29,7 @@ function createAbout() {
     }
     let mainTitle = game.add.text(0, 0, titleAb, style);
     mainTitle.anchor.setTo(0.5, 0);
-    mainTitle.position.setTo(300, 20);
+    mainTitle.position.setTo(300, 50);
 
     let textAb = 'Welcome to the frog typing game.\n';
     textAb += 'In this game you will play as this frog\n';
@@ -44,9 +43,9 @@ function createAbout() {
     }
     let introduction = game.add.text(0, 0, textAb, style);
     introduction.anchor.setTo(0.5, 0);
-    introduction.position.setTo(300, 65);
+    introduction.position.setTo(300, 95);
 
-    let imgFrog = game.add.image(300, 180, 'frog');
+    let imgFrog = game.add.image(300, 210, 'frog');
     imgFrog.anchor.setTo(0.5, 0);
     imgFrog.scale.setTo(0.5);
 
@@ -60,7 +59,7 @@ function createAbout() {
     }
     let titleTutorial = game.add.text(0, 0, titleAT, style);
     titleTutorial.anchor.setTo(0.5, 0);
-    titleTutorial.position.setTo(300, 325);
+    titleTutorial.position.setTo(300, 355);
 
     let textAT = 'This game has simple controls. Type\n';
     textAT += 'the words that appear on the screen to\n';
@@ -84,31 +83,20 @@ function createAbout() {
     }
     let tutorial = game.add.text(0, 0, textAT, style);
     tutorial.anchor.setTo(0.5, 0);
-    tutorial.position.setTo(300, 365);
-
-
-
-    /*let imgFly = game.add.image(15, 15, 'fly'); //sizes, positions and such will be needed
-    let imgBeetle = game.add.image(15, 15, 'beetle');
-    let imgMoth = game.add.image(15, 15, 'moth');*/
-
+    tutorial.position.setTo(300, 395);
 
 
     //button for showing credits
-    btnCredits = game.add.button(20, 20, 'back', showCredits);
+    btnCredits = game.add.button(20, 20, 'credits', showCredits);
     btnCredits.anchor.setTo(0.5, 0.5);
-    btnCredits.scale.setTo(0.2);
-    btnCredits.position.setTo(300, 760);
+    btnCredits.position.setTo(300, 790);
 
     //button for going  back to the start screen
     btnStart = game.add.button(20, 20, 'back', clickBackToStart);
-    btnStart.anchor.setTo(0.5, 0.5);
-    btnStart.scale.setTo(0.2);
-    btnStart.position.setTo(300, 840);
+    btnStart.position.setTo(10, 10);
 }
 
 function showCredits() {
-    btnCredits.inputEnabled = false;
     let BG = game.add.image(0, 0, 'bg');
     BG.scale.setTo(1.8);
 
@@ -146,17 +134,14 @@ function showCredits() {
     credits.anchor.setTo(0.5, 0);
     credits.position.setTo(300, 260);
 
-    //button for showing credits
-    btnCredits = game.add.button(20, 20, 'back', createAbout);
+    //button for showing about
+    btnCredits = game.add.button(20, 20, 'about', createAbout);
     btnCredits.anchor.setTo(0.5, 0.5);
-    btnCredits.scale.setTo(0.2);
-    btnCredits.position.setTo(300, 700);
+    btnCredits.position.setTo(300, 790);
 
     //button for going  back to the start screen
     btnStart = game.add.button(20, 20, 'back', clickBackToStart);
-    btnStart.anchor.setTo(0.5, 0.5);
-    btnStart.scale.setTo(0.2);
-    btnStart.position.setTo(300, 780);
+    btnStart.position.setTo(10, 10);
 }
 
 function clickBackToStart() {
