@@ -29,7 +29,7 @@ function createAbout() {
     }
     let mainTitle = game.add.text(0, 0, titleAb, style);
     mainTitle.anchor.setTo(0.5, 0);
-    mainTitle.position.setTo(300, 50);
+    mainTitle.position.setTo(GAME_AREA_WIDTH/2, 50);
 
     let textAb = 'Welcome to the frog typing game.\n';
     textAb += 'In this game you will play as this frog\n';
@@ -43,9 +43,9 @@ function createAbout() {
     }
     let introduction = game.add.text(0, 0, textAb, style);
     introduction.anchor.setTo(0.5, 0);
-    introduction.position.setTo(300, 95);
+    introduction.position.setTo(GAME_AREA_WIDTH/2, 95);
 
-    let imgFrog = game.add.image(300, 210, 'frog');
+    let imgFrog = game.add.image(GAME_AREA_WIDTH/2, 210, 'frog');
     imgFrog.anchor.setTo(0.5, 0);
     imgFrog.scale.setTo(0.5);
 
@@ -59,7 +59,7 @@ function createAbout() {
     }
     let titleTutorial = game.add.text(0, 0, titleAT, style);
     titleTutorial.anchor.setTo(0.5, 0);
-    titleTutorial.position.setTo(300, 355);
+    titleTutorial.position.setTo(GAME_AREA_WIDTH/2, 355);
 
     let textAT = 'This game has simple controls. Type\n';
     textAT += 'the words that appear on the screen to\n';
@@ -83,13 +83,13 @@ function createAbout() {
     }
     let tutorial = game.add.text(0, 0, textAT, style);
     tutorial.anchor.setTo(0.5, 0);
-    tutorial.position.setTo(300, 395);
+    tutorial.position.setTo(GAME_AREA_WIDTH/2, 395);
 
 
     //button for showing credits
     btnCredits = game.add.button(20, 20, 'credits', showCredits);
     btnCredits.anchor.setTo(0.5, 0.5);
-    btnCredits.position.setTo(300, 790);
+    btnCredits.position.setTo(GAME_AREA_WIDTH/2, 790);
 
     //button for going  back to the start screen
     btnStart = game.add.button(20, 20, 'back', clickBackToStart);
@@ -109,7 +109,7 @@ function showCredits() {
     }
     let titleCredits = game.add.text(10, 5, titleAC, style);
     titleCredits.anchor.setTo(0.5, 0);
-    titleCredits.position.setTo(300, 200);
+    titleCredits.position.setTo(GAME_AREA_WIDTH/2, 200);
 
     let textAC = 'This game has been created by\n';
     textAC += '\n';
@@ -132,12 +132,12 @@ function showCredits() {
     }
     let credits = game.add.text(10, 50, textAC, style);
     credits.anchor.setTo(0.5, 0);
-    credits.position.setTo(300, 260);
+    credits.position.setTo(GAME_AREA_WIDTH/2, 260);
 
     //button for showing about
     btnCredits = game.add.button(20, 20, 'about', createAbout);
     btnCredits.anchor.setTo(0.5, 0.5);
-    btnCredits.position.setTo(300, 790);
+    btnCredits.position.setTo(GAME_AREA_WIDTH/2, 790);
 
     //button for going  back to the start screen
     btnStart = game.add.button(20, 20, 'back', clickBackToStart);
