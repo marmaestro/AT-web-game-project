@@ -1,20 +1,20 @@
 let activeOWP;
-let typed = 0;
-let correct = 0;
+let typedLetters = 0;
+let correctLetters = 0;
 
 
 function readKeyboard(e) {
     if(e.keyCode >= Phaser.Keyboard.A
     && e.keyCode <= Phaser.Keyboard.Z) {
         checkLetter(e);
-        typed++;
+        typedLetters++;
     }
 }
 
 function checkLetter(e) {
     if (isNextLetterInOWP(e)) { //check if the letter typed is the correct one
         deactivateLetter(); //deactivate said letter if true
-        correct++;
+        correctLetters++;
     }
 }
 
@@ -38,5 +38,5 @@ function deactivateLetter() { //deactivates the correctly-typed letter in the OW
 
 
 function calculateAccuracy() {
-    return (correct / typed) * 100;
+    return (correctLetters / typedLetters) * 100;
 }
