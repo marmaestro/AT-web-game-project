@@ -18,7 +18,10 @@ function checkLetter(a) {
         if (isNextLetterInOWP(a)) { correctLetters++; }
     } else {
         game.enemies.array.forEach(owp => {
-            if (isNextLetterInOWP(a, owp))  { correctLetters++; }
+            if (isNextLetterInOWP(a, owp))  {
+                refocusTypist(owp);
+                correctLetters++;
+            }
         });
     }
 }
