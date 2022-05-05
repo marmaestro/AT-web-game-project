@@ -47,7 +47,8 @@ function deactivateLetter(obj) {
 }
 
 function removeOWP(obj) {
-    item.destroy();
+    obj.deleteOWP(); // needs revision
+    // after the enemy class is finished
 }
 
 function calculateAccuracy() {
