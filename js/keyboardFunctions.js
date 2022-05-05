@@ -1,41 +1,54 @@
 let activeOWP;
+let activeLetter = 0; // index number of the active letter in the OWP (from 0)
 let typedLetters = 0;
 let correctLetters = 0;
+let accuracy;
 
 
 function readKeyboard(e) {
     if(e.keyCode >= Phaser.Keyboard.A
     && e.keyCode <= Phaser.Keyboard.Z) {
-        checkLetter(e);
+        checkLetter(e.key);
         typedLetters++;
     }
 }
 
-function checkLetter(e) {
-    if (isNextLetterInOWP(e)) { //check if the letter typed is the correct one
-        deactivateLetter(); //deactivate said letter if true
-        correctLetters++;
+function checkLetter(a) {
+    if (activeOWP) {
+        if (isNextLetterInOWP(a)) { correctLetters++; }
+    } else {
+        game.enemies.array.forEach(owp => {
+            if (isNextLetterInOWP(a, owp))  { correctLetters++; }
+        });
     }
 }
 
-/*function processLetter(item, pointer) {
-    item.destroy(); // frees up memory
-    // kill() removes it from display list,
-    // but not from the group
-}*/
+function isNextLetterInOWP(a, obj) {
 
-function isNextLetterInOWP(e) {
-
-    return true;
+    if(a == obj.word[activeLetter]) {
+        deactivateLetter(obj);
+        return true;
+    }
+    return false;
 }
 
-function deactivateLetter() { //deactivates the correctly-typed letter in the OWP
+function deactivateLetter(obj) {
+    obj.word.changeColour(activeLetter); //this depends on the class declaration
 
+    if(activeLetter < obj.word.length()) {
+        if (!activeOWP) { activeOWP = obj; }
+        activeLetter++;
+
+    } else {
+        removeOWP(obj);
+        activeOWP = null;
+        activeLetter = 0;
+    }
 }
 
-
-
-
+function removeOWP(obj) {
+    item.destroy();
+}
 
 function calculateAccuracy() {
     return (correctLetters / typedLetters) * 100;
