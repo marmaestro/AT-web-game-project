@@ -1,6 +1,37 @@
 {
     "word":
     {
+        "oneletters":
+        [
+            {
+                "a1":["a"],
+                "b1":["b"],
+                "c1":["c"],
+                "d1":["d"],
+                "e1":["e"],
+                "f1":["f"],
+                "g1":["g"],
+                "h1":["h"],
+                "i1":["i"],
+                "j1":["j"],
+                "k1":["k"],
+                "l1":["l"],
+                "m1":["m"],
+                "n1":["n"],
+                "o1":["o"],
+                "p1":["p"],
+                "q1":["q"],
+                "r1":["r"],
+                "s1":["s"],
+                "t1":["t"],
+                "u1":["u"],
+                "v1":["v"],
+                "w1":["w"],
+                "x1":["x"],
+                "y1":["y"],
+                "z1":["z"]
+            }
+        ],
         "twoletters":
         [
             {
@@ -44,7 +75,8 @@
                 "t3":["ted","tee","til","tin"],
                 "v3":["vai","vug"],
                 "w3":["wok","win"],
-                "y3":["you"]
+                "y3":["you"],
+                "z3":["zoo"]
             }
 
         ],
@@ -148,11 +180,106 @@
                 "g7":["gallery","genuine","genetic","greater","gateway","gigabit"],
                 "h7":["heading","helpful","housing","hundred","holiday","himself"],
                 "i7":["illegal","initial","install","involve","interim","inquiry"],
-                "j7":["journal",],
-                "k7":["kitchen","knowing","keeping","kingdom","],
-                "l7":[],
-                "m7":[],
-                "n7":[],
+                "j7":["journal"],
+                "k7":["kitchen","knowing","keeping","kingdom"],
+                "l7":["lasting","library","limited","logical","liberal","landing"],
+                "m7":["machine","measure","medical","mineral","mistake","morning"],
+                "n7":["neither","nervous","nursing","nuclear","nothing","neutral"],
+                "o7":["opinion","optical","outdoor","outside","outcome","overall"],
+                "p7":["pacific","package","partial","partner","picture","printer"],
+                "r7":["reality","reflect","removal","reserve","rollout","running"],
+                "s7":["service","shortly","silence","skilled","smoking","somehow"],
+                "t7":["tonight","traffic","trouble","typical","turning","towards"],
+                "u7":["uniform","upgrade","utility","upscale","unusual","unknown"],
+                "v7":["variety","victory","violent","virtual","visible","village"],
+                "w7":["wearing","welcome","whereas","willing","weekend","without"]
+            }
+        ],
+        "eightletters":
+        [
+            {
+                "a8":["absolute","achieved","advisory","analysis","appendix","athletic"],
+                "b8":["baseball","breaking","building","bacteria","boundary","birthday"],
+                "c8":["calendar","ceremony","chemical","circular","children","clothing"],
+                "d8":["decision","describe","discount","dominate","duration","dynamics"],
+                "e8":["eighteen","entrance","equation","envelope","entirely","engaging"],
+                "f8":["familiar","firewall","flagship","football","frequent","function"],
+                "g8":["grateful","generate","graphics","guardian","graduate","governor"],
+                "h8":["hardware","heritage","historic","homeless","hospital","humanity"],
+                "i8":["identity","incident","included","industry","informal","interest"],
+                "j8":["judgment","judicial","junction"],
+                "k8":["keyboard"],
+                "l8":["language","lifetime","lighting","literary","likewise","location"],
+                "m8":["magnetic","medicine","medieval","moderate","minoruty","multiple"],
+                "n8":["national","negative","notebook","numerous","northern","nineteen"],
+                "o8":["observer","official","opposite","ordinary","overhead","original"],
+                "p8":["parallel","petition","physical","platform","portrait","pregnant"],
+                "q8":["quantity","question"],
+                "r8":["receiver","register","reporter","remember","response","romantic"],
+                "s8":["secondly","sensible","shipping","situated","software","somebody"],
+                "t8":["taxation","thousand","together","tracking","tropical","turnover"],
+                "u8":["ultimate","umbrella","universe","unlawful","unlikely"],
+                "v8":["valuable","variable","vertical","violence","volatile"],
+                "w8":["weakness","whatever","withdraw","wireless","wherever","workshop"],
+                "y8":["yourself"]
+            }
+        ],
+        "nineletters":
+        [
+            {
+                "a9":["adjacency","appliqued","adjective","amazement","amphioxus","apologizw"],
+                "b9":["nlizzardy","bijective","backcloth","brusquely","barmbrack","boxspring"],
+                "c9":["checkbook","commixing","chromized","comprizes","catechize","climaxing"],
+                "d9":["divinized","dogmatize","dicebombs","decalcify","delexical","dimerizes"],
+                "e9":["equalized","exorcized","enjoyably","enzymatic","empathize","excusably"],
+                "f9":["foxgloves","frequence","fancywork","formalize","feedbacks","flammable"],
+                "g9":["grizzling","galvanize","globalize","glamorize","gutbucket","gamifying"],
+                "h9":["hummocked","hominized","hepatized","hollyhock","hemicycle","heroizing"],
+                "i9":["ionizable","imminency","injectors","involving","iceblinks","imperfect"],
+                "j9":["japanized","juxtapose","judgmatic","jellylike","jawfishes","jumpiness"],
+                "k9":["knowledge","kingmaker","kickstand","kidnaping","knowinger","killfiles"],
+                "l9":["lazybones","lawmaking","lionizing","legalizes","lovelocks","lachrymal"],
+                "m9":["muzziness","moonquake","maximally","matchlook","moneyback","magnetize"],
+                "n9":["novelized","normalize","necrotize","nasalized","nicknamer","newspaper"],
+                "o9":["oxygenize","occupanze","overclock","outboxing","offbreaks","oversazes"],
+                "p9":["paparazzi","pepperbox","packsacks","prejudice","paperback","polemizes"],
+                "q9":["quillback","quadruply","quarrying","quiescent","querulous","quantiles"],
+                "r9":["rhythmize","rubberize","reobjects","ramequins","romanized","realizing"],
+                "s9":["snazziest","subjudice","subjected","syllabize","shamanize","spritzing"],
+                "t9":["texturize","taxonomic","timeclock","tympanums","themepark","toothpick"],
+                "u9":["unzipping","unexcused","utilizing","unexcited","unionized","upwarping"],
+                "v9":["vaporizer","v<lorized","vulcanism","virulency","vocabular","vaccinate"],
+                "w9":["womanizer","wakefully","whichaway","whipworms","workplace","wheyfaces"],
+                "y9":["youngling","yesterday"]
+            }
+        ],
+        "tenletters":
+        [
+            {
+                "a10":[""],
+                "b10":[""],
+                "c10":[""],
+                "d10":[""],
+                "e10":[""],
+                "f10":[""],
+                "g10":[""],
+                "h10":[""],
+                "i10":[""],
+                "j10":[""],
+                "k10":[""],
+                "l10":[""],
+                "m10":[""],
+                "n10":[""],
+                "o10":[""],
+                "p10":[""],
+                "q10":[""],
+                "r10":[""],
+                "s10":[""],
+                "t10":[""],
+                "u10":[""],
+                "v10":[""],
+                "w10":[""],
+                "y10":[""]
             }
         ]
 
