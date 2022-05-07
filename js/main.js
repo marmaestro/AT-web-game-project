@@ -5,6 +5,8 @@ const SPRITE_FLY_HEIGHT = 28; // 279 * 0.1 aproximately
 
 let game = new Phaser.Game(GAME_AREA_WIDTH, GAME_AREA_HEIGHT, Phaser.CANVAS, 'gameArea');
 
+let typist = new Typist();
+
 // remember to attach the corresponding script in the HTML file through the cdnjs extension
 let wconfig = {
     active: startGame(),

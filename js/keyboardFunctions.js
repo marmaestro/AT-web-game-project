@@ -19,7 +19,7 @@ function checkLetter(a) {
     } else {
         game.enemies.array.forEach(owp => {
             if (isNextLetterInOWP(a, owp))  {
-                refocusTypist(owp);
+                typist.refocusTypist(owp);
                 correctLetters++;
             }
         });
