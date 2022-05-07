@@ -1,7 +1,7 @@
 let activeOWP;
 let activeLetter = 0; // index number of the active letter in the OWP (from 0)
-let typedLetters = 0;
-let correctLetters = 0;
+let typedLetters;
+let correctLetters;
 let accuracy;
 
 
@@ -36,7 +36,7 @@ function isNextLetterInOWP(a, obj) {
 }
 
 function deactivateLetter(obj) {
-    obj.word.changeColour(activeLetter); //this depends on the class declaration
+    obj.word.changeColour(activeLetter);
 
     if(activeLetter < obj.word.length()) {
         if (!activeOWP) { activeOWP = obj; }
@@ -52,8 +52,4 @@ function deactivateLetter(obj) {
 function removeOWP(obj) {
     obj.deleteOWP(); // needs revision
     // after the enemy class is finished
-}
-
-function calculateAccuracy() {
-    return (correctLetters / typedLetters) * 100;
 }

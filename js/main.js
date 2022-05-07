@@ -25,6 +25,7 @@ function startGame() {
     game.state.add('startScreen', startScreen);
     game.state.add('aboutScreen', aboutScreen);
     game.state.add('stageA', stageA);
+    game.state.add('HUD', HUD);
 
     game.state.start('startScreen');
 }

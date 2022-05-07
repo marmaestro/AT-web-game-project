@@ -14,7 +14,7 @@ class Enemy {
         this.angle = this.angle - formula(typist.x, typist.y, this.x, this.y);
 
         this.word = word;
-        this.word.forEach(letter => { letter.color = black; });
+        this.word.forEach(letter => { letter.color = '#000000' }); // black
     }
 
     formula (xt, yt, xe, ye) {
@@ -26,5 +26,14 @@ class Enemy {
 
     randomAngle () {
         return Math.random() * (10 - (-10)) + min;
+    }
+
+    changeColour (i) {
+        this.word[i].colour = '#808080'; // grey
+    }
+
+    deleteOWP () {
+        this.kill();
+        displayExplosion();
     }
 }
