@@ -16,6 +16,9 @@ function createStageA() {
     createSounds();
     createExplosions(EXPLOSIONS_GROUP_SIZE);
 
+    // for reading the keyboard
+    game.input.keyboard.onDownCallback = readKeyboard();
+
     // arcade phisics and collisions
     game.physics.startSystem(Phaser.Physics.ARCADE);
     game.physics.arcade.enable([typist, owps]);
