@@ -16,6 +16,7 @@ function preloadAbout() {
 }
 
 function createAbout() {
+    game.world.removeAll();
 
     let BG = game.add.image(0, 0, 'bg');
     BG.scale.setTo(1.8);
@@ -97,6 +98,7 @@ function createAbout() {
 }
 
 function showCredits() {
+    game.world.removeAll();
     let BG = game.add.image(0, 0, 'bg');
     BG.scale.setTo(1.8);
 

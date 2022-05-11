@@ -30,7 +30,8 @@ function createStartScreen() {
         font: 'Open Sans',
         fontSize: "35px",
     }
-    game.add.text(0, 0, gameTitle, style); //modify the title aligment
+    let title = game.add.text(GAME_AREA_WIDTH / 2, 100, gameTitle, style); //modify the title aligment
+    title.anchor.setTo(0.5, 0.5);
 
     // Position the buttons in the game area
     let btnStageA = game.add.button(GAME_AREA_WIDTH / 2, GAME_AREA_HEIGHT / 2,
@@ -91,7 +92,7 @@ function goToAboutScreen() {
 }
 
 function goToStageA() {
-    // game.state.start("stageA");
+    game.state.start("stageA");
 }
 
 function goToStageB() {
