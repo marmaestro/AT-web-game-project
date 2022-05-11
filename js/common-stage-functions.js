@@ -28,7 +28,6 @@ function createOWPs(number) {
         let owp = new Enemy(randomX(type), randomY(type), type);
         owp.sprite = game.add.sprite(owp.x, owp.y, type /*, frame*/);
         owp.configEnemySprite();
-        game.add.text(owp.x, owp.y + 5, owp.word, style = { font: 'Source Sans Pro', fontSize: '20px' } );
     }
 }
 
