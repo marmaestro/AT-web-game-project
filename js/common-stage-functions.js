@@ -15,6 +15,7 @@ function initiateVariables() {
     correctLetters = 0;
 }
 
+
 //————————————————————————————————————————————————————————————
 //--------OWPs------------------------------------------------
 //————————————————————————————————————————————————————————————
@@ -71,7 +72,6 @@ function getSpriteSize(type) {
 }
 
 
-
 //————————————————————————————————————————————————————————————
 //--------EXPLOSIONS------------------------------------------
 //————————————————————————————————————————————————————————————
@@ -106,4 +106,17 @@ function displayExplosion (obj) {
     let y = obj.y;
     explosion.reset(x, y);
     explosion.play('explosion', 30, false, true);
+}
+
+
+//————————————————————————————————————————————————————————————
+//--------AUXILIAR FUNCTIONS----------------------------------
+//————————————————————————————————————————————————————————————
+
+function getRandomBetween(min, max) { // random between min and max (both included)
+    return Math.random() * ((max + 1) - min) + min;
+}
+
+function getAngle(x1, y1, x2, y2) { // angle for the obj on (x1,y1) to face (x2,y2)
+    return Math.tan(Math.abs(x1-x2)/Math.abs(y1-y2));;
 }
