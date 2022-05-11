@@ -53,36 +53,30 @@ function createStartScreen() {
     //scale?
 
     // Fly tween: a fly just chilling around the game area borders
-    let bouncingFly = game.add.sprite(0 + SPRITE_FLY_WIDTH / 2,
-        GAME_AREA_HEIGHT - SPRITE_FLY_HEIGHT, "fly"
+    let bouncingFly = game.add.sprite(SPRITE_FLY_WIDTH / 2 + 5,
+        GAME_AREA_HEIGHT - SPRITE_FLY_HEIGHT - 5, "fly"
         /*, índice que queremos cargar si tenemos una sábana de sprites*/);
     bouncingFly.anchor.setTo(0.5, 0.5);
     bouncingFly.scale.setTo(0.1); // will be deleted soon due to the assets resizing
 
     let flyTween = game.add.tween(bouncingFly).to({
-            y: SPRITE_FLY_HEIGHT / 2
-        }, 4500, Phaser.Easing.Linear.None)
-        .to({
+            y: SPRITE_FLY_HEIGHT / 2 + 5
+        }, 4500, Phaser.Easing.Linear.None).to({
             angle: 90
-        }, 250, Phaser.Easing.Linear.None)
-        .to({
-            x: GAME_AREA_WIDTH - SPRITE_FLY_HEIGHT / 2
-        }, 4500, Phaser.Easing.Linear.None)
-        .to({
+        }, 250, Phaser.Easing.Linear.None).to({
+            x: GAME_AREA_WIDTH - SPRITE_FLY_HEIGHT / 2 - 5
+        }, 4500, Phaser.Easing.Linear.None).to({
             angle: 180
-        }, 250, Phaser.Easing.Linear.None)
-        .to({
-            y: GAME_AREA_HEIGHT - SPRITE_FLY_HEIGHT / 2
-        }, 4500, Phaser.Easing.Linear.None)
-        .to({
+        }, 250, Phaser.Easing.Linear.None).to({
+            y: GAME_AREA_HEIGHT - SPRITE_FLY_HEIGHT / 2 - 5
+        }, 4500, Phaser.Easing.Linear.None).to({
             angle: 270
-        }, 250, Phaser.Easing.Linear.None)
-        .to({
-            x: SPRITE_FLY_HEIGHT / 2
-        }, 4500, Phaser.Easing.Linear.None)
-        .to({
+        }, 250, Phaser.Easing.Linear.None).to({
+            x: SPRITE_FLY_HEIGHT / 2 + 5
+        }, 4500, Phaser.Easing.Linear.None).to({
             angle: 360
         }, 250, Phaser.Easing.Linear.None);
+
     flyTween.loop(true);
     flyTween.start();
 }
