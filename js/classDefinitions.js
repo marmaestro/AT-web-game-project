@@ -68,9 +68,15 @@ class Enemy {
     formula(xt, yt, xe, ye) {
         let x = Math.abs(xt - xe);
         let y = Math.abs(yt - ye);
-        let angle = Math.arctan(y / x);
-        //angle + this.randomAngle();
-        return angle;
+        let anglegrade = Math.atan(y / x);
+        let anglerad = Math.PI * anglegrade / 180;
+        //anglerad + this.randomAngle();
+        //let vectorhipx = xt + xe;
+        //let vertothipy = yt + ye;
+        //let diship1 = Math.pow(vectorhipx,2) + Math.pow(vectorhipy,2);
+        //let diship2 = Math.pow(diship1,0.5);
+
+        return anglerad;
     }
 
     randomAngle() {
