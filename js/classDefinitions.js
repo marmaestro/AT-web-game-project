@@ -4,7 +4,7 @@
 class Typist {
     constructor() {
         this.x = GAME_AREA_WIDTH / 2;
-        this.y = GAME_AREA_HEIGHT - 100;
+        this.y = GAME_AREA_HEIGHT - SPRITE_FROG_HEIGHT / 2 - 15; // 15 pixels of margin
         this.sprite;
 
     }
@@ -52,9 +52,9 @@ class Enemy {
 
     configEnemySprite() {
         this.sprite.anchor.setTo(0.5, 0.5);
-        this.angle = this.sprite.angle - 90;
-        this.angle = this.angle - this.formula(typist.x, typist.y, this.x, this.y);
-        game.add.text(this.x, this.y + 5, this.word, { font: 'Source Sans Pro', fontSize: '20px' } );
+        this.sprite.angle = 180;
+        this.sprite.angle = this.formula(typist.x, typist.y, this.x, this.y);
+        this.text = game.add.text(this.x, this.y + 5, this.word, { font: 'Source Sans Pro', fontSize: '20px' } );
     }
 
     getSpeed() {
@@ -66,8 +66,9 @@ class Enemy {
     }
 
     formula(xt, yt, xe, ye) {
-        let angle = 90;
-        angle + Math.tan(Math.abs(xt-xe)/Math.abs(yt-ye));
+        let x = Math.abs(xt - xe);
+        let y = Math.abs(yt - ye);
+        let angle = Math.tan(x / y);
         angle + this.randomAngle();
         return angle;
     }

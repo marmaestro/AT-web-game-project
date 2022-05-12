@@ -53,8 +53,8 @@ function randomX(type) {
 }
 
 function randomY(type) {
-    let min = getSpriteSize(type)[1] / 2 + 5; // 5 pixels for margin
-    let max = GAME_AREA_HEIGHT / 3 + 1; // OWPs should not spawn low in the screen
+    let min = getSpriteSize(type)[1] / 2 - 10;
+    let max = getSpriteSize(type)[1] + 15;
     return Math.random() * (max - min) + min;
 }
 

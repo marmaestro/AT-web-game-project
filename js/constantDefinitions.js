@@ -1,14 +1,16 @@
 const GAME_AREA_WIDTH = 600;
 const GAME_AREA_HEIGHT = 900;
 
-//const SPRITE_FROG_WIDTH;
-//const SPRITE_FROG_HEIGHT;
-const SPRITE_FLY_WIDTH = 23; // 226 * 0.1 aproximately
-const SPRITE_FLY_HEIGHT = 28; // 279 * 0.1 aproximately
-const SPRITE_BEETLE_WIDTH = 23;
-const SPRITE_BEETLE_HEIGHT = 28;
-const SPRITE_MOTH_WIDTH = 23;
-const SPRITE_MOTH_HEIGHT = 28;
+// sprite sizes
+const SPRITE_FROG_WIDTH = 90;
+const SPRITE_FROG_HEIGHT= 92;
+// enemies
+const SPRITE_FLY_WIDTH = 24;
+const SPRITE_FLY_HEIGHT = 29;
+const SPRITE_BEETLE_WIDTH = 31;
+const SPRITE_BEETLE_HEIGHT = 35;
+const SPRITE_MOTH_WIDTH = 50;
+const SPRITE_MOTH_HEIGHT = 21;
 
 // json imports
 const dictionary = JSON.parse(dictionary);
