@@ -18,8 +18,13 @@ function loadStageA() {
 
 function createStageA() {
     game.world.removeAll();
+
     // background
+<<<<<<< Updated upstream
     let BG = game.add.image(0, 0, "bg");
+=======
+    game.add.image(-1, -1, "bg");
+>>>>>>> Stashed changes
 
     typist.sprite = this.add.sprite(typist.x, typist.y, 'frog' /*, frame*/);
     typist.configTypistSprite();
