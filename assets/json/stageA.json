@@ -1,16 +1,46 @@
 {
-    "wave1": {
-        "small": [ {"amount": 5, "speed": speed-s} ]
+    "wave1":
+    {
+        "owpsTypes":
+        {
+            "flies": 5,
+            "beetles": 0,
+            "moths": 0
+        },
+        "owpsSpeed": 0,
+        "appearanceRate": 0
     },
-
-    "wave2": {
-        "small": [ {"amount": 7, "speed": speed-s} ],
-        "medium": [ {"amount": 3, "speed": speed-m} ]
+    "wave2":
+    {
+        "owpsTypes":
+        {
+            "flies": 8,
+            "beetles": 0,
+            "moths": 0
+        },
+        "owpsSpeed": 0,
+        "appearanceRate": 0
     },
-
-    "wave3": {
-        "small": [ {"amount": 10, "speed": speed-s} ],
-        "medium": [ {"amount": 5, "speed": speed-m} ],
-        "big": [ {"amount": 1, "speed": speed-b} ]
+    "wave3":
+    {
+        "owpsTypes":
+        {
+            "flies": 12,
+            "beetles": 0,
+            "moths": 0
+        },
+        "owpsSpeed": 0,
+        "appearanceRate": 0
     },
+    "wave4":
+    {
+        "owpsTypes":
+        {
+            "flies": 18,
+            "beetles": 0,
+            "moths": 0
+        },
+        "owpsSpeed": 0,
+        "appearanceRate": 0
+    }
 }
