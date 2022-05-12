@@ -20,9 +20,8 @@ function loadStartScreen() {
 function createStartScreen() {
     //initialise assets on the game screen: set their locations, scales, rotations, tweens, etc
 
-    // Add the background image to the screen
-    let BG = game.add.image(0, 0, "bg");
-    BG.scale.setTo(1.8); //will be modified in the future
+    // add the background image to the screen
+    game.add.image(-1, -1, "bg");
 
     // Add the game title at the top
     let gameTitle = "FROG TYPING GAME";
@@ -57,7 +56,6 @@ function createStartScreen() {
         GAME_AREA_HEIGHT - SPRITE_FLY_HEIGHT - 5, "fly"
         /*, índice que queremos cargar si tenemos una sábana de sprites*/);
     bouncingFly.anchor.setTo(0.5, 0.5);
-    bouncingFly.scale.setTo(0.1); // will be deleted soon due to the assets resizing
 
     let flyTween = game.add.tween(bouncingFly).to({
             y: SPRITE_FLY_HEIGHT / 2 + 5
