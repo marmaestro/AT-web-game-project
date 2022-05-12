@@ -20,7 +20,6 @@ function createStageA() {
     game.world.removeAll();
     // background
     let BG = game.add.image(0, 0, "bg");
-    BG.scale.setTo(1.8); //will be modified in the future
 
     typist.sprite = this.add.sprite(typist.x, typist.y, 'frog' /*, frame*/);
     typist.configTypistSprite();

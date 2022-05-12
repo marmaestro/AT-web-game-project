@@ -10,5 +10,11 @@ const SPRITE_BEETLE_HEIGHT = 28;
 const SPRITE_MOTH_WIDTH = 23;
 const SPRITE_MOTH_HEIGHT = 28;
 
+// json imports
+const dictionary = JSON.parse(dictionary);
+const wavesA = JSON.parse(stageA);
+const wavesB = JSON.parse(stageB);
+const wavesC = JSON.parse(stageC);
+
 
 let game = new Phaser.Game(GAME_AREA_WIDTH, GAME_AREA_HEIGHT, Phaser.CANVAS, 'gameArea');
