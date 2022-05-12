@@ -4,26 +4,40 @@ let stageA = {
     update: updateStageA
 }
 
+const nOWPs = 5; // must be defined from the JSON
+const maxFly = 4;
+const maxBeetle = 1;
+const maxMoth = 0;
+
+let typist = new Typist();
+let owps; // the group that contains all enemies currently on the screen
+
 function loadStageA() {
     loadStages();
 }
 
 function createStageA() {
-    // background
-    game.add.image(0, 0, 'bg').setOrigin(0, 0);
+    game.world.removeAll();
 
+    // background
+<<<<<<< Updated upstream
+    let BG = game.add.image(0, 0, "bg");
+=======
+    game.add.image(-1, -1, "bg");
+>>>>>>> Stashed changes
+
+    typist.sprite = this.add.sprite(typist.x, typist.y, 'frog' /*, frame*/);
+    typist.configTypistSprite();
+
+    owps = game.add.group();
+    owps.inputEnableChildren = true;
     createOWPs(nOWPs);
+
     createSounds();
     createExplosions(EXPLOSIONS_GROUP_SIZE);
 
     // for reading the keyboard
-    game.input.keyboard.onDownCallback = readKeyboard();
-
-    // arcade phisics and collisions
-    game.physics.startSystem(Phaser.Physics.ARCADE);
-    game.physics.arcade.enable([typist, owps]);
-    typist.body.onCollide = new Phaser.Signal();
-    typist.body.onCollide.add(collision, this);
+    game.input.keyboard.onDownCallback = readKeyboard;
 }
 
 function updateStageA() {

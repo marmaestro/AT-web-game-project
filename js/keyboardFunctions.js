@@ -2,7 +2,6 @@ let activeOWP;
 let activeLetter = 0; // index number of the active letter in the OWP (from 0)
 let typedLetters;
 let correctLetters;
-let accuracy;
 
 
 function readKeyboard(e) {
@@ -36,7 +35,7 @@ function isNextLetterInOWP(a, obj) {
 }
 
 function deactivateLetter(obj) {
-    obj.word.changeColour(activeLetter);
+    obj.word.changeColor(activeLetter);
 
     if(activeLetter < obj.word.length()) {
         if (!activeOWP) { activeOWP = obj; }

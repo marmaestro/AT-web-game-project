@@ -20,9 +20,8 @@ function loadStartScreen() {
 function createStartScreen() {
     //initialise assets on the game screen: set their locations, scales, rotations, tweens, etc
 
-    // Add the background image to the screen
-    let BG = game.add.image(0, 0, "bg");
-    BG.scale.setTo(1.8); //will be modified in the future
+    // add the background image to the screen
+    game.add.image(-1, -1, "bg");
 
     // Add the game title at the top
     let gameTitle = "FROG TYPING GAME";
@@ -30,7 +29,8 @@ function createStartScreen() {
         font: 'Open Sans',
         fontSize: "35px",
     }
-    game.add.text(0, 0, gameTitle, style); //modify the title aligment
+    let title = game.add.text(GAME_AREA_WIDTH / 2, 100, gameTitle, style); //modify the title aligment
+    title.anchor.setTo(0.5, 0.5);
 
     // Position the buttons in the game area
     let btnStageA = game.add.button(GAME_AREA_WIDTH / 2, GAME_AREA_HEIGHT / 2,
@@ -52,36 +52,29 @@ function createStartScreen() {
     //scale?
 
     // Fly tween: a fly just chilling around the game area borders
-    let bouncingFly = game.add.sprite(0 + SPRITE_FLY_WIDTH / 2,
-        GAME_AREA_HEIGHT - SPRITE_FLY_HEIGHT, "fly"
+    let bouncingFly = game.add.sprite(SPRITE_FLY_WIDTH / 2 + 5,
+        GAME_AREA_HEIGHT - SPRITE_FLY_HEIGHT - 5, "fly"
         /*, índice que queremos cargar si tenemos una sábana de sprites*/);
     bouncingFly.anchor.setTo(0.5, 0.5);
-    bouncingFly.scale.setTo(0.1); // will be deleted soon due to the assets resizing
 
     let flyTween = game.add.tween(bouncingFly).to({
-            y: SPRITE_FLY_HEIGHT / 2
-        }, 4500, Phaser.Easing.Linear.None)
-        .to({
+            y: SPRITE_FLY_HEIGHT / 2 + 5
+        }, 4500, Phaser.Easing.Linear.None).to({
             angle: 90
-        }, 250, Phaser.Easing.Linear.None)
-        .to({
-            x: GAME_AREA_WIDTH - SPRITE_FLY_HEIGHT / 2
-        }, 4500, Phaser.Easing.Linear.None)
-        .to({
+        }, 250, Phaser.Easing.Linear.None).to({
+            x: GAME_AREA_WIDTH - SPRITE_FLY_HEIGHT / 2 - 5
+        }, 4500, Phaser.Easing.Linear.None).to({
             angle: 180
-        }, 250, Phaser.Easing.Linear.None)
-        .to({
-            y: GAME_AREA_HEIGHT - SPRITE_FLY_HEIGHT / 2
-        }, 4500, Phaser.Easing.Linear.None)
-        .to({
+        }, 250, Phaser.Easing.Linear.None).to({
+            y: GAME_AREA_HEIGHT - SPRITE_FLY_HEIGHT / 2 - 5
+        }, 4500, Phaser.Easing.Linear.None).to({
             angle: 270
-        }, 250, Phaser.Easing.Linear.None)
-        .to({
-            x: SPRITE_FLY_HEIGHT / 2
-        }, 4500, Phaser.Easing.Linear.None)
-        .to({
+        }, 250, Phaser.Easing.Linear.None).to({
+            x: SPRITE_FLY_HEIGHT / 2 + 5
+        }, 4500, Phaser.Easing.Linear.None).to({
             angle: 360
         }, 250, Phaser.Easing.Linear.None);
+
     flyTween.loop(true);
     flyTween.start();
 }
@@ -91,7 +84,7 @@ function goToAboutScreen() {
 }
 
 function goToStageA() {
-    // game.state.start("stageA");
+    game.state.start("stageA");
 }
 
 function goToStageB() {
