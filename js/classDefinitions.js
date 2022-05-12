@@ -68,8 +68,8 @@ class Enemy {
     formula(xt, yt, xe, ye) {
         let x = Math.abs(xt - xe);
         let y = Math.abs(yt - ye);
-        let angle = Math.tan(x / y);
-        angle + this.randomAngle();
+        let angle = Math.arctan(y / x);
+        //angle + this.randomAngle();
         return angle;
     }
 
