@@ -1,4 +1,4 @@
-//————————————————————————————————————————————————————————————
+nF//————————————————————————————————————————————————————————————
 //--------LOADING STAGES--------------------------------------
 //————————————————————————————————————————————————————————————
 
@@ -28,9 +28,7 @@ function readWaveInfo(w) {
     maxMoth = levelData[w - 1].owpsTypes.moths;
     nOWPs = maxFly + maxBeetle + maxMoth;
     waveSpeed = levelData[w - 1].owpsSpeed;
-    waveppeareanceRate = levelData[w - 1].appearanceRate;
-
-    console.log(w, w -1, maxFly, maxBeetle, maxMoth, nOWPs, waveSpeed, waveppeareanceRate);
+    waveAppeareanceRate = levelData[w - 1].appearanceRate;
 }
 
 

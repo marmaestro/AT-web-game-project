@@ -41,15 +41,16 @@ class Enemy {
         this.word = this.getWord();
 
         class Letter {
-            constructor(letter, color) {
+            constructor(letter) {
                 this.letter = letter;
-                this.color = color;
+                this.color = '#000000';
+                this.active = true;
             }
         }
 
         this.letters = [];
         for (i = 0; i < this.word.length; i++) {
-            this.letters[i] = new Letter(this.word[i], '#000000');
+            this.letters[i] = new Letter(this.word[i]);
         }
     }
 
@@ -119,6 +120,7 @@ class Enemy {
     }
 
     changeColor(i) {
+        this.letters[i].active = false;
         this.letters[i].color = '#808080'; // grey
     }
 
