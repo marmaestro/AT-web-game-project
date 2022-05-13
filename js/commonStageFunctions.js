@@ -8,6 +8,7 @@ function loadStages() {
     game.load.image('fly', 'assets/imgs/fly.png');
     game.load.image('beetle', 'assets/imgs/beetle.png');
     game.load.image('moth', 'assets/imgs/moth.png');
+    game.load.text('dictionary', 'assets/json/dictionary.json');
 }
 
 function initiateVariables() {
@@ -21,14 +22,12 @@ function initiateVariables() {
 //————————————————————————————————————————————————————————————
 
 function createOWPs(number) {
-    let nFly = 0;
-    let nBeetle = 0;
-    let nMoth = 0;
     for (i = 0; i < number; i++) {
         let type = makeType(nFly, nBeetle, nMoth);
         let owp = new Enemy(randomX(type), randomY(type), type);
         owp.sprite = game.add.sprite(owp.x, owp.y, type /*, frame*/);
         owp.configEnemySprite();
+        console.log(owp);
     }
 }
 
@@ -61,7 +60,7 @@ function randomY(type) {
 function getSpriteSize(type) {
     switch (type) {
         case 'fly':
-          return [SPRITE_FLY_WIDTH, SPRITE_FLY_HEIGHT];
+            return [SPRITE_FLY_WIDTH, SPRITE_FLY_HEIGHT];
         case 'beetle':
             return [SPRITE_BEETLE_WIDTH, SPRITE_BEETLE_HEIGHT];
         case 'moth':
