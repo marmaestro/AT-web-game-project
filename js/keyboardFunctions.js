@@ -47,8 +47,3 @@ function deactivateLetter(obj) {
         activeLetter = 0;
     }
 }
-
-function removeOWP(obj) {
-    obj.deleteOWP(); // needs revision
-    // after the enemy class is finished
-}
