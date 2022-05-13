@@ -17,6 +17,4 @@ const ARRAY_FLY = 604;
 const ARRAY_BEETLE = 376;
 const ARRAY_MOTH = 0;
 
-const characters ='abcdefghijklmnopqrstuvwxyz';
-
 let game = new Phaser.Game(GAME_AREA_WIDTH, GAME_AREA_HEIGHT, Phaser.CANVAS, 'gameArea');

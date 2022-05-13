@@ -26,11 +26,9 @@ function readWaveInfo(w) {
     maxFly = levelData[w - 1].owpsTypes.flies;
     maxBeetle = levelData[w - 1].owpsTypes.beetles;
     maxMoth = levelData[w - 1].owpsTypes.moths;
-    nOWPs = maxFly + maxBeetle + maxMoth;
-    waveSpeed = levelData[w - 1].owpsSpeed;
-    waveppeareanceRate = levelData[w - 1].appearanceRate;
 
-    console.log(w, w -1, maxFly, maxBeetle, maxMoth, nOWPs, waveSpeed, waveppeareanceRate);
+    waveSpeed = levelData[w - 1].owpsSpeed;
+    waveAppeareanceRate = levelData[w - 1].appearanceRate;
 }
 
 
@@ -38,14 +36,13 @@ function readWaveInfo(w) {
 //--------OWPs------------------------------------------------
 //————————————————————————————————————————————————————————————
 
-function createOWPs(number) {
-    for (i = 0; i < number; i++) {
-        let type = makeType(nFly, nBeetle, nMoth);
-        let owp = new Enemy(randomX(type), randomY(type), type);
-        owp.sprite = game.add.sprite(owp.x, owp.y, type /*, frame*/);
-        owp.configEnemySprite();
-        console.log(owp);
-    }
+function createOWP() {
+    let type = makeType(nFly, nBeetle, nMoth);
+    let owp = new Enemy(randomX(type), randomY(type), type);
+    owp.sprite = game.add.sprite(owp.x, owp.y, type /*, frame*/);
+    owp.configEnemySprite();
+    //owps.add(owp);
+    console.log(owp);
 }
 
 function makeType(nFly, nBeetle, nMoth) {
@@ -86,44 +83,6 @@ function getSpriteSize(type) {
             return;
     }
 }
-
-
-//————————————————————————————————————————————————————————————
-//--------EXPLOSIONS------------------------------------------
-//————————————————————————————————————————————————————————————
-
-const EXPLOSIONS_GROUP_SIZE = 30;
-let explosions;
-let soundExplosion;
-
-function createPlay () {
-    createExplosions(EXPLOSIONS_GROUP_SIZE);
-}
-
-function createSounds() {
-    soundFrog = game.add.audio('sndfrog');
-    soundExplosion = game.add.audio('sndexplosion');
-}
-
-function createExplosions(number) {
-    explosions = game.add.group();
-    explosions.createMultiple(number, 'explosion');
-    explosions.forEach(setupBlast, this);
-}
-
-function setupBlast(explosion) {
-    explosion.anchor.setTo(0.5, 0.5);
-    explosion.animations.add('explosion');
-}
-
-function displayExplosion (obj) {
-    let explosion = explosions.getFirstExists(false);
-    let x = obj.x;
-    let y = obj.y;
-    explosion.reset(x, y);
-    explosion.play('explosion', 30, false, true);
-}
-
 
 //————————————————————————————————————————————————————————————
 //--------AUXILIAR FUNCTIONS----------------------------------
