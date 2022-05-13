@@ -61,7 +61,7 @@ class Enemy {
     }
 
     getSpeed() {
-        return 10; // must read the JSON file
+        return waveSpeed;
     }
 
     getWord() {
@@ -123,7 +123,8 @@ class Enemy {
     }
 
     deleteOWP () {
+        displayExplosion(this.x, this.y);
         this.kill();
-        displayExplosion();
+
     }
 }

@@ -4,9 +4,7 @@ let stageA = {
     update: updateStageA
 }
 var dictionary;
-var wavesA;
-var wavesB;
-var wavesC;
+var levelData;
 
 let typist = new Typist();
 let owps; // the group that contains all enemies currently on the screen
@@ -15,28 +13,35 @@ let wordsUsed = [];
 
 let wave;
 
-let nOWPs = 5; // must be defined from the JSON
-let nFly = 0;
-let maxFly = 5;
-let nBeetle = 0;
-let maxBeetle = 0;
-let nMoth = 0;
-let maxMoth = 0;
+let nOWPs;
+let nFly;
+let maxFly;
+let nBeetle;
+let maxBeetle;
+let nMoth;
+let maxMoth;
+
+let waveSpeed;
+let waveAppeareanceRate;
+
+
 
 //————————————————————————————————————————————————————————————
 //--------LOAD, CREATE AND UPDATE STAGE-----------------------
 //————————————————————————————————————————————————————————————
 
 function loadStageA() {
-    game.load.text('waveA', 'assets/json/stageA.json');
-    loadStages();
+    loadStages('A');
 }
 
 function createStageA() {
     game.world.removeAll();
 
-    levelData = JSON.parse(this.game.cache.getText('wavesA'));
     dictionary = JSON.parse(this.game.cache.getText('dictionary'));
+    levelData = JSON.parse(this.game.cache.getText('wavesA'));
+
+    initiateVariables();
+    readWaveInfo(1); // <- THIS WILL NEED TO BE CALLED SOMEWHERE ELSE
 
     // background
     game.add.image(-1, -1, "bg");

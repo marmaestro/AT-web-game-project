@@ -1,5 +1,4 @@
-{
-    "wave1":
+[
     {
         "owpsTypes":
         {
@@ -10,7 +9,6 @@
         "owpsSpeed": 0,
         "appearanceRate": 0
     },
-    "wave2":
     {
         "owpsTypes":
         {
@@ -21,7 +19,6 @@
         "owpsSpeed": 0,
         "appearanceRate": 0
     },
-    "wave3":
     {
         "owpsTypes":
         {
@@ -32,7 +29,6 @@
         "owpsSpeed": 0,
         "appearanceRate": 0
     },
-    "wave4":
     {
         "owpsTypes":
         {
@@ -43,4 +39,4 @@
         "owpsSpeed": 0,
         "appearanceRate": 0
     }
-}
+]

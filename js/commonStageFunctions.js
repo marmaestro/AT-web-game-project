@@ -2,18 +2,35 @@
 //--------LOADING STAGES--------------------------------------
 //————————————————————————————————————————————————————————————
 
-function loadStages() {
+function loadStages(s) {
     game.load.image('bg', 'assets/imgs/background.png');
     game.load.image('frog', 'assets/imgs/frog.png');
     game.load.image('fly', 'assets/imgs/fly.png');
     game.load.image('beetle', 'assets/imgs/beetle.png');
     game.load.image('moth', 'assets/imgs/moth.png');
     game.load.text('dictionary', 'assets/json/dictionary.json');
+    game.load.text('waves' + s, 'assets/json/stage' + s + '.json');
 }
 
 function initiateVariables() {
     typedLetters = 0;
     correctLetters = 0;
+
+    nFly = 0;
+    nBeetle = 0;
+    nMoth = 0;
+}
+
+function readWaveInfo(w) {
+
+    maxFly = levelData[w - 1].owpsTypes.flies;
+    maxBeetle = levelData[w - 1].owpsTypes.beetles;
+    maxMoth = levelData[w - 1].owpsTypes.moths;
+    nOWPs = maxFly + maxBeetle + maxMoth;
+    waveSpeed = levelData[w - 1].owpsSpeed;
+    waveppeareanceRate = levelData[w - 1].appearanceRate;
+
+    console.log(w, w -1, maxFly, maxBeetle, maxMoth, nOWPs, waveSpeed, waveppeareanceRate);
 }
 
 
