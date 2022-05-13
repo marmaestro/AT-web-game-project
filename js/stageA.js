@@ -13,7 +13,6 @@ let wordsUsed = [];
 
 let wave;
 
-let nOWPs;
 let nFly;
 let maxFly;
 let nBeetle;
@@ -43,6 +42,9 @@ function createStageA() {
     initiateVariables();
     readWaveInfo(1); // <- THIS WILL NEED TO BE CALLED SOMEWHERE ELSE
 
+    // for reading the keyboard
+    game.input.keyboard.onDownCallback = readKeyboard;
+
     // background
     game.add.image(-1, -1, "bg");
 
@@ -50,17 +52,12 @@ function createStageA() {
     typist.configTypistSprite();
 
     owps = game.add.group();
-    owps.inputEnableChildren = true;
-    createOWPs(nOWPs);
 
-    createSounds();
-    createExplosions(EXPLOSIONS_GROUP_SIZE);
-
-    // for reading the keyboard
-    game.input.keyboard.onDownCallback = readKeyboard;
+    //createSounds();
 }
 
 function updateStageA() {
+    createOWP();
     game.physics.arcade.collide(typist, owps);
 }
 

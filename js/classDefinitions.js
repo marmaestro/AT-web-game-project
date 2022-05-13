@@ -49,7 +49,7 @@ class Enemy {
         }
 
         this.letters = [];
-        for (i = 0; i < this.word.length; i++) {
+        for (let i = 0; i < this.word.length; i++) {
             this.letters[i] = new Letter(this.word[i]);
         }
     }
@@ -96,7 +96,7 @@ class Enemy {
 
 
             default:
-                console.log('EY QUE NO CHUSCA EL GETWORD');
+                console.log('NO WORD ?');
         }
         return word;
     }
