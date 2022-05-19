@@ -16,16 +16,14 @@ function initiateVariables() {
     typedLetters = 0;
     correctLetters = 0;
 
-    nFly = 0;
-    nBeetle = 0;
-    nMoth = 0;
+    wordsUsed = [];
 }
 
 function readWaveInfo(w) {
 
-    maxFly = levelData[w - 1].owpsTypes.flies;
-    maxBeetle = levelData[w - 1].owpsTypes.beetles;
-    maxMoth = levelData[w - 1].owpsTypes.moths;
+    numberFlies = levelData[w - 1].owpsTypes.flies;
+    numberBeetles = levelData[w - 1].owpsTypes.beetles;
+    numberMoths = levelData[w - 1].owpsTypes.moths;
 
     waveSpeed = levelData[w - 1].owpsSpeed;
     waveAppeareanceRate = levelData[w - 1].appearanceRate;
@@ -36,27 +34,11 @@ function readWaveInfo(w) {
 //--------OWPs------------------------------------------------
 //————————————————————————————————————————————————————————————
 
-function createOWP() {
-    let type = makeType(nFly, nBeetle, nMoth);
+function createOWP(type) {
     let owp = new Enemy(randomX(type), randomY(type), type);
     owp.sprite = game.add.sprite(owp.x, owp.y, type /*, frame*/);
     owp.configEnemySprite();
-    //owps.add(owp);
-    console.log(owp);
-}
-
-function makeType(nFly, nBeetle, nMoth) {
-    let type;
-    if (nFly < maxFly) {
-        type = 'fly';
-        nFly++;
-    } else if (nBeetle < maxBeetle) {
-        type = 'beetle';
-        nBeetle++;
-    } else { // there can never be more moths than defined
-        type = 'moth';
-        nMoth++;
-    } return type;
+    owps.push(owp);
 }
 
 function randomX(type) {
@@ -84,6 +66,27 @@ function getSpriteSize(type) {
     }
 }
 
+function pointEnemyTowardsTypist(enemy, typist) {
+    let enemyVX = typist.x - enemy.x;
+    let enemyVY = typist.y - enemy.y;
+    let enemyAngle = Math.atan2(enemyVY, enemyVX) * RADIANS_TO_DEGREES;
+    enemyAngle += getAngleDeviation();
+    enemy.sprite.angle = enemyAngle + ENEMY_SPRITE_LEFT_ANGLE;
+}
+
+function configureEnemyMovement(enemy) {
+    enemy.sprite.body.velocity.x = enemy.speed * Math.sin(angle/RADIANS_TO_DEGREES);
+    enemy.sprite.body.velocity.y = enemy.speed * Math.cos(angle/RADIANS_TO_DEGREES);
+}
+
+//————————————————————————————————————————————————————————————
+//--------TYPIST----------------------------------------------
+//————————————————————————————————————————————————————————————
+
+function pointToCurrentEnemy(enemy) {
+    typist.sprite.angle = HALF_TRIANGLE_ANGLES_SUM - enemy.sprite.angle;
+}
+
 //————————————————————————————————————————————————————————————
 //--------AUXILIAR FUNCTIONS----------------------------------
 //————————————————————————————————————————————————————————————
@@ -92,6 +95,16 @@ function getRandomBetween(min, max) { // random between min and max (both includ
     return Math.random() * ((max + 1) - min) + min;
 }
 
-function getAngle(x1, y1, x2, y2) { // angle for the obj on (x1,y1) to face (x2,y2)
-    return Math.tan(Math.abs(x1-x2)/Math.abs(y1-y2));;
+function displayGameOver() {
+    let gameOverText = game.add.text(GAME_AREA_WIDTH / 2, GAME_AREA_HEIGHT / 2,
+                    'GAME OVER', { font: 'Source Sans Pro', fontSize: '60px' } );
+    gameOverText.anchor.setTo(0.5, 0.5);
+}
+
+function getAngleDeviation() {
+    let angleDeviationSign = 1;
+    if (Math.random() < 0.5)
+        angleDeviationSign = -1;
+    let angleDeviationValue = Math.random() * MAX_ANGLE_DEVIATION;
+    return angleDeviationValue * angleDeviationSign;
 }
