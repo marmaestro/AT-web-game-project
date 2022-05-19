@@ -71,6 +71,26 @@ function getSpriteSize(type) {
     }
 }
 
+function pointEnemyTowardsTypist(enemy, typist) {
+    let enemyVX = typist.x - enemy.x;
+    let enemyVY = typist.y - enemy.y;
+    let enemyAngle = Math.atan2(enemyVY, enemyVX) * RADIANS_TO_DEGREES;
+    enemyAngle += getAngleDeviation();
+    enemy.sprite.angle = enemyAngle + ENEMY_SPRITE_LEFT_ANGLE;
+}
+
+function configureEnemyMovement(enemy) {
+    enemy.sprite.body.velocity.x = enemy.speed * Math.sin(angle/RADIANS_TO_DEGREES);
+    enemy.sprite.body.velocity.y = enemy.speed * Math.cos(angle/RADIANS_TO_DEGREES);
+}
+
+//————————————————————————————————————————————————————————————
+//--------TYPIST----------------------------------------------
+//————————————————————————————————————————————————————————————
+
+function pointToCurrentEnemy(enemy) {
+    typist.sprite.angle = HALF_TRIANGLE_ANGLES_SUM - enemy.sprite.angle;
+}
 
 //————————————————————————————————————————————————————————————
 //--------EXPLOSIONS------------------------------------------
@@ -119,4 +139,12 @@ function getRandomBetween(min, max) { // random between min and max (both includ
 
 function getAngle(x1, y1, x2, y2) { // angle for the obj on (x1,y1) to face (x2,y2)
     return Math.tan(Math.abs(x1-x2)/Math.abs(y1-y2));;
+}
+
+function getAngleDeviation() {
+    let angleDeviationSign = 1;
+    if (Math.random() < 0.5)
+        angleDeviationSign = -1;
+    let angleDeviationValue = Math.random() * MAX_ANGLE_DEVIATION;
+    return angleDeviationValue * angleDeviationSign;
 }

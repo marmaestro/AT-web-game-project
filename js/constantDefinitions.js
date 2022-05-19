@@ -12,6 +12,12 @@ const SPRITE_BEETLE_HEIGHT = 35;
 const SPRITE_MOTH_WIDTH = 50;
 const SPRITE_MOTH_HEIGHT = 21;
 
+// Game angles
+const RADIANS_TO_DEGREES = 180 / Math.PI;
+const ENEMY_SPRITE_LEFT_ANGLE = 90;
+const HALF_TRIANGLE_ANGLES_SUM = 90;
+const MAX_ANGLE_DEVIATION = 10;
+
 // json imports
 /*const dictionary = JSON.parse(dictionary);
 const wavesA = JSON.parse(stageA);
