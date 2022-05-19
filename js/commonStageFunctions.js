@@ -15,6 +15,8 @@ function loadStages(s) {
 function initiateVariables() {
     typedLetters = 0;
     correctLetters = 0;
+
+    wordsUsed = [];
 }
 
 function readWaveInfo(w) {
@@ -64,10 +66,45 @@ function getSpriteSize(type) {
     }
 }
 
+function pointEnemyTowardsTypist(enemy, typist) {
+    let enemyVX = typist.x - enemy.x;
+    let enemyVY = typist.y - enemy.y;
+    let enemyAngle = Math.atan2(enemyVY, enemyVX) * RADIANS_TO_DEGREES;
+    enemyAngle += getAngleDeviation();
+    enemy.sprite.angle = enemyAngle + ENEMY_SPRITE_LEFT_ANGLE;
+}
+
+function configureEnemyMovement(enemy) {
+    enemy.sprite.body.velocity.x = enemy.speed * Math.sin(angle/RADIANS_TO_DEGREES);
+    enemy.sprite.body.velocity.y = enemy.speed * Math.cos(angle/RADIANS_TO_DEGREES);
+}
+
+//————————————————————————————————————————————————————————————
+//--------TYPIST----------------------------------------------
+//————————————————————————————————————————————————————————————
+
+function pointToCurrentEnemy(enemy) {
+    typist.sprite.angle = HALF_TRIANGLE_ANGLES_SUM - enemy.sprite.angle;
+}
+
 //————————————————————————————————————————————————————————————
 //--------AUXILIAR FUNCTIONS----------------------------------
 //————————————————————————————————————————————————————————————
 
 function getRandomBetween(min, max) { // random between min and max (both included)
     return Math.random() * ((max + 1) - min) + min;
+}
+
+function displayGameOver() {
+    let gameOverText = game.add.text(GAME_AREA_WIDTH / 2, GAME_AREA_HEIGHT / 2,
+                    'GAME OVER', { font: 'Source Sans Pro', fontSize: '60px' } );
+    gameOverText.anchor.setTo(0.5, 0.5);
+}
+
+function getAngleDeviation() {
+    let angleDeviationSign = 1;
+    if (Math.random() < 0.5)
+        angleDeviationSign = -1;
+    let angleDeviationValue = Math.random() * MAX_ANGLE_DEVIATION;
+    return angleDeviationValue * angleDeviationSign;
 }
