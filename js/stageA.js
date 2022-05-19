@@ -3,21 +3,47 @@ let stageA = {
     create: createStageA,
     update: updateStageA
 }
-
-const nOWPs = 5; // must be defined from the JSON
-const maxFly = 4;
-const maxBeetle = 1;
-const maxMoth = 0;
+var dictionary;
+var levelData;
 
 let typist = new Typist();
 let owps; // the group that contains all enemies currently on the screen
 
+let wordsUsed = [];
+
+let wave;
+
+let nFly;
+let maxFly;
+let nBeetle;
+let maxBeetle;
+let nMoth;
+let maxMoth;
+
+let waveSpeed;
+let waveAppeareanceRate;
+
+
+
+//————————————————————————————————————————————————————————————
+//--------LOAD, CREATE AND UPDATE STAGE-----------------------
+//————————————————————————————————————————————————————————————
+
 function loadStageA() {
-    loadStages();
+    loadStages('A');
 }
 
 function createStageA() {
     game.world.removeAll();
+
+    dictionary = JSON.parse(this.game.cache.getText('dictionary'));
+    levelData = JSON.parse(this.game.cache.getText('wavesA'));
+
+    initiateVariables();
+    readWaveInfo(1); // <- THIS WILL NEED TO BE CALLED SOMEWHERE ELSE
+
+    // for reading the keyboard
+    game.input.keyboard.onDownCallback = readKeyboard;
 
     // background
     game.add.image(-1, -1, "bg");
@@ -26,20 +52,19 @@ function createStageA() {
     typist.configTypistSprite();
 
     owps = game.add.group();
-    owps.inputEnableChildren = true;
-    createOWPs(nOWPs);
 
-    createSounds();
-    createExplosions(EXPLOSIONS_GROUP_SIZE);
-
-    // for reading the keyboard
-    game.input.keyboard.onDownCallback = readKeyboard;
+    //createSounds();
 }
 
 function updateStageA() {
+    createOWP();
     game.physics.arcade.collide(typist, owps);
 }
 
+
+//————————————————————————————————————————————————————————————
+//--------OTHER FUNCTIONS-------------------------------------
+//————————————————————————————————————————————————————————————
 function collision() {
     goToHUDScreen();
 }

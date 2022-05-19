@@ -1,6 +1,7 @@
 //————————————————————————————————————————————————————————————
 //--------TYPIST----------------------------------------------
 //————————————————————————————————————————————————————————————
+
 class Typist {
     constructor() {
         this.x = GAME_AREA_WIDTH / 2;
@@ -23,9 +24,11 @@ class Typist {
     }
 }
 
+
 //————————————————————————————————————————————————————————————
 //--------ENEMIES---------------------------------------------
 //————————————————————————————————————————————————————————————
+
 class Enemy {
     constructor(x, y, type) {
         this.x = x;
@@ -38,15 +41,16 @@ class Enemy {
         this.word = this.getWord();
 
         class Letter {
-            constructor(letter, color) {
+            constructor(letter) {
                 this.letter = letter;
-                this.color = color;
+                this.color = '#000000';
+                this.active = true;
             }
         }
 
         this.letters = [];
-        for (i = 0; i < this.word.length; i++) {
-            this.letters[i] = new Letter(this.word[i], '#000000');
+        for (let i = 0; i < this.word.length; i++) {
+            this.letters[i] = new Letter(this.word[i]);
         }
     }
 
@@ -58,11 +62,43 @@ class Enemy {
     }
 
     getSpeed() {
-        return 10; // must read the JSON file
+        return waveSpeed;
     }
 
-    getWord(){
-        return 'word'; //must read the JSON file
+    getWord() {
+        let word;
+        let foundWord = false;
+        // switch to diferentiate between types
+        switch(this.type) {
+
+            case 'fly':     // 2 to 7 letters
+                while(!foundWord) {
+                    let index = this.randomNumber(0, ARRAY_FLY + 1);
+                    word = dictionary.words.fly[index];
+                    if (word && !wordsUsed.includes(word)) { foundWord = true }
+                } break;
+
+
+            case 'beetle':  // 8 to 10 letters
+                while(!foundWord) {
+                    let index = this.randomNumber(0, ARRAY_BEETLE + 1);
+                    word = dictionary.words.beetle[index];
+                    if (word && !wordsUsed.includes(word)) { foundWord = true }
+                } break;
+
+
+            case 'moth':    // more than 10 letters
+                while(!foundWord) {
+                    let index = this.randomNumber(0, ARRAY_MOTH + 1);
+                    word = dictionary.words.moth[index];
+                    if (word && !wordsUsed.includes(word)) { foundWord = true }
+                } break;
+
+
+            default:
+                console.log('NO WORD ?');
+        }
+        return word;
     }
 
     formula(xt, yt, xe, ye) {
@@ -78,12 +114,19 @@ class Enemy {
             // Math.random() * (max - min) + min;
     }
 
+    randomNumber(min, max) {
+        max += 1;
+        return Math.floor(Math.random() * (max - min) + min);
+    }
+
     changeColor(i) {
+        this.letters[i].active = false;
         this.letters[i].color = '#808080'; // grey
     }
 
     deleteOWP () {
+        displayExplosion(this.x, this.y);
         this.kill();
-        displayExplosion();
+
     }
 }

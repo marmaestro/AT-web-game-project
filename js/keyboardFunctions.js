@@ -16,7 +16,7 @@ function checkLetter(a) {
     if (activeOWP) {
         if (isNextLetterInOWP(a)) { correctLetters++; }
     } else {
-        game.enemies.array.forEach(owp => {
+        owps.forEach(owp => {
             if (isNextLetterInOWP(a, owp))  {
                 typist.refocusTypist(owp);
                 correctLetters++;
@@ -35,7 +35,7 @@ function isNextLetterInOWP(a, obj) {
 }
 
 function deactivateLetter(obj) {
-    obj.word.changeColor(activeLetter);
+    obj.word.deactivateLetter(activeLetter);
 
     if(activeLetter < obj.word.length()) {
         if (!activeOWP) { activeOWP = obj; }
@@ -46,9 +46,4 @@ function deactivateLetter(obj) {
         activeOWP = null;
         activeLetter = 0;
     }
-}
-
-function removeOWP(obj) {
-    obj.deleteOWP(); // needs revision
-    // after the enemy class is finished
 }
