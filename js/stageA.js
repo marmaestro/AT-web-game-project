@@ -13,12 +13,9 @@ let wordsUsed = [];
 
 let wave;
 
-let nFly;
-let maxFly;
-let nBeetle;
-let maxBeetle;
-let nMoth;
-let maxMoth;
+let numberFlies;
+let numberBeetles;
+let numberMoths;
 
 let waveSpeed;
 let waveAppeareanceRate;
@@ -34,6 +31,8 @@ function loadStageA() {
 }
 
 function createStageA() {
+    game.physics.startSystem(Phaser.Physics.ARCADE);
+
     game.world.removeAll();
 
     dictionary = JSON.parse(this.game.cache.getText('dictionary'));
@@ -51,14 +50,18 @@ function createStageA() {
     typist.sprite = this.add.sprite(typist.x, typist.y, 'frog' /*, frame*/);
     typist.configTypistSprite();
 
-    owps = game.add.group();
+    owps = new Array();
 
     //createSounds();
+
+    game.time.events.repeat(waveAppeareanceRate, numberFlies, createOWP, this, 'fly');
+    //game.time.events.repeat(waveAppeareanceRate, numberBeetles, createOWP, this, 'beetle');
+    //game.time.events.repeat(waveAppeareanceRate, numberMoths, createOWP, this, 'moth');
+
 }
 
 function updateStageA() {
-    createOWP();
-    game.physics.arcade.collide(typist, owps);
+
 }
 
 

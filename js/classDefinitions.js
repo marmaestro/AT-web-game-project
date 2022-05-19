@@ -13,6 +13,8 @@ class Typist {
     configTypistSprite() {
         this.sprite.anchor.setTo(0.5, 0.5);
         this.angle = this.sprite.angle - 90;
+
+        game.physics.enable(typist.sprite, Phaser.Physics.ARCADE);
     }
 
     refocusTypist(owp) {
@@ -59,6 +61,8 @@ class Enemy {
         this.sprite.angle = 180;
         this.sprite.angle = this.formula(typist.x, typist.y, this.x, this.y);
         this.text = game.add.text(this.x, this.y + 5, this.word, { font: 'Source Sans Pro', fontSize: '20px' } );
+
+        game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
     }
 
     getSpeed() {

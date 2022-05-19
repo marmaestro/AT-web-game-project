@@ -15,17 +15,13 @@ function loadStages(s) {
 function initiateVariables() {
     typedLetters = 0;
     correctLetters = 0;
-
-    nFly = 0;
-    nBeetle = 0;
-    nMoth = 0;
 }
 
 function readWaveInfo(w) {
 
-    maxFly = levelData[w - 1].owpsTypes.flies;
-    maxBeetle = levelData[w - 1].owpsTypes.beetles;
-    maxMoth = levelData[w - 1].owpsTypes.moths;
+    numberFlies = levelData[w - 1].owpsTypes.flies;
+    numberBeetles = levelData[w - 1].owpsTypes.beetles;
+    numberMoths = levelData[w - 1].owpsTypes.moths;
 
     waveSpeed = levelData[w - 1].owpsSpeed;
     waveAppeareanceRate = levelData[w - 1].appearanceRate;
@@ -36,27 +32,11 @@ function readWaveInfo(w) {
 //--------OWPs------------------------------------------------
 //————————————————————————————————————————————————————————————
 
-function createOWP() {
-    let type = makeType(nFly, nBeetle, nMoth);
+function createOWP(type) {
     let owp = new Enemy(randomX(type), randomY(type), type);
     owp.sprite = game.add.sprite(owp.x, owp.y, type /*, frame*/);
     owp.configEnemySprite();
-    //owps.add(owp);
-    console.log(owp);
-}
-
-function makeType(nFly, nBeetle, nMoth) {
-    let type;
-    if (nFly < maxFly) {
-        type = 'fly';
-        nFly++;
-    } else if (nBeetle < maxBeetle) {
-        type = 'beetle';
-        nBeetle++;
-    } else { // there can never be more moths than defined
-        type = 'moth';
-        nMoth++;
-    } return type;
+    owps.push(owp);
 }
 
 function randomX(type) {
@@ -90,8 +70,4 @@ function getSpriteSize(type) {
 
 function getRandomBetween(min, max) { // random between min and max (both included)
     return Math.random() * ((max + 1) - min) + min;
-}
-
-function getAngle(x1, y1, x2, y2) { // angle for the obj on (x1,y1) to face (x2,y2)
-    return Math.tan(Math.abs(x1-x2)/Math.abs(y1-y2));;
 }
