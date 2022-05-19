@@ -5,7 +5,7 @@
 class Typist {
     constructor() {
         this.x = GAME_AREA_WIDTH / 2;
-        this.y = GAME_AREA_HEIGHT - SPRITE_FROG_HEIGHT / 2 - 15; // 15 pixels of margin
+        this.y = GAME_AREA_HEIGHT - SPRITE_FROG_HEIGHT / 2 - 40; // 15 pixels of margin
         this.sprite;
 
     }
@@ -15,6 +15,7 @@ class Typist {
         this.angle = this.sprite.angle - 90;
 
         game.physics.enable(typist.sprite, Phaser.Physics.ARCADE);
+        this.sprite.body.collideWorldBounds = true;
     }
 
     refocusTypist(owp) {
@@ -79,7 +80,9 @@ class Enemy {
                 while(!foundWord) {
                     let index = this.randomNumber(0, ARRAY_FLY + 1);
                     word = dictionary.words.fly[index];
-                    if (word && !wordsUsed.includes(word)) { foundWord = true }
+                    if (word && !wordsUsed.includes(word)) {
+                        foundWord = true;
+                        wordsUsed.push(word); }
                 } break;
 
 
@@ -87,7 +90,9 @@ class Enemy {
                 while(!foundWord) {
                     let index = this.randomNumber(0, ARRAY_BEETLE + 1);
                     word = dictionary.words.beetle[index];
-                    if (word && !wordsUsed.includes(word)) { foundWord = true }
+                    if (word && !wordsUsed.includes(word)) {
+                        foundWord = true;
+                        wordsUsed.push(word); }
                 } break;
 
 
@@ -95,7 +100,9 @@ class Enemy {
                 while(!foundWord) {
                     let index = this.randomNumber(0, ARRAY_MOTH + 1);
                     word = dictionary.words.moth[index];
-                    if (word && !wordsUsed.includes(word)) { foundWord = true }
+                    if (word && !wordsUsed.includes(word)) {
+                        foundWord = true;
+                        wordsUsed.push(word); }
                 } break;
 
 
@@ -129,6 +136,10 @@ class Enemy {
     }
 
     deleteOWP () {
+        let i = wordsUsed.indexOf(this.word);
+        if (index !== -1)
+            wordsUsed.splice(i, 1);
+
         displayExplosion(this.x, this.y);
         this.kill();
 
