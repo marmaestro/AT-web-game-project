@@ -15,7 +15,6 @@ class Typist {
         this.angle = this.sprite.angle - 90;
 
         game.physics.enable(typist.sprite, Phaser.Physics.ARCADE);
-        this.sprite.body.collideWorldBounds = true;
     }
 
     refocusTypist(owp) {
@@ -64,6 +63,7 @@ class Enemy {
         this.text = game.add.text(this.x, this.y + 5, this.word, { font: 'Source Sans Pro', fontSize: '20px' } );
 
         game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
+        this.sprite.body.collideWorldBounds = true;
     }
 
     getSpeed() {
@@ -115,9 +115,9 @@ class Enemy {
     formula(xt, yt, xe, ye) {
         let x = Math.abs(xt - xe);
         let y = Math.abs(yt - ye);
-        let angle = Math.tan(x / y);
-        angle + this.randomAngle();
-        return angle;
+        let anglegrade = Math.atan(y / x);
+        let anglerad = Math.PI * anglegrade / 180;
+        return anglerad;
     }
 
     randomAngle() {
@@ -140,8 +140,7 @@ class Enemy {
         if (index !== -1)
             wordsUsed.splice(i, 1);
 
-        displayExplosion(this.x, this.y);
-        this.kill();
-
+        //displayExplosion(this.x, this.y);
+        this.destroy();
     }
 }
