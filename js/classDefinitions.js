@@ -14,7 +14,7 @@ class Typist {
         this.sprite.anchor.setTo(0.5, 0.5);
         this.angle = this.sprite.angle - 90;
 
-        game.physics.enable(typist.sprite, Phaser.Physics.ARCADE);
+        game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
     }
 
     refocusTypist(owp) {
@@ -67,6 +67,8 @@ class Enemy {
 
         this.refocusOWP();
         this.configureEnemyMovement();
+
+        owps.push(this);
     }
 
     getSpeed() {
@@ -124,7 +126,6 @@ class Enemy {
     }
 
     configureEnemyMovement() {
-        console.log(this);
         game.physics.arcade.moveToObject(this.sprite, typist.sprite, this.speed);
         game.physics.arcade.moveToObject(this.text, typist.sprite, this.speed);
     }

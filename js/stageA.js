@@ -7,7 +7,7 @@ var dictionary;
 var levelData;
 
 let typist = new Typist();
-let owps; // the group that contains all enemies currently on the screen
+let owps; // the array that contains all enemies currently on the screen
 
 let wordsUsed;
 
@@ -50,22 +50,16 @@ function createStageA() {
     typist.sprite = game.add.sprite(typist.x, typist.y, 'frog' /*, frame*/);
     typist.configTypistSprite();
 
-    //owps
-    owps = new Array();
-
     // timers to create the OWPs
     game.time.events.repeat(waveAppeareanceRate, numberFlies, createOWP, this, 'fly');
     //game.time.events.repeat(waveAppeareanceRate, numberBeetles, createOWP, this, 'beetle');
     //game.time.events.repeat(waveAppeareanceRate, numberMoths, createOWP, this, 'moth');
-
 }
 
 function updateStageA() {
 
-    // foreach to read collisions between the typist and the owps in screen
-    owps.forEach(owp => {
-        game.physics.arcade.collide(typist, owp, collision);
-    });
+    checkCollision();
+    checkOut();
 
     // change waves or finish the stage
     if (owps.length = 0) {
@@ -79,8 +73,9 @@ function updateStageA() {
 //--------OTHER FUNCTIONS-------------------------------------
 //————————————————————————————————————————————————————————————
 function collision() {
+    console.log('PABERNOS MATAO');
     displayGameOver();
-    goToHUDScreen();
+    //goToHUDScreen();
     //game.time.delayedCall(1000, goToHUDScreen, [], this);
 }
 

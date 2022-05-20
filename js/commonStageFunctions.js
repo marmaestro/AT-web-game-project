@@ -16,7 +16,8 @@ function initiateVariables() {
     typedLetters = 0;
     correctLetters = 0;
 
-    wordsUsed = [];
+    wordsUsed = new Array();
+    owps = new Array();
 }
 
 function readWaveInfo(w) {
@@ -66,19 +67,23 @@ function getSpriteSize(type) {
     }
 }
 
-function moveOWPS() {
+function checkOut() {
     owps.forEach(owp => {
-        owp.sprite.body.updateMovement();
-        owp.word.x = owp.sprite.x;
-        owp.word.y = owp.sprite.y + WORD_OFFSET;
+        /*if (owp.sprite.top > GAME_AREA_HEIGHT)
+            owp.deleteOWP();*/
     });
-
-    updateMovement();
 }
 
 //————————————————————————————————————————————————————————————
 //--------TYPIST----------------------------------------------
 //————————————————————————————————————————————————————————————
+function checkCollision() {
+    //game.physics.arcade.overlap(typist.sprite, owps, collision);
+
+    owps.forEach(owp => {
+        game.physics.arcade.overlap(typist.sprite, owp.sprite, collision);
+    });
+}
 
 //————————————————————————————————————————————————————————————
 //--------AUXILIAR FUNCTIONS----------------------------------
