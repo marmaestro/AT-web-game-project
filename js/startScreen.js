@@ -25,11 +25,7 @@ function createStartScreen() {
 
     // Add the game title at the top
     let gameTitle = "FROG TYPING GAME";
-    let style = {
-        font: 'Open Sans',
-        fontSize: "35px",
-    }
-    let title = game.add.text(GAME_AREA_WIDTH / 2, 100, gameTitle, style); //modify the title aligment
+    let title = game.add.text(GAME_AREA_WIDTH / 2, 150, gameTitle, { font: 'Source Sans Pro', fontSize: '60px', fontWeight: 'bold' } );
     title.anchor.setTo(0.5, 0.5);
 
     // Position the buttons in the game area
@@ -84,13 +80,19 @@ function goToAboutScreen() {
 }
 
 function goToStageA() {
+    stage = 'A';
+    wave = 1;
     game.state.start("stageA");
 }
 
 function goToStageB() {
-    // game.state.start("stageB");
+    stage = 'B';
+    wave = 1;
+    game.state.start("stageB");
 }
 
 function goToStageC() {
-    // game.state.start("stageC");
+    stage = 'C';
+    wave = 1;
+    game.state.start("stageC");
 }

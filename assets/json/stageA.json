@@ -36,7 +36,7 @@
             "beetles": 0,
             "moths": 0
         },
-        "owpsSpeed": 50,
+        "owpsSpeed": 40,
         "appearanceRate": 400
     }
 ]

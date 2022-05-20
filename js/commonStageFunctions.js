@@ -16,11 +16,15 @@ function initiateVariables() {
     typedLetters = 0;
     correctLetters = 0;
 
+    death = false;
+
     wordsUsed = new Array();
-    owps = new Array();
+    lettersUsed = new Array();
+    owps = new Phaser.ArraySet();
 }
 
 function readWaveInfo(w) {
+    console.log('reading wave ', w);
 
     numberFlies = levelData[w - 1].owpsTypes.flies;
     numberBeetles = levelData[w - 1].owpsTypes.beetles;
@@ -28,6 +32,8 @@ function readWaveInfo(w) {
 
     waveSpeed = levelData[w - 1].owpsSpeed;
     waveAppeareanceRate = levelData[w - 1].appearanceRate;
+
+    waveLimit = levelData.length;
 }
 
 
@@ -39,7 +45,7 @@ function createOWP(type) {
     let owp = new Enemy(randomX(type), randomY(type), type);
     owp.sprite = game.add.sprite(owp.x, owp.y, type /*, frame*/);
     owp.configEnemySprite();
-    owps.push(owp);
+    owps.add(owp);
 }
 
 function randomX(type) {
@@ -68,21 +74,27 @@ function getSpriteSize(type) {
 }
 
 function checkOut() {
-    owps.forEach(owp => {
-        /*if (owp.sprite.top > GAME_AREA_HEIGHT)
-            owp.deleteOWP();*/
-    });
+
+    for (var i = 0; i < owps.list.length; i++) {
+        let owp = owps.list[i];
+        if (owp.sprite.top > GAME_AREA_HEIGHT)
+            owp.deleteOWP();
+    }
 }
+
+// OWPS for
+/*for (var i = 0; i < owps.list.length; i++) {
+    let owp = owps.list[i];
+}*/
 
 //————————————————————————————————————————————————————————————
 //--------TYPIST----------------------------------------------
 //————————————————————————————————————————————————————————————
 function checkCollision() {
-    //game.physics.arcade.overlap(typist.sprite, owps, collision);
 
-    owps.forEach(owp => {
-        game.physics.arcade.overlap(typist.sprite, owp.sprite, collision);
-    });
+    for (var i = 0; i < owps.list.length; i++) {
+        game.physics.arcade.overlap(typist.sprite, owps.list[i].sprite, collision);
+    }
 }
 
 //————————————————————————————————————————————————————————————
@@ -105,4 +117,26 @@ function getAngleDeviation() {
         angleDeviationSign = -1;
     let angleDeviationValue = Math.random() * MAX_ANGLE_DEVIATION;
     return angleDeviationValue * angleDeviationSign;
+}
+
+function collision() {
+    death = true;
+    goToHUDScreen();
+}
+
+function endStage() {
+    goToHUDScreen();
+}
+
+function goToHUDScreen() {
+    game.state.start('HUD');
+}
+
+function proceedWave() {
+    if (owps.list.length <= 0) {
+        if (wave < waveLimit) {
+            wave += 1;
+            goToHUDScreen();
+        } else endStage();
+    }
 }

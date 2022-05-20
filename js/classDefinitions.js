@@ -41,19 +41,6 @@ class Enemy {
 
         this.speed = this.getSpeed();
         this.word = this.getWord();
-
-        class Letter {
-            constructor(letter) {
-                this.letter = letter;
-                this.color = '#000000';
-                this.active = true;
-            }
-        }
-
-        this.letters = [];
-        for (let i = 0; i < this.word.length; i++) {
-            this.letters[i] = new Letter(this.word[i]);
-        }
     }
 
     configEnemySprite() {
@@ -67,8 +54,6 @@ class Enemy {
 
         this.refocusOWP();
         this.configureEnemyMovement();
-
-        owps.push(this);
     }
 
     getSpeed() {
@@ -85,9 +70,10 @@ class Enemy {
                 while(!foundWord) {
                     let index = this.randomNumber(0, ARRAY_FLY + 1);
                     word = dictionary.words.fly[index];
-                    if (word && !wordsUsed.includes(word)) {
+                    if (word && !wordsUsed.includes(word) && !lettersUsed.includes(word[0])) {
                         foundWord = true;
-                        wordsUsed.push(word); }
+                        wordsUsed.push(word);
+                        lettersUsed.push(word[0]); }
                 } break;
 
 
@@ -95,9 +81,10 @@ class Enemy {
                 while(!foundWord) {
                     let index = this.randomNumber(0, ARRAY_BEETLE + 1);
                     word = dictionary.words.beetle[index];
-                    if (word && !wordsUsed.includes(word)) {
+                    if (word && !wordsUsed.includes(word) && !lettersUsed.includes(word[0])) {
                         foundWord = true;
-                        wordsUsed.push(word); }
+                        wordsUsed.push(word);
+                        lettersUsed.push(word[0]); }
                 } break;
 
 
@@ -105,9 +92,10 @@ class Enemy {
                 while(!foundWord) {
                     let index = this.randomNumber(0, ARRAY_MOTH + 1);
                     word = dictionary.words.moth[index];
-                    if (word && !wordsUsed.includes(word)) {
+                    if (word && !wordsUsed.includes(word) && !lettersUsed.includes(word[0])) {
                         foundWord = true;
-                        wordsUsed.push(word); }
+                        wordsUsed.push(word);
+                        lettersUsed.push(word[0]); }
                 } break;
 
 
@@ -138,27 +126,26 @@ class Enemy {
         return anglerad;
     }
 
-    randomAngle() {
-        return Math.random() * (11 - (-10)) - 10; // max is eclusive
-            // Math.random() * (max - min) + min;
-    }
-
     randomNumber(min, max) {
         max += 1;
         return Math.floor(Math.random() * (max - min) + min);
     }
 
-    changeColor(i) {
-        this.letters[i].active = false;
-        this.letters[i].color = '#808080'; // grey
-    }
-
     deleteOWP () {
         let i = wordsUsed.indexOf(this.word);
-        if (index !== -1)
-            wordsUsed.splice(i, 1);
+        wordsUsed.splice(i, 1);
+        i = lettersUsed.indexOf(this.word[0]);
+        lettersUsed.splice(i, 1);
 
+        owps.remove(this);
         //displayExplosion(this.x, this.y);
-        this.destroy();
+
+        this.sprite.destroy();
+        this.text.destroy();
+    }
+
+    deactivateLetter (l) {
+        this.text.addColor('#ABA8A2', 0);
+        this.text.addColor('#F5F0E4', l + 1);
     }
 }

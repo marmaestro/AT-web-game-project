@@ -10,16 +10,22 @@ let typist = new Typist();
 let owps; // the array that contains all enemies currently on the screen
 
 let wordsUsed;
+let lettersUsed;
 
-let wave = 4;
+let stage;
 
+let wave;
+let waveLimit;
+
+let cursors;
+
+let flies;
 let numberFlies;
 let numberBeetles;
 let numberMoths;
 
 let waveSpeed;
 let waveAppeareanceRate;
-
 
 
 //————————————————————————————————————————————————————————————
@@ -44,6 +50,7 @@ function createStageA() {
     readWaveInfo(wave); // <- THIS WILL NEED TO BE CALLED SOMEWHERE ELSE
 
     // for reading the keyboard
+    cursors = game.input.keyboard.createCursorKeys();
     game.input.keyboard.onDownCallback = readKeyboard;
 
     // create the typist's sprite and configure it
@@ -62,27 +69,4 @@ function updateStageA() {
     checkOut();
 
     // change waves or finish the stage
-    if (owps.length = 0) {
-        if (wave < 4) wave++;
-        else endStage();
-    }
-}
-
-
-//————————————————————————————————————————————————————————————
-//--------OTHER FUNCTIONS-------------------------------------
-//————————————————————————————————————————————————————————————
-function collision() {
-    console.log('PABERNOS MATAO');
-    displayGameOver();
-    //goToHUDScreen();
-    //game.time.delayedCall(1000, goToHUDScreen, [], this);
-}
-
-function endStage() {
-    goToHUDScreen();
-}
-
-function goToHUDScreen() {
-    game.state.start('HUD');
 }
