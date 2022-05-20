@@ -6,8 +6,8 @@
             "beetles": 0,
             "moths": 0
         },
-        "owpsSpeed": 0,
-        "appearanceRate": 0
+        "owpsSpeed": 20,
+        "appearanceRate": 600
     },
     {
         "owpsTypes":
@@ -16,8 +16,8 @@
             "beetles": 0,
             "moths": 0
         },
-        "owpsSpeed": 0,
-        "appearanceRate": 0
+        "owpsSpeed": 30,
+        "appearanceRate": 600
     },
     {
         "owpsTypes":
@@ -26,8 +26,8 @@
             "beetles": 0,
             "moths": 0
         },
-        "owpsSpeed": 0,
-        "appearanceRate": 0
+        "owpsSpeed": 30,
+        "appearanceRate": 400
     },
     {
         "owpsTypes":
@@ -36,7 +36,7 @@
             "beetles": 0,
             "moths": 0
         },
-        "owpsSpeed": 0,
-        "appearanceRate": 0
+        "owpsSpeed": 50,
+        "appearanceRate": 400
     }
 ]

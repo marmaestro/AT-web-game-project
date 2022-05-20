@@ -5,7 +5,7 @@
 class Typist {
     constructor() {
         this.x = GAME_AREA_WIDTH / 2;
-        this.y = GAME_AREA_HEIGHT - SPRITE_FROG_HEIGHT / 2 - 40; // 15 pixels of margin
+        this.y = GAME_AREA_HEIGHT - SPRITE_FROG_HEIGHT / 2 - 30; // 15 pixels of margin
         this.sprite;
 
     }
@@ -18,7 +18,7 @@ class Typist {
     }
 
     refocusTypist(owp) {
-        this.angle = formula(this.x, this.y, owp.x, owp.y);
+        this.sprite.angle = HALF_TRIANGLE_ANGLES_SUM - owp.sprite.angle;
     }
 
     formula(xt, yt, xe, ye) {
@@ -58,12 +58,15 @@ class Enemy {
 
     configEnemySprite() {
         this.sprite.anchor.setTo(0.5, 0.5);
-        this.sprite.angle = 180;
         this.sprite.angle = this.formula(typist.x, typist.y, this.x, this.y);
-        this.text = game.add.text(this.x, this.y + 5, this.word, { font: 'Source Sans Pro', fontSize: '20px' } );
+
+        this.text = game.add.text(this.x, this.y + WORD_OFFSET, this.word, { font: 'Source Sans Pro', fontSize: '20px' } );
 
         game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
-        this.sprite.body.collideWorldBounds = true;
+        game.physics.enable(this.text, Phaser.Physics.ARCADE);
+
+        this.refocusOWP();
+        this.configureEnemyMovement();
     }
 
     getSpeed() {
@@ -110,6 +113,20 @@ class Enemy {
                 console.log('NO WORD ?');
         }
         return word;
+    }
+
+    refocusOWP () {
+        let enemyVX = typist.x - this.x;
+        let enemyVY = typist.y - this.y;
+        let enemyAngle = Math.atan2(enemyVY, enemyVX) * RADIANS_TO_DEGREES;
+        enemyAngle += getAngleDeviation();
+        this.sprite.angle = enemyAngle + ENEMY_SPRITE_LEFT_ANGLE;
+    }
+
+    configureEnemyMovement() {
+        console.log(this);
+        game.physics.arcade.moveToObject(this.sprite, typist.sprite, this.speed);
+        game.physics.arcade.moveToObject(this.text, typist.sprite, this.speed);
     }
 
     formula(xt, yt, xe, ye) {

@@ -11,7 +11,7 @@ let owps; // the group that contains all enemies currently on the screen
 
 let wordsUsed;
 
-let wave = 1;
+let wave = 4;
 
 let numberFlies;
 let numberBeetles;
@@ -47,7 +47,7 @@ function createStageA() {
     game.input.keyboard.onDownCallback = readKeyboard;
 
     // create the typist's sprite and configure it
-    typist.sprite = this.add.sprite(typist.x, typist.y, 'frog' /*, frame*/);
+    typist.sprite = game.add.sprite(typist.x, typist.y, 'frog' /*, frame*/);
     typist.configTypistSprite();
 
     //owps
