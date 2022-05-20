@@ -1,4 +1,4 @@
-let activeOWP;
+let activeOWP = null;
 let activeLetter = 0; // index number of the active letter in the OWP (from 0)
 let typedLetters;
 let correctLetters;
@@ -13,37 +13,56 @@ function readKeyboard(e) {
 }
 
 function checkLetter(a) {
+
     if (activeOWP) {
-        if (isNextLetterInOWP(a)) { correctLetters++; }
-    } else {
-        owps.forEach(owp => {
+        if (isNextLetterInOWP(a)) { }
+    }
+
+    else {
+        for (var i = 0; i < owps.list.length; i++) {
+            let owp = owps.list[i];
             if (isNextLetterInOWP(a, owp))  {
                 typist.refocusTypist(owp);
-                correctLetters++;
             }
-        });
+        }
     }
 }
 
-function isNextLetterInOWP(a, obj) {
+function isNextLetterInOWP(a, obj = activeOWP) {
 
     if(a == obj.word[activeLetter]) {
-        deactivateLetter(obj);
+        activeOWP = obj;
+        correctLetters++
+        if (!deactivateLetter(obj))
+            return null;
         return true;
     }
     return false;
 }
 
 function deactivateLetter(obj) {
-    obj.word.deactivateLetter(activeLetter);
 
-    if(activeLetter < obj.word.length()) {
-        if (!activeOWP) { activeOWP = obj; }
+    obj.deactivateLetter(activeLetter);
+
+    if(activeLetter < obj.word.length - 1) {
         activeLetter++;
 
     } else {
-        removeOWP(obj);
         activeOWP = null;
         activeLetter = 0;
+        obj.deleteOWP();
+        proceedWave();
+        return null;
+    }
+}
+
+function readSpace(e) {
+    if(e.keyCode ==  Phaser.Keyboard.SPACEBAR) {
+        if (wave <= waveLimit && !death) {
+            game.state.start('stageA');
+        }
+        else {
+            game.state.start('startScreen');
+        }
     }
 }

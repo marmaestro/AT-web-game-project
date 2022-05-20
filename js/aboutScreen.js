@@ -18,8 +18,7 @@ function preloadAbout() {
 function createAbout() {
     game.world.removeAll();
 
-    let BG = game.add.image(0, 0, 'bg');
-    BG.scale.setTo(1.8);
+    game.add.image(-1, -1, "bg");
 
     //text describing the game (Ab-out)
     let titleAb = 'FROG TYPING GAME';
@@ -46,9 +45,8 @@ function createAbout() {
     introduction.anchor.setTo(0.5, 0);
     introduction.position.setTo(GAME_AREA_WIDTH/2, 95);
 
-    let imgFrog = game.add.image(GAME_AREA_WIDTH/2, 210, 'frog');
+    let imgFrog = game.add.image(GAME_AREA_WIDTH/2, 220, 'frog');
     imgFrog.anchor.setTo(0.5, 0);
-    imgFrog.scale.setTo(0.5);
 
 
     //text and images explaining the game (A-bout T-utorial)

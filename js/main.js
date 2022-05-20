@@ -1,7 +1,7 @@
 // the game is created in constantDefinitions.js
 
 // remember to attach the corresponding script in the HTML file through the cdnjs extension
-let wconfig = {
+/*let wconfig = {
     active: startGame(),
     google: {
         // fonts loaded from google
@@ -12,7 +12,7 @@ let wconfig = {
         families: [],
         urls: []
     }
-}
+}*/
 
 function startGame() {
     game.state.add('startScreen', startScreen);
