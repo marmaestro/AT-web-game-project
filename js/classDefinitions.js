@@ -7,18 +7,21 @@ class Typist {
         this.x = GAME_AREA_WIDTH / 2;
         this.y = GAME_AREA_HEIGHT - SPRITE_FROG_HEIGHT / 2 - 30; // 15 pixels of margin
         this.sprite;
-
     }
 
     configTypistSprite() {
         this.sprite.anchor.setTo(0.5, 0.5);
-        this.angle = this.sprite.angle - 90;
+        this.sprite.angle;
 
         game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
     }
 
     refocusTypist(owp) {
-        this.sprite.angle = HALF_TRIANGLE_ANGLES_SUM - owp.sprite.angle;
+        this.sprite.angle = HALF_TRIANGLE_ANGLES_SUM - owp.sprite.angle + 90;
+    }
+
+    resetTypist() {
+        this.sprite.angle = 0;
     }
 
     formula(xt, yt, xe, ye) {
@@ -161,13 +164,16 @@ class Enemy {
         owps.remove(this);
         //displayExplosion(this.x, this.y);
 
+        typist.resetTypist();
+
         this.sprite.destroy();
         this.text.destroy();
     }
 
     deactivateLetter (l) {
-        this.text.addColor('#ABA8A2', 0);
-        this.text.addColor('#F5F0E4', l + 1);
+        this.text.clearColors();
+        this.text.addColor('#F5F0E4', 0);
+        this.text.addColor('#ABA8A2', l + 1);
     }
 
 // special OWP methods —————————————————————————————————————
@@ -176,7 +182,6 @@ class Enemy {
         console.log('Replicating one OWP.');
         let offset = SPRITE_BEETLE_HEIGHT / 2 + 10;
         let x = this.sprite.x + (WORD_OFFSET * 5 * this.randomNumber(-1, 1));
-        console.log(x);
         let y = this.sprite.y + offset + 10;
 
         let owp = new Enemy(x, y, 'fly');
