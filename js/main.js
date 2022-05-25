@@ -7,6 +7,7 @@ function startGame() {
     game.state.add('stageB', stageB);
     game.state.add('stageC', stageC);
     game.state.add('HUD', HUD);
+    game.state.add('endScreen', endScreen);
 
     game.state.start('startScreen');
 }
@@ -22,6 +23,8 @@ window.onload = startGame;
 // main/common global variables ——————————————————————————————
 let typist = new Typist();  // the typist for our game
 let owps;                   // the array that contains all enemies currently on the screen
+
+let deactivatedOWPs;         // the total number of deactivated owps in a stage
 
 var dictionary;
 var levelData;
@@ -40,6 +43,9 @@ let numberMoths;    // total moths in the wave
 
 let waveSpeed;      // the speed at which owps move in the wave
 let waveAppeareanceRate; //  the appeareance rate of owps in the wave
+
+let gameTimer;       // the timer that counts the elapsed time during the game
+let seconds;
 
 // about screen ——————————————————————————————————————————————
 let btnCredits;

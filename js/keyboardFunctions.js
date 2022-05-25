@@ -45,14 +45,3 @@ function advanceLetter(owp) {
         return activeOWP;
     }
 }
-
-function readSpace(e) {
-    if(e.keyCode ==  Phaser.Keyboard.SPACEBAR) {
-        if (wave <= waveLimit && !death) {
-            game.state.start('stage' + stage);
-        }
-        else {
-            game.state.start('startScreen');
-        }
-    }
-}

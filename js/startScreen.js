@@ -16,7 +16,7 @@ function loadStartScreen() {
 }
 
 function createStartScreen() {
-    //initialise assets on the game screen: set their locations, scales, rotations, tweens, etc
+    //initiate assets on the game screen: set their locations, scales, rotations, tweens, etc
 
     // add the background image to the screen
     game.add.image(-1, -1, "bg");
@@ -79,18 +79,18 @@ function goToAboutScreen() {
 
 function goToStageA() {
     stage = 'A';
-    initialiseVariablesStart();
+    initiateVariablesStart();
     game.state.start('stageA');
 }
 
 function goToStageB() {
     stage = 'B';
-    initialiseVariablesStart();
+    initiateVariablesStart();
     game.state.start('stageB');
 }
 
 function goToStageC() {
     stage = 'C';
-    initialiseVariablesStart();
+    initiateVariablesStart();
     game.state.start('stageC');
 }

@@ -15,7 +15,6 @@ function loadStageB() {
 
 function createStageB() {
     // remove all elements and set the background image
-    game.world.removeAll();
     game.add.image(-1, -1, "bg");
 
     // load the json files

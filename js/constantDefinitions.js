@@ -33,6 +33,7 @@ const FAN_GENERATION_RATE = 15000;
 const WORD_OFFSET = 5;
 const BUTTON_OFFSET_Y = 100; // gap between the buttons in the start screen
 const CHARACTERS = 'abcdefghijklmnopqrstuvwxyz';
+const TIMELAPSE = Phaser.Timer.SECOND;
 
 
 // create the game ————————————————————————————————————————————

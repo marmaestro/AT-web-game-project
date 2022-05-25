@@ -12,11 +12,17 @@ function loadStages(s) {
     game.load.text('waves' + s, 'assets/json/stage' + s + '.json');
 }
 
-function initialiseVariablesStart() {
+function initiateVariablesStart() {
+    game.world.removeAll();
+
     typedLetters = 0;
     correctLetters = 0;
 
+    deactivatedOWPs = 0;
+
     wave = 1;
+
+    game.time.reset();
 
 }
 
@@ -111,12 +117,6 @@ function getRandomBetween(min, max) { // random between min and max (both includ
     return Math.random() * ((max + 1) - min) + min;
 }
 
-function displayGameOver() {
-    let gameOverText = game.add.text(GAME_AREA_WIDTH / 2, GAME_AREA_HEIGHT / 2,
-                    'GAME OVER', { font: 'Source Sans Pro', fontSize: '60px' } );
-    gameOverText.anchor.setTo(0.5, 0.5);
-}
-
 function getAngleDeviation() {
     let angleDeviationSign = 1;
     if (Math.random() < 0.5)
@@ -130,10 +130,6 @@ function collision() {
     goToHUDScreen();
 }
 
-function endStage() {
-    goToHUDScreen();
-}
-
 function goToHUDScreen() {
     game.state.start('HUD');
 }
@@ -142,6 +138,13 @@ function proceedWave() {
     if (owps.list.length <= 0) {
         if (wave++ < waveLimit) {
             goToHUDScreen();
-        } else endStage();
+        } else goToHUDScreen();
     }
+}
+
+function getTime() {
+    seconds = game.time.totalElapsedSeconds();
+    let minutes = Math.floor(seconds / 60);
+    let secondsToShow = (seconds % 60).toFixed(2);
+    return String(minutes).padStart(2, '0') + ':' + String(secondsToShow).padStart(5, '0');
 }

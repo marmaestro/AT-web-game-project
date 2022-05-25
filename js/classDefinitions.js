@@ -165,6 +165,7 @@ class Enemy {
         //displayExplosion(this.x, this.y);
 
         typist.resetTypist();
+        deactivatedOWPs++;
 
         this.sprite.destroy();
         this.text.destroy();
@@ -179,7 +180,7 @@ class Enemy {
 // special OWP methods —————————————————————————————————————
 
     replicate() {
-        console.log('Replicating one OWP.');
+        console.log('Replicating an OWP.');
         let offset = SPRITE_BEETLE_HEIGHT / 2 + 10;
         let x = this.sprite.x + (WORD_OFFSET * 5 * this.randomNumber(-1, 1));
         let y = this.sprite.y + offset + 10;
