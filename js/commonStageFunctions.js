@@ -12,10 +12,15 @@ function loadStages(s) {
     game.load.text('waves' + s, 'assets/json/stage' + s + '.json');
 }
 
-function initiateVariables() {
+function initialiseVariablesStart() {
     typedLetters = 0;
     correctLetters = 0;
 
+    wave = 1;
+
+}
+
+function initiateVariables() {
     death = false;
 
     wordsUsed = new Array();
@@ -24,7 +29,7 @@ function initiateVariables() {
 }
 
 function readWaveInfo(w) {
-    console.log('reading wave ', w);
+    console.log('Loading wave', w, 'of stage',stage, '.');
 
     numberFlies = levelData[w - 1].owpsTypes.flies;
     numberBeetles = levelData[w - 1].owpsTypes.beetles;
@@ -90,6 +95,7 @@ function checkOut() {
 //————————————————————————————————————————————————————————————
 //--------TYPIST----------------------------------------------
 //————————————————————————————————————————————————————————————
+
 function checkCollision() {
 
     for (var i = 0; i < owps.list.length; i++) {

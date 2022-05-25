@@ -41,6 +41,15 @@ class Enemy {
 
         this.speed = this.getSpeed();
         this.word = this.getWord();
+
+        this.timer = null;
+
+        if (type == 'beetle') {
+            this.timer = game.time.events.loop(REPLICATION_RATE, this.replicate, this);
+        }
+        else if (type == 'moth') {
+            this.timer = game.time.events.loop(FAN_GENERATION_RATE, this.fanGenerate, this);
+        }
     }
 
     configEnemySprite() {
@@ -65,6 +74,15 @@ class Enemy {
         let foundWord = false;
         // switch to diferentiate between types
         switch(this.type) {
+
+            case '':
+                while(!foundWord) {
+                    word = '' +  CHARACTERS.charAt(Math.floor(Math.random() * CHARACTERS.length)).toString();
+                    if (word && !wordsUsed.includes(word) && !lettersUsed.includes(word[0])) {
+                        foundWord = true;
+                        wordsUsed.push(word);
+                        lettersUsed.push(word[0]); }
+                } break;
 
             case 'fly':     // 2 to 7 letters
                 while(!foundWord) {
@@ -132,6 +150,9 @@ class Enemy {
     }
 
     deleteOWP () {
+
+        if (this.timer) { game.time.events.remove(this.timer); }
+
         let i = wordsUsed.indexOf(this.word);
         wordsUsed.splice(i, 1);
         i = lettersUsed.indexOf(this.word[0]);
@@ -148,4 +169,43 @@ class Enemy {
         this.text.addColor('#ABA8A2', 0);
         this.text.addColor('#F5F0E4', l + 1);
     }
+
+// special OWP methods —————————————————————————————————————
+
+    replicate() {
+        console.log('Replicating one OWP.');
+        let offset = SPRITE_BEETLE_HEIGHT / 2 + 10;
+        let x = this.sprite.x + (WORD_OFFSET * 5 * this.randomNumber(-1, 1));
+        console.log(x);
+        let y = this.sprite.y + offset + 10;
+
+        let owp = new Enemy(x, y, 'fly');
+        owp.sprite = game.add.sprite(owp.x, owp.y, 'fly' /*, frame*/);
+        owp.configEnemySprite();
+        owps.add(owp);
+    }
+
+    fanGenerate() {
+
+        let n = this.randomNumber(6, 10);
+        console.log('Fan-generating', n, 'letters.');
+        let offset = SPRITE_MOTH_HEIGHT / 2 + 10;
+
+        for (var i = 0; i < n; i++) {
+
+            let x = this.sprite.x;
+            if (i % 2 == 0) {
+                x = x - (20 * i);
+            } else {
+                x = x + (20 * i);
+            } let y = this.sprite.y + offset + (4 * (n - i));
+
+            let owp = new Enemy(x, y, '');
+            owp.sprite = game.add.sprite(owp.x, owp.y, 'fly' /*, frame*/);
+            owp.configEnemySprite();
+            owps.add(owp);
+        }
+    }
+
+
 }

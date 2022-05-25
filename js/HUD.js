@@ -3,12 +3,6 @@ let HUD = {
     create: createHUD
 }
 
-let accuracy;
-
-let death;
-
-let color = 'white';
-
 function loadHUD() {
     game.load.image('bg', 'assets/imgs/background.png');
 }
@@ -28,7 +22,7 @@ function createHUD() {
         infoText.addColor(color, 0);
     }
 
-    infoText = game.add.text(WORD_OFFSET + 5, 15 * WORD_OFFSET, 'ACCURACY: ' + calculateAccuracy().toFixed(2) + '%', { font: 'Source Sans Pro', fontSize: '40px', fontWeight: 'bold' } );
+    infoText = game.add.text(WORD_OFFSET + 5, 15 * WORD_OFFSET, 'ACCURACY: ' + calculateAccuracy() + '%', { font: 'Source Sans Pro', fontSize: '40px', fontWeight: 'bold' } );
     infoText.addColor(color, 0);
 
     infoText = game.add.text(WORD_OFFSET + 5, 25 * WORD_OFFSET, 'TYPED LETTERS: ' + typedLetters, { font: 'Source Sans Pro', fontSize: '25px' } );
@@ -45,5 +39,5 @@ function createHUD() {
 }
 
 function calculateAccuracy() {
-    return (correctLetters / typedLetters) * 100;
+    return ((correctLetters / typedLetters) * 100).toFixed(2);
 }

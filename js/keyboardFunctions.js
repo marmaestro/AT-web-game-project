@@ -1,9 +1,3 @@
-let activeOWP = null;
-let activeLetter = 0; // index number of the active letter in the OWP (from 0)
-let typedLetters;
-let correctLetters;
-
-
 function readKeyboard(e) {
     if(e.keyCode >= Phaser.Keyboard.A
     && e.keyCode <= Phaser.Keyboard.Z) {
@@ -59,7 +53,7 @@ function deactivateLetter(obj) {
 function readSpace(e) {
     if(e.keyCode ==  Phaser.Keyboard.SPACEBAR) {
         if (wave <= waveLimit && !death) {
-            game.state.start('stageA');
+            game.state.start('stage' + stage);
         }
         else {
             game.state.start('startScreen');

@@ -1,5 +1,3 @@
-const BUTTON_OFFSET_Y = 100; // Length of the gap between the buttons in the state
-
 let startScreen = {
     preload: loadStartScreen,
     create: createStartScreen,
@@ -76,23 +74,23 @@ function createStartScreen() {
 }
 
 function goToAboutScreen() {
-    game.state.start("aboutScreen");
+    game.state.start('aboutScreen');
 }
 
 function goToStageA() {
     stage = 'A';
-    wave = 1;
-    game.state.start("stageA");
+    initialiseVariablesStart();
+    game.state.start('stageA');
 }
 
 function goToStageB() {
     stage = 'B';
-    wave = 1;
-    game.state.start("stageB");
+    initialiseVariablesStart();
+    game.state.start('stageB');
 }
 
 function goToStageC() {
     stage = 'C';
-    wave = 1;
-    game.state.start("stageC");
+    initialiseVariablesStart();
+    game.state.start('stageC');
 }

@@ -1,7 +1,3 @@
-//public variables within the file
-let btnCredits;
-let btnStart;
-
 let aboutScreen = {
     preload: preloadAbout,
     create: createAbout
