@@ -3,50 +3,46 @@ function readKeyboard(e) {
     && e.keyCode <= Phaser.Keyboard.Z) {
         checkLetter(e.key);
         typedLetters++;
-    }
+    } return activeOWP;
 }
 
 function checkLetter(a) {
-
     if (activeOWP) {
-        if (isNextLetterInOWP(a)) { }
+        nextLetterInOWP(a, activeOWP);
     }
 
     else {
         for (var i = 0; i < owps.list.length; i++) {
             let owp = owps.list[i];
-            if (isNextLetterInOWP(a, owp))  {
+            activeOWP = nextLetterInOWP(a, owp);
+            if (activeOWP) {
                 typist.refocusTypist(owp);
+                break;
             }
         }
+    } return activeOWP;
+}
+
+function nextLetterInOWP(a, owp) {
+    if (a == owp.word[activeLetter]) {
+        activeOWP = owp;
+        correctLetters++;
+        advanceLetter(owp);
+        return activeOWP;
     }
 }
 
-function isNextLetterInOWP(a, obj = activeOWP) {
+function advanceLetter(owp) {
+    owp.deactivateLetter(activeLetter);
 
-    if(a == obj.word[activeLetter]) {
-        activeOWP = obj;
-        correctLetters++
-        if (!deactivateLetter(obj))
-            return null;
-        return true;
-    }
-    return false;
-}
-
-function deactivateLetter(obj) {
-
-    obj.deactivateLetter(activeLetter);
-
-    if(activeLetter < obj.word.length - 1) {
+    if (activeLetter < owp.word.length - 1) {
         activeLetter++;
-
     } else {
         activeOWP = null;
         activeLetter = 0;
-        obj.deleteOWP();
+        owp.deleteOWP();
         proceedWave();
-        return null;
+        return activeOWP;
     }
 }
 

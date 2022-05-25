@@ -140,8 +140,7 @@ function goToHUDScreen() {
 
 function proceedWave() {
     if (owps.list.length <= 0) {
-        if (wave < waveLimit) {
-            wave += 1;
+        if (wave++ < waveLimit) {
             goToHUDScreen();
         } else endStage();
     }
