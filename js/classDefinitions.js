@@ -145,9 +145,7 @@ class Enemy {
         this.sprite.angle = enemyAngle + ENEMY_SPRITE_LEFT_ANGLE;
         enemyVX = this.speed * Math.cos(enemyAngle * 1 / RADIANS_TO_DEGREES);
         enemyVY = this.speed * Math.sin(enemyAngle * 1 / RADIANS_TO_DEGREES);
-        if (this.sprite) {
-            this.sprite.body.velocity.setTo(enemyVX, enemyVY);
-        }
+        this.sprite.body.velocity.setTo(enemyVX, enemyVY);
     }
 
     randomNumber(min, max) {
@@ -189,7 +187,7 @@ class Enemy {
 
     stop() {
         this.sprite.body.stop();
-        this.waitTimer = game.time.events.add(100, this.move, this);
+        this.waitTimer = game.time.events.add(150, this.move, this);
     }
 
     move() {
@@ -245,7 +243,7 @@ class Bubble {
         this.x = typist.x;
         this.y = typist.y - (SPRITE_FROG_HEIGHT / 2);
 
-        this.speed = t.speed * 75;
+        this.speed = t.speed * 100;
 
         this.targetX = t.sprite.x;
         this.targetY = t.sprite.y;
