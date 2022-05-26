@@ -107,6 +107,14 @@ function checkCollision() {
     }
 }
 
+function moveTypist() {
+    let x = game.input.mousePointer.x;
+    if(x - (SPRITE_FROG_WIDTH / 2) > 15
+    && x + (SPRITE_FROG_WIDTH / 2) < GAME_AREA_WIDTH - 15) {
+        typist.move(x);
+    }
+}
+
 //————————————————————————————————————————————————————————————
 //--------AUXILIAR FUNCTIONS----------------------------------
 //————————————————————————————————————————————————————————————
