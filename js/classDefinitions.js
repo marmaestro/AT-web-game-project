@@ -11,7 +11,6 @@ class Typist {
 
     configTypistSprite() {
         this.sprite.anchor.setTo(0.5, 0.5);
-        this.sprite.angle;
 
         game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
     }
@@ -26,6 +25,16 @@ class Typist {
 
     formula(xt, yt, xe, ye) {
         return Math.tan(Math.abs(xt-xe)/Math.abs(yt-ye));
+    }
+
+    move(x) {
+        this.sprite.x = x;
+        this.x = this.sprite.x;
+
+        for (var i = 0; i < owps.list.length; i++) {
+            let owp = owps.list[i];
+            owp.refocusOWP();
+        }
     }
 }
 

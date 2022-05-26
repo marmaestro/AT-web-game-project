@@ -57,6 +57,7 @@ let color = 'white';    // color for the titles in the HUD screen, to avoid typi
 
 // keyboard functions ————————————————————————————————————————
 let cursors;            // to have control of what is typed
+let mouse;
 
 let activeOWP = null;   // the currently active owp (the one that must be typed to delete)
 let activeLetter = 0;   // index of the active letter in the active OWP (from 0)
