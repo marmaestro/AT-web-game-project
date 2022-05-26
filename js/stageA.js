@@ -22,7 +22,7 @@ function createStageA() {
 
     // load info for the wave
     initiateVariables();
-    readWaveInfo(wave); // <- THIS WILL NEED TO BE CALLED SOMEWHERE ELSE
+    readWaveInfo(wave);
 
     // for reading the keyboard
     cursors = game.input.keyboard.createCursorKeys();
@@ -39,5 +39,5 @@ function createStageA() {
 function updateStageA() {
 
     checkCollision();
-    checkOut();
+    moveWords();
 }

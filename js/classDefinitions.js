@@ -17,7 +17,7 @@ class Typist {
     }
 
     refocusTypist(owp) {
-        this.sprite.angle = HALF_TRIANGLE_ANGLES_SUM - owp.sprite.angle + 90;
+        this.sprite.angle = - (HALF_TRIANGLE_ANGLES_SUM - owp.sprite.angle + 90);
     }
 
     resetTypist() {
@@ -57,15 +57,15 @@ class Enemy {
 
     configEnemySprite() {
         this.sprite.anchor.setTo(0.5, 0.5);
-        this.sprite.angle = this.formula(typist.x, typist.y, this.x, this.y);
+
+        game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
+
+        this.sprite.body.collideWorldBounds = true;
+        this.sprite.body.bounce.set(1);
 
         this.text = game.add.text(this.x, this.y + WORD_OFFSET, this.word, { font: 'Source Sans Pro', fontSize: '20px' } );
 
-        game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
-        game.physics.enable(this.text, Phaser.Physics.ARCADE);
-
         this.refocusOWP();
-        this.configureEnemyMovement();
     }
 
     getSpeed() {
@@ -126,25 +126,15 @@ class Enemy {
         return word;
     }
 
-    refocusOWP () {
+    refocusOWP() {
         let enemyVX = typist.x - this.x;
         let enemyVY = typist.y - this.y;
         let enemyAngle = Math.atan2(enemyVY, enemyVX) * RADIANS_TO_DEGREES;
         enemyAngle += getAngleDeviation();
         this.sprite.angle = enemyAngle + ENEMY_SPRITE_LEFT_ANGLE;
-    }
-
-    configureEnemyMovement() {
-        game.physics.arcade.moveToObject(this.sprite, typist.sprite, this.speed);
-        game.physics.arcade.moveToObject(this.text, typist.sprite, this.speed);
-    }
-
-    formula(xt, yt, xe, ye) {
-        let x = Math.abs(xt - xe);
-        let y = Math.abs(yt - ye);
-        let anglegrade = Math.atan(y / x);
-        let anglerad = Math.PI * anglegrade / 180;
-        return anglerad;
+        enemyVX = this.speed * Math.cos(enemyAngle * 1 / RADIANS_TO_DEGREES);
+        enemyVY = this.speed * Math.sin(enemyAngle * 1 / RADIANS_TO_DEGREES);
+        this.sprite.body.velocity.setTo(enemyVX, enemyVY);
     }
 
     randomNumber(min, max) {
