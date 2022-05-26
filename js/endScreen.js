@@ -4,7 +4,8 @@ let endScreen = {
 };
 
 function loadEndScreen() {
-
+    game.load.image('bg', 'assets/imgs/background.png');
+    //game.load.image('bg', 'assets/imgs/start.png');
 }
 
 function createEndScreen() {

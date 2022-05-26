@@ -8,6 +8,7 @@ function loadStages(s) {
     game.load.image('fly', 'assets/imgs/fly.png');
     game.load.image('beetle', 'assets/imgs/beetle.png');
     game.load.image('moth', 'assets/imgs/moth.png');
+    game.load.image('bubble', 'assets/imgs/bubble.png');
     game.load.text('dictionary', 'assets/json/dictionary.json');
     game.load.text('waves' + s, 'assets/json/stage' + s + '.json');
 }
@@ -31,7 +32,9 @@ function initiateVariables() {
 
     wordsUsed = new Array();
     lettersUsed = new Array();
+
     owps = new Phaser.ArraySet();
+    bubbles = new Phaser.ArraySet();
 }
 
 function readWaveInfo(w) {
@@ -103,7 +106,14 @@ function moveWords() {
 function checkCollision() {
 
     for (var i = 0; i < owps.list.length; i++) {
-        game.physics.arcade.overlap(typist.sprite, owps.list[i].sprite, collision);
+        let owp = owps.list[i];
+        game.physics.arcade.overlap(typist.sprite, owp.sprite, collision);
+    }
+
+    for (var i = 0; i < bubbles.list.length; i++) {
+        let bubble = bubbles.list[i];
+        let owp = bubble.target;
+        game.physics.arcade.overlap(bubble.sprite, owp.sprite, bubbleCollision);
     }
 }
 
@@ -113,6 +123,29 @@ function moveTypist() {
     && x + (SPRITE_FROG_WIDTH / 2) < GAME_AREA_WIDTH - 15) {
         typist.move(x);
     }
+}
+
+function collision() {
+    death = true;
+    goToHUDScreen();
+}
+
+//————————————————————————————————————————————————————————————
+//--------BUBBLES---------------------------------------------
+//————————————————————————————————————————————————————————————
+
+function shootBubble(owp) {
+    if(bubbles.list.length == 0 ||
+    bubbles.list[bubbles.list.length - 1].letter != owp.word[activeLetter]) {
+        let bubble = new Bubble(owp);
+        bubble.sprite = game.add.sprite(bubble.x, bubble.y, 'bubble', /*frame*/);
+        bubble.configureBubble();
+        bubbles.add(bubble);
+    }
+}
+
+function bubbleCollision(spr) {
+    spr.bubble.hitTarget();
 }
 
 //————————————————————————————————————————————————————————————
@@ -129,11 +162,6 @@ function getAngleDeviation() {
         angleDeviationSign = -1;
     let angleDeviationValue = Math.random() * MAX_ANGLE_DEVIATION;
     return angleDeviationValue * angleDeviationSign;
-}
-
-function collision() {
-    death = true;
-    goToHUDScreen();
 }
 
 function goToHUDScreen() {

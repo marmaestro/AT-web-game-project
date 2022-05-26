@@ -56,6 +56,8 @@ class Enemy {
 
         this.timer = null;
 
+        this.deactivated = false;
+
         if (type == 'beetle') {
             this.timer = game.time.events.loop(REPLICATION_RATE, this.replicate, this);
         }
@@ -143,7 +145,9 @@ class Enemy {
         this.sprite.angle = enemyAngle + ENEMY_SPRITE_LEFT_ANGLE;
         enemyVX = this.speed * Math.cos(enemyAngle * 1 / RADIANS_TO_DEGREES);
         enemyVY = this.speed * Math.sin(enemyAngle * 1 / RADIANS_TO_DEGREES);
-        this.sprite.body.velocity.setTo(enemyVX, enemyVY);
+        if (this.sprite) {
+            this.sprite.body.velocity.setTo(enemyVX, enemyVY);
+        }
     }
 
     randomNumber(min, max) {
@@ -151,9 +155,10 @@ class Enemy {
         return Math.floor(Math.random() * (max - min) + min);
     }
 
-    deleteOWP () {
+    deleteOWP() {
 
         if (this.timer) { game.time.events.remove(this.timer); }
+        if(this.waitTimer) { game.time.events.remove(this.waitTimer); }
 
         let i = wordsUsed.indexOf(this.word);
         wordsUsed.splice(i, 1);
@@ -170,10 +175,26 @@ class Enemy {
         this.text.destroy();
     }
 
-    deactivateLetter (l) {
-        this.text.clearColors();
-        this.text.addColor('#F5F0E4', 0);
-        this.text.addColor('#ABA8A2', l + 1);
+    deactivateLetter(l) {
+        this.stop();
+
+        console.log(this.word[l], this.deactivated);
+
+        if(!this.deactivated) {
+            this.text.clearColors();
+            this.text.addColor('#F5F0E4', 0);
+            this.text.addColor('#ABA8A2', l);
+        }
+    }
+
+    stop() {
+        this.sprite.body.stop();
+        this.waitTimer = game.time.events.add(100, this.move, this);
+    }
+
+    move() {
+        if(this.waitTimer) { game.time.events.remove(this.waitTimer); }
+        this.refocusOWP();
     }
 
 // special OWP methods —————————————————————————————————————
@@ -213,4 +234,44 @@ class Enemy {
     }
 
 
+}
+
+//————————————————————————————————————————————————————————————
+//--------BUBBLES---------------------------------------------
+//————————————————————————————————————————————————————————————
+
+class Bubble {
+    constructor(t) {
+        this.x = typist.x;
+        this.y = typist.y - (SPRITE_FROG_HEIGHT / 2);
+
+        this.speed = t.speed * 75;
+
+        this.targetX = t.sprite.x;
+        this.targetY = t.sprite.y;
+
+        this.target = t;
+        this.letter = t.word[activeLetter];
+    }
+
+    configureBubble() {
+        this.sprite.anchor.setTo(0.5, 0.5);
+        game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
+
+        this.sprite.bubble = this;
+
+        game.physics.arcade.moveToObject(this.sprite, this.target.sprite, this.speed);
+    }
+
+    hitTarget() {
+        this.target.deactivateLetter(activeLetter);
+        this.sprite.destroy();
+        bubbles.remove(this);
+
+        if (this.letter == this.target.word[this.target.word.length - 1]) {
+            this.target.deactivated = true;
+            this.target.deleteOWP();
+            proceedWave();
+        }
+    }
 }

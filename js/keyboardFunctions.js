@@ -27,21 +27,18 @@ function nextLetterInOWP(a, owp) {
     if (a == owp.word[activeLetter]) {
         activeOWP = owp;
         correctLetters++;
+        shootBubble(owp);
         advanceLetter(owp);
         return activeOWP;
     }
 }
 
 function advanceLetter(owp) {
-    owp.deactivateLetter(activeLetter);
-
     if (activeLetter < owp.word.length - 1) {
         activeLetter++;
     } else {
         activeOWP = null;
         activeLetter = 0;
-        owp.deleteOWP();
-        proceedWave();
         return activeOWP;
     }
 }
