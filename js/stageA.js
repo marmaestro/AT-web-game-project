@@ -40,4 +40,7 @@ function updateStageA() {
 
     checkCollision();
     checkOut();
+    //New
+    owps.callAll(moveWord, this);
+    //End new
 }

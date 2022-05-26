@@ -57,15 +57,26 @@ class Enemy {
 
     configEnemySprite() {
         this.sprite.anchor.setTo(0.5, 0.5);
-        this.sprite.angle = this.formula(typist.x, typist.y, this.x, this.y);
+        //New: commented
+        //this.sprite.angle = this.formula(typist.x, typist.y, this.x, this.y);
+        //End new
 
         this.text = game.add.text(this.x, this.y + WORD_OFFSET, this.word, { font: 'Source Sans Pro', fontSize: '20px' } );
 
         game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
-        game.physics.enable(this.text, Phaser.Physics.ARCADE);
+        //New: commented
+        //game.physics.enable(this.text, Phaser.Physics.ARCADE);
+        //End new
+
+        //New
+        this.sprite.body.collideWorldBounds = true;
+        this.sprite.body.bounce.set(1);
+        //End new
 
         this.refocusOWP();
-        this.configureEnemyMovement();
+        //New: commented
+        //this.configureEnemyMovement();
+        //End new
     }
 
     getSpeed() {
@@ -132,20 +143,29 @@ class Enemy {
         let enemyAngle = Math.atan2(enemyVY, enemyVX) * RADIANS_TO_DEGREES;
         enemyAngle += getAngleDeviation();
         this.sprite.angle = enemyAngle + ENEMY_SPRITE_LEFT_ANGLE;
+        //New
+        enemyVX = this.speed * Math.cos(enemyAngle * 1 / RADIANS_TO_DEGREES);
+        enemyVY = this.speed * Math.sin(enemyAngle * 1 / RADIANS_TO_DEGREES);
+        this.sprite.body.velocity.setTo(enemyVX, enemyVY);
+        //End new
     }
 
-    configureEnemyMovement() {
+    //New: commented, not useful
+    /* configureEnemyMovement() {
         game.physics.arcade.moveToObject(this.sprite, typist.sprite, this.speed);
         game.physics.arcade.moveToObject(this.text, typist.sprite, this.speed);
-    }
+    } */
+    //End new
 
-    formula(xt, yt, xe, ye) {
+    //New: commented, not useful
+    /* formula(xt, yt, xe, ye) {
         let x = Math.abs(xt - xe);
         let y = Math.abs(yt - ye);
         let anglegrade = Math.atan(y / x);
         let anglerad = Math.PI * anglegrade / 180;
         return anglerad;
-    }
+    } */
+    //End new
 
     randomNumber(min, max) {
         max += 1;

@@ -93,6 +93,13 @@ function checkOut() {
     }
 }
 
+//New
+function moveWord(owp) {
+    owp.text.x = owp.x;
+    owp.text.y = owp.y + WORD_OFFSET;
+}
+//End new
+
 // OWPS for
 /*for (var i = 0; i < owps.list.length; i++) {
     let owp = owps.list[i];
