@@ -12,10 +12,21 @@ function loadStages(s) {
     game.load.text('waves' + s, 'assets/json/stage' + s + '.json');
 }
 
-function initiateVariables() {
+function initiateVariablesStart() {
+    game.world.removeAll();
+
     typedLetters = 0;
     correctLetters = 0;
 
+    deactivatedOWPs = 0;
+
+    wave = 1;
+
+    game.time.reset();
+
+}
+
+function initiateVariables() {
     death = false;
 
     wordsUsed = new Array();
@@ -24,7 +35,7 @@ function initiateVariables() {
 }
 
 function readWaveInfo(w) {
-    console.log('reading wave ', w);
+    console.log('Loading wave', w, 'of stage',stage, '.');
 
     numberFlies = levelData[w - 1].owpsTypes.flies;
     numberBeetles = levelData[w - 1].owpsTypes.beetles;
@@ -73,12 +84,10 @@ function getSpriteSize(type) {
     }
 }
 
-function checkOut() {
-
+function moveWords() {
     for (var i = 0; i < owps.list.length; i++) {
         let owp = owps.list[i];
-        if (owp.sprite.top > GAME_AREA_HEIGHT)
-            owp.deleteOWP();
+        owp.text.alignTo(owp.sprite, 11);
     }
 }
 
@@ -90,10 +99,19 @@ function checkOut() {
 //————————————————————————————————————————————————————————————
 //--------TYPIST----------------------------------------------
 //————————————————————————————————————————————————————————————
+
 function checkCollision() {
 
     for (var i = 0; i < owps.list.length; i++) {
         game.physics.arcade.overlap(typist.sprite, owps.list[i].sprite, collision);
+    }
+}
+
+function moveTypist() {
+    let x = game.input.mousePointer.x;
+    if(x - (SPRITE_FROG_WIDTH / 2) > 15
+    && x + (SPRITE_FROG_WIDTH / 2) < GAME_AREA_WIDTH - 15) {
+        typist.move(x);
     }
 }
 
@@ -103,12 +121,6 @@ function checkCollision() {
 
 function getRandomBetween(min, max) { // random between min and max (both included)
     return Math.random() * ((max + 1) - min) + min;
-}
-
-function displayGameOver() {
-    let gameOverText = game.add.text(GAME_AREA_WIDTH / 2, GAME_AREA_HEIGHT / 2,
-                    'GAME OVER', { font: 'Source Sans Pro', fontSize: '60px' } );
-    gameOverText.anchor.setTo(0.5, 0.5);
 }
 
 function getAngleDeviation() {
@@ -124,19 +136,21 @@ function collision() {
     goToHUDScreen();
 }
 
-function endStage() {
-    goToHUDScreen();
-}
-
 function goToHUDScreen() {
     game.state.start('HUD');
 }
 
 function proceedWave() {
     if (owps.list.length <= 0) {
-        if (wave < waveLimit) {
-            wave += 1;
+        if (wave++ < waveLimit) {
             goToHUDScreen();
-        } else endStage();
+        } else goToHUDScreen();
     }
+}
+
+function getTime() {
+    seconds = game.time.totalElapsedSeconds();
+    let minutes = Math.floor(seconds / 60);
+    let secondsToShow = (seconds % 60).toFixed(2);
+    return String(minutes).padStart(2, '0') + ':' + String(secondsToShow).padStart(5, '0');
 }

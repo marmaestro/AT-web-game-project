@@ -1,5 +1,3 @@
-const BUTTON_OFFSET_Y = 100; // Length of the gap between the buttons in the state
-
 let startScreen = {
     preload: loadStartScreen,
     create: createStartScreen,
@@ -18,7 +16,7 @@ function loadStartScreen() {
 }
 
 function createStartScreen() {
-    //initialise assets on the game screen: set their locations, scales, rotations, tweens, etc
+    //initiate assets on the game screen: set their locations, scales, rotations, tweens, etc
 
     // add the background image to the screen
     game.add.image(-1, -1, "bg");
@@ -76,23 +74,23 @@ function createStartScreen() {
 }
 
 function goToAboutScreen() {
-    game.state.start("aboutScreen");
+    game.state.start('aboutScreen');
 }
 
 function goToStageA() {
     stage = 'A';
-    wave = 1;
-    game.state.start("stageA");
+    initiateVariablesStart();
+    game.state.start('stageA');
 }
 
 function goToStageB() {
     stage = 'B';
-    wave = 1;
-    game.state.start("stageB");
+    initiateVariablesStart();
+    game.state.start('stageB');
 }
 
 function goToStageC() {
     stage = 'C';
-    wave = 1;
-    game.state.start("stageC");
+    initiateVariablesStart();
+    game.state.start('stageC');
 }
