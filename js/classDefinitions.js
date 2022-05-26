@@ -121,7 +121,7 @@ class Enemy {
 
 
             default:
-                console.log('NO WORD ?');
+                console.log('NO WORD');
         }
         return word;
     }
