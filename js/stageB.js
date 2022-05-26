@@ -14,7 +14,7 @@ function loadStageB() {
 }
 
 function createStageB() {
-    // remove all elements and set the background image
+    // set the background image
     game.add.image(-1, -1, "bg");
 
     // load the json files
@@ -23,7 +23,7 @@ function createStageB() {
 
     // load info for the wave
     initiateVariables();
-    readWaveInfo(wave); // <- THIS WILL NEED TO BE CALLED SOMEWHERE ELSE
+    readWaveInfo(wave);
 
     // for reading the keyboard
     cursors = game.input.keyboard.createCursorKeys();
@@ -36,11 +36,10 @@ function createStageB() {
     // timers to create the OWPs
     game.time.events.repeat(waveAppeareanceRate, numberFlies, createOWP, this, 'fly');
     game.time.events.repeat(waveAppeareanceRate * 2, numberBeetles, createOWP, this, 'beetle');
-    // unused until the dictionary is completed
-    //game.time.events.repeat(waveAppeareanceRate * 3, numberMoths, createOWP, this, 'moth');
+    game.time.events.repeat(waveAppeareanceRate * 3, numberMoths, createOWP, this, 'moth');
 }
 
 function updateStageB() {
     checkCollision();
-    checkOut();
+    moveWords();
 }

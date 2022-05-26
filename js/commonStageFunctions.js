@@ -84,21 +84,12 @@ function getSpriteSize(type) {
     }
 }
 
-function checkOut() {
-
+function moveWords() {
     for (var i = 0; i < owps.list.length; i++) {
         let owp = owps.list[i];
-        if (owp.sprite.top > GAME_AREA_HEIGHT)
-            owp.deleteOWP();
+        owp.text.alignTo(owp.sprite, 11);
     }
 }
-
-//New
-function moveWord(owp) {
-    owp.text.x = owp.x;
-    owp.text.y = owp.y + WORD_OFFSET;
-}
-//End new
 
 // OWPS for
 /*for (var i = 0; i < owps.list.length; i++) {
