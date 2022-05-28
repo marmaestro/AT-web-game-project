@@ -83,7 +83,7 @@ function createAbout() {
 
     //button for showing credits
     btnCredits = game.add.button(20, 20, 'credits', showCredits);
-    btnCredits.anchor.setTo(0.5, 0.5);
+    btnCredits.anchor.setTo(0.5);
     btnCredits.position.setTo(GAME_AREA_WIDTH/2, 790);
 
     //button for going  back to the start screen
@@ -132,7 +132,7 @@ function showCredits() {
 
     //button for showing about
     btnCredits = game.add.button(20, 20, 'about', createAbout);
-    btnCredits.anchor.setTo(0.5, 0.5);
+    btnCredits.anchor.setTo(0.5);
     btnCredits.position.setTo(GAME_AREA_WIDTH/2, 790);
 
     //button for going  back to the start screen

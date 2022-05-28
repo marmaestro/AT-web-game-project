@@ -28,7 +28,7 @@ function createEndScreen() {
 
     //button for going  back to the start screen
     btnStart = game.add.button(20, 20, 'start', clickBackToStart);
-    btnStart.anchor.setTo(0.5, 0.5);
+    btnStart.anchor.setTo(0.5);
     btnStart.position.setTo(GAME_AREA_WIDTH/2, 790);
 }
 

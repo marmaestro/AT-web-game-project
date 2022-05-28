@@ -10,7 +10,7 @@ class Typist {
     }
 
     configTypistSprite() {
-        this.sprite.anchor.setTo(0.5, 0.5);
+        this.sprite.anchor.setTo(0.5);
 
         game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
     }
@@ -63,7 +63,7 @@ class Enemy {
     }
 
     configEnemySprite() {
-        this.sprite.anchor.setTo(0.5, 0.5);
+        this.sprite.anchor.setTo(0.5);
 
         game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
 
@@ -259,7 +259,7 @@ class Bubble {
     }
 
     configureBubble() {
-        this.sprite.anchor.setTo(0.5, 0.5);
+        this.sprite.anchor.setTo(0.5);
         game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
 
         this.sprite.bubble = this;
