@@ -6,6 +6,7 @@ class Typist {
     constructor() {
         this.x = GAME_AREA_WIDTH / 2;
         this.y = GAME_AREA_HEIGHT - SPRITE_FROG_HEIGHT / 2 - 30; // 15 pixels of margin
+        this.type = 'typist';
         this.sprite;
     }
 

@@ -191,6 +191,22 @@ function getTime() {
 function displayExplosion(obj) {
     let explosion = game.add.sprite(obj.sprite.body.x, obj.sprite.body.y, 'explosion');
     explosion.anchor.setTo(0.5);
+
+    switch (obj.type) {
+        case 'fly':
+            explosion.scale.setTo(0.7);
+            break;
+        case 'beetle':
+            explosion.scale.setTo(1);
+            break;
+        case 'moth':
+            explosion.scale.setTo(1.2);
+            break;
+        case 'typist':
+            explosion.scale.setTo(1.5);
+            break;
+        default:    }
+
     let anim = explosion.animations.add('exoplode');
 
     anim.onStart.add(playExplosionSound);
