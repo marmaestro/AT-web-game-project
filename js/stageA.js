@@ -21,9 +21,10 @@ function createStageA() {
     levelData = JSON.parse(this.game.cache.getText('wavesA'));
     // console.log(dictionary.words.moth.length); to know the length of the moth array
 
-    // load info for the wave
+    // load info for the wave and play music
     initiateVariables();
     readWaveInfo(wave);
+    playMusic();
 
     // for reading the keyboard
     cursors = game.input.keyboard.createCursorKeys();

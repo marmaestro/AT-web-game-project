@@ -50,6 +50,8 @@ let waveAppeareanceRate; //  the appeareance rate of owps in the wave
 let gameTimer;       // the timer that counts the elapsed time during the game
 let seconds;
 
+let music;
+
 // about screen ——————————————————————————————————————————————
 let btnCredits;
 let btnStart;

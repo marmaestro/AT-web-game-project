@@ -166,7 +166,7 @@ class Enemy {
         if (this.timer) { game.time.events.remove(this.timer); }
 
         owps.remove(this);
-        //displayExplosion(this.x, this.y);
+        displayExplosion(this);
 
         if(!this.created) { createdInsects++; }
         deactivatedOWPs++;
@@ -219,7 +219,6 @@ class Enemy {
     }
 
     fanGenerate() {
-
         let n = this.randomNumber(6, 10);
         console.log('Fan-generating', n, 'letters.');
         let offset = SPRITE_MOTH_HEIGHT / 2 + 10;
@@ -278,7 +277,6 @@ class Bubble {
 
         if (this.target.deactivated) {
             this.target.deleteOWP();
-            proceedWave();
         }
     }
 }

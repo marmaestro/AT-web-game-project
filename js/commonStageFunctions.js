@@ -4,11 +4,19 @@
 
 function loadStages(s) {
     game.load.image('bg', 'assets/imgs/background.png');
+
     game.load.image('frog', 'assets/imgs/frog.png');
+    game.load.image('bubble', 'assets/imgs/bubble.png');
+
     game.load.image('fly', 'assets/imgs/fly.png');
     game.load.image('beetle', 'assets/imgs/beetle.png');
     game.load.image('moth', 'assets/imgs/moth.png');
-    game.load.image('bubble', 'assets/imgs/bubble.png');
+
+    game.load.spritesheet('explosion','assets/imgs/explosion.png', 128, 128);
+    game.load.audio('sndexplosion', 'assets/snds/hit.wav');
+
+    game.load.audio('frogs', 'assets/snds/frogs.wav');
+
     game.load.text('dictionary', 'assets/json/dictionary.json');
     game.load.text('waves' + s, 'assets/json/stage' + s + '.json');
 }
@@ -53,6 +61,13 @@ function readWaveInfo(w) {
     waveLimit = levelData.length;
 }
 
+function playMusic() {
+    if(music.key == 'bgmusic') {
+        music.stop();
+        music = game.add.sound('frogs', 0.1, true);
+        music.play();
+    }
+}
 
 //————————————————————————————————————————————————————————————
 //--------OWPs------------------------------------------------
@@ -130,7 +145,7 @@ function moveTypist() {
 
 function collision() {
     death = true;
-    goToHUDScreen();
+    displayExplosion(typist);
 }
 
 //————————————————————————————————————————————————————————————
@@ -159,16 +174,10 @@ function getRandomBetween(min, max) { // random between min and max (both includ
     return Math.random() * ((max + 1) - min) + min;
 }
 
-function goToHUDScreen() {
-    game.state.start('HUD');
-}
-
 function proceedWave() {
-    console.log(createdInsects, totalInsects);
-    if (createdInsects == totalInsects) {
-        if (wave++ < waveLimit) {
-            goToHUDScreen();
-        } else goToHUDScreen();
+    if (createdInsects == totalInsects || death) {
+        wave++;
+        game.state.start('HUD');
     }
 }
 
@@ -177,4 +186,20 @@ function getTime() {
     let minutes = Math.floor(seconds / 60);
     let secondsToShow = (seconds % 60).toFixed(2);
     return String(minutes).padStart(2, '0') + ':' + String(secondsToShow).padStart(5, '0');
+}
+
+function displayExplosion(obj) {
+    let explosion = game.add.sprite(obj.sprite.body.x, obj.sprite.body.y, 'explosion');
+    explosion.anchor.setTo(0.5);
+    let anim = explosion.animations.add('exoplode');
+
+    anim.onStart.add(playExplosionSound);
+    anim.onComplete.add(proceedWave);
+
+    anim.play(ANIM_FPS, false, true);
+}
+
+function playExplosionSound() {
+    let sound = game.add.sound('sndexplosion', 0.25);
+    sound.play();
 }
