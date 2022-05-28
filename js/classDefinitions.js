@@ -40,7 +40,7 @@ class Typist {
 //————————————————————————————————————————————————————————————
 
 class Enemy {
-    constructor(x, y, type) {
+    constructor(x, y, type, created = false) {
         this.x = x;
         this.y = y;
         this.type = type;
@@ -60,6 +60,8 @@ class Enemy {
         else if (type == 'moth') {
             this.timer = game.time.events.loop(FAN_GENERATION_RATE, this.fanGenerate, this);
         }
+
+        this.created = created;
     }
 
     configEnemySprite() {
@@ -166,6 +168,7 @@ class Enemy {
         owps.remove(this);
         //displayExplosion(this.x, this.y);
 
+        if(!this.created) { createdInsects++; }
         deactivatedOWPs++;
 
         this.sprite.destroy();
@@ -209,7 +212,7 @@ class Enemy {
         let x = this.sprite.x + (WORD_OFFSET * 5 * this.randomNumber(-1, 1));
         let y = this.sprite.y + offset + 10;
 
-        let owp = new Enemy(x, y, 'fly');
+        let owp = new Enemy(x, y, 'fly', true);
         owp.sprite = game.add.sprite(owp.x, owp.y, 'fly' /*, frame*/);
         owp.configEnemySprite();
         owps.add(owp);
@@ -230,7 +233,7 @@ class Enemy {
                 x = x + (20 * i);
             } let y = this.sprite.y + offset + (4 * (n - i));
 
-            let owp = new Enemy(x, y, '');
+            let owp = new Enemy(x, y, '', true);
             owp.sprite = game.add.sprite(owp.x, owp.y, 'fly' /*, frame*/);
             owp.configEnemySprite();
             owps.add(owp);

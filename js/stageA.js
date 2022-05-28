@@ -34,7 +34,7 @@ function createStageA() {
     typist.configTypistSprite();
 
     // timer to create the OWPs
-    game.time.events.repeat(waveAppeareanceRate, numberFlies, createOWP, this, 'fly');
+    game.time.events.repeat(waveAppearanceRate, numberFlies, createOWP, this, 'fly', 'timer');
 }
 
 function updateStageA() {

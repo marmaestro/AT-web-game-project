@@ -41,6 +41,8 @@ let waveLimit;      // number of waves in the stage
 let numberFlies;    // total flies in the wave
 let numberBeetles;  // total beetles in the wave
 let numberMoths;    // total moths in the wave
+let totalInsects;
+let createdInsects;
 
 let waveSpeed;      // the speed at which owps move in the wave
 let waveAppeareanceRate; //  the appeareance rate of owps in the wave
