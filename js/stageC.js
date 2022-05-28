@@ -29,9 +29,11 @@ function createStageC() {
     typist.configTypistSprite();
 
     // timers to create the OWPs
-    game.time.events.repeat(waveAppeareanceRate, numberFlies, createOWP, this, 'fly');
-    game.time.events.repeat(waveAppeareanceRate * 2, numberBeetles, createOWP, this, 'beetle');
-    game.time.events.repeat(waveAppeareanceRate * 3, numberMoths, createOWP, this, 'moth');*/
+    game.time.events.repeat(waveAppearanceRate, numberFlies, createOWP, this, 'fly', 'timer');
+    if (numberBeetles > 0)
+        game.time.events.repeat(waveAppearanceRate * 2, numberBeetles, createOWP, this, 'beetle', 'timer');
+    if (numberMoths > 0)
+        game.time.events.repeat(waveAppearanceRate * 3, numberMoths, createOWP, this, 'moth', 'timer');*/
 
     let infoText;
 

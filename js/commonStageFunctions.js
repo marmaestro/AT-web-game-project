@@ -30,6 +30,8 @@ function initiateVariablesStart() {
 
 function initiateVariables() {
 
+    createdInsects = 0;
+
     wordsUsed = new Array();
     lettersUsed = new Array();
 
@@ -43,9 +45,10 @@ function readWaveInfo(w) {
     numberFlies = levelData[w - 1].owpsTypes.flies;
     numberBeetles = levelData[w - 1].owpsTypes.beetles;
     numberMoths = levelData[w - 1].owpsTypes.moths;
+    totalInsects = numberFlies + numberBeetles + numberMoths;
 
     waveSpeed = levelData[w - 1].owpsSpeed;
-    waveAppeareanceRate = levelData[w - 1].appearanceRate;
+    waveAppearanceRate = levelData[w - 1].appearanceRate;
 
     waveLimit = levelData.length;
 }
@@ -161,7 +164,8 @@ function goToHUDScreen() {
 }
 
 function proceedWave() {
-    if (owps.list.length <= 0) {
+    console.log(createdInsects, totalInsects);
+    if (createdInsects == totalInsects) {
         if (wave++ < waveLimit) {
             goToHUDScreen();
         } else goToHUDScreen();
