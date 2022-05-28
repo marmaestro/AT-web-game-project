@@ -19,7 +19,6 @@ function createStageA() {
     // load the json files
     dictionary = JSON.parse(this.game.cache.getText('dictionary'));
     levelData = JSON.parse(this.game.cache.getText('wavesA'));
-    // console.log(dictionary.words.moth.length); to know the length of the moth array
 
     // load info for the wave and play music
     initiateVariables();

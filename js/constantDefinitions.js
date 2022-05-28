@@ -27,7 +27,7 @@ const MAX_ANGLE_DEVIATION = 10;
 // lengths of the arrays in the dictionary JSON ——————————————
 const ARRAY_FLY = 604;
 const ARRAY_BEETLE = 376;
-const ARRAY_MOTH = 135;
+const ARRAY_MOTH = 321;
 
 // rate at which replicators and generators execute ———————————
 const REPLICATION_RATE = 10000;
