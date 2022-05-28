@@ -24,32 +24,32 @@ function createStartScreen() {
     // Add the game title at the top
     let gameTitle = "FROG TYPING GAME";
     let title = game.add.text(GAME_AREA_WIDTH / 2, 150, gameTitle, { font: 'Source Sans Pro', fontSize: '60px', fontWeight: 'bold' } );
-    title.anchor.setTo(0.5, 0.5);
+    title.anchor.setTo(0.5);
 
     // Position the buttons in the game area
     let btnStageA = game.add.button(GAME_AREA_WIDTH / 2, GAME_AREA_HEIGHT / 2,
         "stageA", goToStageA);
-    btnStageA.anchor.setTo(0.5, 0.5);
+    btnStageA.anchor.setTo(0.5);
     //scale?
     let btnStageB = game.add.button(GAME_AREA_WIDTH / 2, GAME_AREA_HEIGHT / 2 + BUTTON_OFFSET_Y,
         "stageB", goToStageB);
-    btnStageB.anchor.setTo(0.5, 0.5);
+    btnStageB.anchor.setTo(0.5);
     //scale?
     let btnStageC = game.add.button(GAME_AREA_WIDTH / 2, GAME_AREA_HEIGHT / 2 + 2 * BUTTON_OFFSET_Y,
         "stageC", goToStageC);
-    btnStageC.anchor.setTo(0.5, 0.5);
+    btnStageC.anchor.setTo(0.5);
     //scale?
 
     let btnAbout = game.add.button(GAME_AREA_WIDTH / 2, GAME_AREA_HEIGHT / 2 + 3.5 * BUTTON_OFFSET_Y,
         "about", goToAboutScreen);
-    btnAbout.anchor.setTo(0.5, 0.5);
+    btnAbout.anchor.setTo(0.5);
     //scale?
 
     // Fly tween: a fly just chilling around the game area borders
     let bouncingFly = game.add.sprite(SPRITE_FLY_WIDTH / 2 + 5,
         GAME_AREA_HEIGHT - SPRITE_FLY_HEIGHT - 5, "fly"
         /*, índice que queremos cargar si tenemos una sábana de sprites*/);
-    bouncingFly.anchor.setTo(0.5, 0.5);
+    bouncingFly.anchor.setTo(0.5);
 
     let flyTween = game.add.tween(bouncingFly).to({
             y: SPRITE_FLY_HEIGHT / 2 + 5

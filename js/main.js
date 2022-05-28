@@ -22,7 +22,8 @@ window.onload = startGame;
 
 // main/common global variables ——————————————————————————————
 let typist = new Typist();  // the typist for our game
-let owps;                   // the array that contains all enemies currently on the screen
+let owps;                   // the array that contains all enemies on screen
+let bubbles;                // the array that contains the bubbles (bullets) on screen
 
 let deactivatedOWPs;         // the total number of deactivated owps in a stage
 
@@ -55,7 +56,7 @@ let btnStart;
 let death;              // to know if the HUD was reached through death or not
 let color = 'white';    // color for the titles in the HUD screen, to avoid typing the same sentence too many times
 
-// keyboard functions ————————————————————————————————————————
+// input functions ————————————————————————————————————————
 let cursors;            // to have control of what is typed
 let mouse;
 
