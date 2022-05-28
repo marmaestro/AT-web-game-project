@@ -5,14 +5,15 @@ let startScreen = {
 //Variable definitions: assets (sounds, sprites, etc)
 
 function loadStartScreen() {
-    game.load.image('bg', '../assets/imgs/background.png')
-    game.load.spritesheet("fly", "../assets/imgs/fly.png");
-    // Load the images corresponding to the buttons
-    // the following route names could change
-    game.load.image("stageA", "../assets/imgs/stageA.png");
-    game.load.image("stageB", "../assets/imgs/stageB.png");
-    game.load.image("stageC", "../assets/imgs/stageC.png");
-    game.load.image("about", "../assets/imgs/about.png");
+    game.load.image('bg', 'assets/imgs/background.png')
+    game.load.spritesheet("fly", "assets/imgs/fly.png");
+
+    game.load.image("stageA", "assets/imgs/stageA.png");
+    game.load.image("stageB", "assets/imgs/stageB.png");
+    game.load.image("stageC", "assets/imgs/stageC.png");
+    game.load.image("about", "assets/imgs/about.png");
+
+    game.load.audio('bgmusic', 'assets/snds/music.wav');
 }
 
 function createStartScreen() {
@@ -20,6 +21,10 @@ function createStartScreen() {
 
     // add the background image to the screen
     game.add.image(-1, -1, "bg");
+
+    if(music) {  music.stop(); }
+    music = game.add.sound('bgmusic', 0.1, true);
+    music.play();
 
     // Add the game title at the top
     let gameTitle = "FROG TYPING GAME";

@@ -33,6 +33,9 @@ const ARRAY_MOTH = 135;
 const REPLICATION_RATE = 10000;
 const FAN_GENERATION_RATE = 15000;
 
+// animationa / sound——————————————————————————————————————————
+const ANIM_FPS = 10;
+
 // other constants ————————————————————————————————————————————
 const WORD_OFFSET = 5;
 const BUTTON_OFFSET_Y = 100; // gap between the buttons in the start screen
