@@ -56,7 +56,7 @@ let btnStart;
 let death;              // to know if the HUD was reached through death or not
 let color = 'white';    // color for the titles in the HUD screen, to avoid typing the same sentence too many times
 
-// keyboard functions ————————————————————————————————————————
+// input functions ————————————————————————————————————————
 let cursors;            // to have control of what is typed
 let mouse;
 

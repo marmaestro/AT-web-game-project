@@ -16,15 +16,11 @@ class Typist {
     }
 
     refocusTypist(owp) {
-        this.sprite.angle = - (HALF_TRIANGLE_ANGLES_SUM - owp.sprite.angle + 90);
+        this.sprite.angle = owp.sprite.angle - HALF_TRIANGLE_ANGLES_SUM;
     }
 
     resetTypist() {
         this.sprite.angle = 0;
-    }
-
-    formula(xt, yt, xe, ye) {
-        return Math.tan(Math.abs(xt-xe)/Math.abs(yt-ye));
     }
 
     move(x) {
@@ -51,12 +47,12 @@ class Enemy {
 
         this.sprite;
 
+        this.deactivated = false;
+
         this.speed = this.getSpeed();
         this.word = this.getWord();
 
         this.timer = null;
-
-        this.deactivated = false;
 
         if (type == 'beetle') {
             this.timer = game.time.events.loop(REPLICATION_RATE, this.replicate, this);
@@ -138,14 +134,24 @@ class Enemy {
     }
 
     refocusOWP() {
-        let enemyVX = typist.x - this.x;
-        let enemyVY = typist.y - this.y;
-        let enemyAngle = Math.atan2(enemyVY, enemyVX) * RADIANS_TO_DEGREES;
-        enemyAngle += getAngleDeviation();
-        this.sprite.angle = enemyAngle + ENEMY_SPRITE_LEFT_ANGLE;
-        enemyVX = this.speed * Math.cos(enemyAngle * 1 / RADIANS_TO_DEGREES);
-        enemyVY = this.speed * Math.sin(enemyAngle * 1 / RADIANS_TO_DEGREES);
-        this.sprite.body.velocity.setTo(enemyVX, enemyVY);
+        if(this.sprite) {
+            let enemyVX = typist.x - this.x;
+            let enemyVY = typist.y - this.y;
+            let enemyAngle = Math.atan2(enemyVY, enemyVX) * RADIANS_TO_DEGREES;
+            enemyAngle += this.getAngleDeviation();
+            this.sprite.angle = enemyAngle + ENEMY_SPRITE_LEFT_ANGLE;
+            enemyVX = this.speed * Math.cos(enemyAngle * 1 / RADIANS_TO_DEGREES);
+            enemyVY = this.speed * Math.sin(enemyAngle * 1 / RADIANS_TO_DEGREES);
+            this.sprite.body.velocity.setTo(enemyVX, enemyVY);
+        }
+    }
+
+    getAngleDeviation() {
+        let angleDeviationSign = 1;
+        if (Math.random() < 0.5)
+            angleDeviationSign = -1;
+        let angleDeviationValue = Math.random() * MAX_ANGLE_DEVIATION;
+        return angleDeviationValue * angleDeviationSign;
     }
 
     randomNumber(min, max) {
@@ -154,43 +160,43 @@ class Enemy {
     }
 
     deleteOWP() {
-
-        if (this.timer) { game.time.events.remove(this.timer); }
         if(this.waitTimer) { game.time.events.remove(this.waitTimer); }
+        if (this.timer) { game.time.events.remove(this.timer); }
+
+        owps.remove(this);
+        //displayExplosion(this.x, this.y);
+
+        deactivatedOWPs++;
+
+        this.sprite.destroy();
+    }
+
+    deleteText() {
+        if(this.waitTimer) { game.time.events.remove(this.waitTimer); }
+        if (this.timer) { game.time.events.remove(this.timer); }
 
         let i = wordsUsed.indexOf(this.word);
         wordsUsed.splice(i, 1);
         i = lettersUsed.indexOf(this.word[0]);
         lettersUsed.splice(i, 1);
 
-        owps.remove(this);
-        //displayExplosion(this.x, this.y);
-
         typist.resetTypist();
-        deactivatedOWPs++;
-
-        this.sprite.destroy();
         this.text.destroy();
+        this.deactivated = true;
     }
 
     deactivateLetter(l) {
-        this.stop();
-
-        console.log(this.word[l], this.deactivated);
-
-        if(!this.deactivated) {
-            this.text.clearColors();
-            this.text.addColor('#F5F0E4', 0);
-            this.text.addColor('#ABA8A2', l);
-        }
+        this.text.clearColors();
+        this.text.addColor('#F5F0E4', 0);
+        this.text.addColor('#ABA8A2', l + 1);
     }
 
-    stop() {
+    stopOWP() {
         this.sprite.body.stop();
-        this.waitTimer = game.time.events.add(150, this.move, this);
+        this.waitTimer = game.time.events.add(150, this.moveOWP, this);
     }
 
-    move() {
+    moveOWP() {
         if(this.waitTimer) { game.time.events.remove(this.waitTimer); }
         this.refocusOWP();
     }
@@ -249,7 +255,7 @@ class Bubble {
         this.targetY = t.sprite.y;
 
         this.target = t;
-        this.letter = t.word[activeLetter];
+        this.letter = t.word[activeLetter - 1];
     }
 
     configureBubble() {
@@ -262,12 +268,12 @@ class Bubble {
     }
 
     hitTarget() {
-        this.target.deactivateLetter(activeLetter);
+        this.target.stopOWP();
+
         this.sprite.destroy();
         bubbles.remove(this);
 
-        if (this.letter == this.target.word[this.target.word.length - 1]) {
-            this.target.deactivated = true;
+        if (this.target.deactivated) {
             this.target.deleteOWP();
             proceedWave();
         }

@@ -23,12 +23,12 @@ function initiateVariablesStart() {
 
     wave = 1;
 
-    game.time.reset();
+    death = false;
 
+    game.time.reset();
 }
 
 function initiateVariables() {
-    death = false;
 
     wordsUsed = new Array();
     lettersUsed = new Array();
@@ -154,14 +154,6 @@ function bubbleCollision(spr) {
 
 function getRandomBetween(min, max) { // random between min and max (both included)
     return Math.random() * ((max + 1) - min) + min;
-}
-
-function getAngleDeviation() {
-    let angleDeviationSign = 1;
-    if (Math.random() < 0.5)
-        angleDeviationSign = -1;
-    let angleDeviationValue = Math.random() * MAX_ANGLE_DEVIATION;
-    return angleDeviationValue * angleDeviationSign;
 }
 
 function goToHUDScreen() {
