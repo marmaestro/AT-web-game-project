@@ -9,6 +9,7 @@ function loadHUD() {
 
 function createHUD() {
 
+    mouse = null;
     game.add.image(-1, -1, "bg");
 
     let infoText;

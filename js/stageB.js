@@ -37,6 +37,7 @@ function createStageB() {
     game.time.events.repeat(waveAppeareanceRate * 2, numberBeetles, createOWP, this, 'beetle');
     game.time.events.repeat(waveAppeareanceRate * 3, numberMoths, createOWP, this, 'moth');
 
+    mouse = game.input.mspointer;
     game.input.mspointer.pointerMoveCallback = moveTypist;
 }
 
