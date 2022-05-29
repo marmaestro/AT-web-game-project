@@ -1,23 +1,21 @@
 //————————————————————————————————————————————————————————————
-//--------TYPIST----------------------------------------------
+//---CLASS TYPIST---------------------------------------------
 //————————————————————————————————————————————————————————————
-
 class Typist {
-    constructor() {
-        this.x = GAME_AREA_WIDTH / 2;
-        this.y = GAME_AREA_HEIGHT - SPRITE_FROG_HEIGHT / 2 - 30; // 15 pixels of margin
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
         this.type = 'typist';
         this.sprite;
     }
 
     configTypistSprite() {
         this.sprite.anchor.setTo(0.5);
-
         game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
     }
 
     refocusTypist(owp) {
-        this.sprite.angle = owp.sprite.angle - HALF_TRIANGLE_ANGLES_SUM;
+        this.sprite.angle = owp.sprite.angle - TRIANGLE_ANGLES_SUM;
     }
 
     resetTypist() {
@@ -35,11 +33,9 @@ class Typist {
     }
 }
 
-
 //————————————————————————————————————————————————————————————
-//--------ENEMIES---------------------------------------------
+//---CLASS ENEMY/OWP------------------------------------------
 //————————————————————————————————————————————————————————————
-
 class Enemy {
     constructor(x, y, type, created = false) {
         this.x = x;
@@ -139,7 +135,7 @@ class Enemy {
             let enemyVY = typist.y - this.y;
             let enemyAngle = Math.atan2(enemyVY, enemyVX) * RADIANS_TO_DEGREES;
             enemyAngle += this.getAngleDeviation();
-            this.sprite.angle = enemyAngle + ENEMY_SPRITE_LEFT_ANGLE;
+            this.sprite.angle = enemyAngle + ENEMY_TOWARDS_RIGHT;
             enemyVX = this.speed * Math.cos(enemyAngle * 1 / RADIANS_TO_DEGREES);
             enemyVY = this.speed * Math.sin(enemyAngle * 1 / RADIANS_TO_DEGREES);
             this.sprite.body.velocity.setTo(enemyVX, enemyVY);

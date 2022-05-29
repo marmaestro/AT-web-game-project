@@ -29,7 +29,8 @@ function createStageA() {
     cursors = game.input.keyboard.createCursorKeys();
     game.input.keyboard.onDownCallback = readKeyboard;
 
-    // create the typist's sprite and configure it
+    typist = new Typist(GAME_AREA_WIDTH / 2,
+        GAME_AREA_HEIGHT - SPRITE_FROG_HEIGHT / 2 - TYPIST_OFFSET);
     typist.sprite = game.add.sprite(typist.x, typist.y, 'frog' /*, frame*/);
     typist.configTypistSprite();
 
