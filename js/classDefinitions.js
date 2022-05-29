@@ -107,7 +107,6 @@ class Enemy {
                         lettersUsed.push(word[0]); }
                 } break;
 
-
             case 'beetle':  // 8 to 10 letters
                 while(!foundWord) {
                     let index = this.randomNumber(0, ARRAY_BEETLE + 1);
@@ -118,7 +117,6 @@ class Enemy {
                         lettersUsed.push(word[0]); }
                 } break;
 
-
             case 'moth':    // more than 10 letters
                 while(!foundWord) {
                     let index = this.randomNumber(0, ARRAY_MOTH + 1);
@@ -128,7 +126,6 @@ class Enemy {
                         wordsUsed.push(word);
                         lettersUsed.push(word[0]); }
                 } break;
-
 
             default:
                 console.log('NO WORD');
