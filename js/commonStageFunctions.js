@@ -163,6 +163,8 @@ function shootBubble(owp) {
 }
 
 function bubbleCollision(spr) {
+    if (stage != "A")
+        spr.bubble.target.stopOWP();
     spr.bubble.hitTarget();
 }
 

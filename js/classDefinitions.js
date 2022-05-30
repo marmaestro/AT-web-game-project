@@ -264,8 +264,6 @@ class Bubble {
     }
 
     hitTarget() {
-        this.target.stopOWP();
-
         this.sprite.destroy();
         bubbles.remove(this);
 
