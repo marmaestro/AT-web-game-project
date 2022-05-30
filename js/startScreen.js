@@ -79,22 +79,27 @@ function goToAboutScreen() {
 }
 
 function blurButtons(btn) {
+    createButtonsBlurring();
+    determineNextState(btn);
+    startButtonsBlurring();
+}
+
+function createButtonsBlurring() {
     btnStageABlurring = game.add.tween(btnStageA).to({
         alpha: 0
     }, 1500, Phaser.Easing.Linear.None);
-
     btnStageBBlurring = game.add.tween(btnStageB).to({
         alpha: 0
     }, 1500, Phaser.Easing.Linear.None);
-
     btnStageCBlurring = game.add.tween(btnStageC).to({
         alpha: 0
     }, 1500, Phaser.Easing.Linear.None);
-
     btnAboutBlurring = game.add.tween(btnAbout).to({
         alpha: 0
     }, 1500, Phaser.Easing.Linear.None);
+}
 
+function determineNextState(btn) {
     switch (btn) {
         case btnStageA:
             btnStageABlurring.onComplete.add(goToStageA, this);
@@ -109,30 +114,14 @@ function blurButtons(btn) {
             btnAboutBlurring.onComplete.add(goToAboutScreen, this);
             break;
     }
+}
 
+function startButtonsBlurring() {
     btnStageABlurring.start();
     btnStageBBlurring.start();
     btnStageCBlurring.start();
     btnAboutBlurring.start();
 }
-
-/* function buttonABlurring() {
-    btnBlurring = game.add.tween(btnStageA).to({
-        alpha: 0
-    }, 1500, Phaser.Easing.Linear.None);
-
-    btnBlurring.onComplete.add(goToStageA, this);
-    btnBlurring.start();
-}
-
-function buttonBBlurring() {
-    btnBlurring = game.add.tween(btnStageB).to({
-        alpha: 0
-    }, 1500, Phaser.Easing.Linear.None);
-
-    btnBlurring.onComplete.add(goToStageB, this);
-    btnBlurring.start();
-} */
 
 function goToStageA() {
     stage = 'A';
