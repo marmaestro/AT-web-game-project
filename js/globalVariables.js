@@ -43,6 +43,7 @@ const ANIM_FPS = 10;
 const TYPIST_OFFSET = 30;
 const WORD_OFFSET = 5;
 const BUTTON_OFFSET_Y = 100; // gap between the buttons in the start screen
+const FLY_TWEEN_MARGIN = 5;
 const CHARACTERS = 'abcdefghijklmnopqrstuvwxyz';
 const TIMELAPSE = Phaser.Timer.SECOND;
 const HUD_TEXT_COLOR = '#FFFFFF';
@@ -82,6 +83,16 @@ let gameTimer;       // the timer that counts the elapsed time during the game
 let seconds;
 
 let music;
+
+// Start Screen variables ————————————————————————————————————
+let btnStageA;
+let btnStageABlurring;
+let btnStageB;
+let btnStageBBlurring;
+let btnStageC;
+let btnStageCBlurring;
+let btnAbout;
+let btnAboutBlurring;
 
 // About Screen variables ————————————————————————————————————
 let btnCredits;
