@@ -79,9 +79,17 @@ function goToAboutScreen() {
 }
 
 function blurButtons(btn) {
+    disableButtonsInput();
     createButtonsBlurring();
     determineNextState(btn);
     startButtonsBlurring();
+}
+
+function disableButtonsInput() {
+    btnStageA.inputEnabled = false;
+    btnStageB.inputEnabled = false;
+    btnStageC.inputEnabled = false;
+    btnAbout.inputEnabled = false;
 }
 
 function createButtonsBlurring() {

@@ -36,7 +36,7 @@ const ARRAY_MOTH = 321;
 const REPLICATION_RATE = 10000;
 const FAN_GENERATION_RATE = 15000;
 
-// animationa / sound——————————————————————————————————————————
+// animations / sound —————————————————————————————————————————
 const ANIM_FPS = 10;
 
 // other constants ————————————————————————————————————————————
