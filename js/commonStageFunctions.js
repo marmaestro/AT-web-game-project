@@ -195,7 +195,7 @@ function getTime() {
 
 function displayExplosion(obj) {
     let explosion = game.add.sprite(obj.sprite.body.x, obj.sprite.body.y, 'explosion');
-    explosion.anchor.setTo(0.5);
+    explosion.anchor.setTo(0.25, 0.25);
 
     switch (obj.type) {
         case 'fly':

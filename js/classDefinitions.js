@@ -66,7 +66,7 @@ class Enemy {
     }
 
     configEnemySprite() {
-        this.sprite.anchor.setTo(0.5);
+        this.sprite.anchor.setTo(0.5,0.5);
 
         game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
 
