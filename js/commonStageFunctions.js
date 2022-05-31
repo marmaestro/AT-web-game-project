@@ -8,7 +8,7 @@ function loadStages(s) {
     game.load.image('frog', 'assets/imgs/frog.png');
     game.load.image('bubble', 'assets/imgs/bubble.png');
 
-    game.load.image('fly', 'assets/imgs/fly.png');
+    game.load.spritesheet('fly', 'assets/imgs/fly.png', 40, 40);
     game.load.image('beetle', 'assets/imgs/beetle.png');
     game.load.image('moth', 'assets/imgs/moth.png');
 
@@ -77,6 +77,8 @@ function createOWP(type) {
     let owp = new Enemy(randomX(type), randomY(type), type);
     owp.sprite = game.add.sprite(owp.x, owp.y, type /*, frame*/);
     owp.configEnemySprite();
+    let anima = owp.sprite.animations.add(type);
+    anima.play(ANIM_FPS, true, true);
     owps.add(owp);
 }
 
