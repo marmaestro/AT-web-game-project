@@ -6,7 +6,7 @@ let startScreen = {
 
 function loadStartScreen() {
     game.load.image('bg', 'assets/imgs/background.png')
-    game.load.spritesheet("fly", "assets/imgs/fly.png");
+    game.load.spritesheet('fly', 'assets/imgs/fly.png', 40, 40);
 
     game.load.image("stageA", "assets/imgs/stageA.png");
     game.load.image("stageB", "assets/imgs/stageB.png");
@@ -52,8 +52,10 @@ function createStartScreen() {
 
     // Fly tween: a fly just chilling around the game area borders
     let bouncingFly = game.add.sprite(SPRITE_FLY_WIDTH / 2 + 5,
-        GAME_AREA_HEIGHT - SPRITE_FLY_HEIGHT - 5, "fly"
+        GAME_AREA_HEIGHT - SPRITE_FLY_HEIGHT - 5, 'fly',0
         /*, índice que queremos cargar si tenemos una sábana de sprites*/);
+    let anima = bouncingFly.animations.add('fly');
+    anima.play(ANIM_FPS, true, true);
     bouncingFly.anchor.setTo(0.5);
 
     let flyTween = game.add.tween(bouncingFly).to({
