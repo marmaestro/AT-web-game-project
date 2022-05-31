@@ -14,6 +14,7 @@ function loadStages(s) {
 
     game.load.spritesheet('explosion','assets/imgs/explosion.png', 125, 125);
     game.load.audio('sndexplosion', 'assets/snds/hit.wav');
+    game.load.audio('sndbubble','assets/snds/bubble.mp3');
 
     game.load.audio('frogs', 'assets/snds/frogs.wav');
 
@@ -161,6 +162,8 @@ function shootBubble(owp) {
         bubble.sprite = game.add.sprite(bubble.x, bubble.y, 'bubble', /*frame*/);
         bubble.configureBubble();
         bubbles.add(bubble);
+        playBubbleSound();
+
     }
 }
 
@@ -219,5 +222,9 @@ function displayExplosion(obj) {
 
 function playExplosionSound() {
     let sound = game.add.sound('sndexplosion', 0.25);
+    sound.play();
+}
+function playBubbleSound(){
+    let sound = game.add.sound('sndbubble',0.05);
     sound.play();
 }
