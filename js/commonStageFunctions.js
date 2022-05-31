@@ -12,7 +12,7 @@ function loadStages(s) {
     game.load.image('beetle', 'assets/imgs/beetle.png');
     game.load.image('moth', 'assets/imgs/moth.png');
 
-    game.load.spritesheet('explosion','assets/imgs/explosion.png', 128, 128);
+    game.load.spritesheet('explosion','assets/imgs/explosion.png', 125, 125);
     game.load.audio('sndexplosion', 'assets/snds/hit.wav');
 
     game.load.audio('frogs', 'assets/snds/frogs.wav');
