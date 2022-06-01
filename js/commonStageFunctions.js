@@ -9,7 +9,7 @@ function loadStages(s) {
     game.load.image('bubble', 'assets/imgs/bubble.png');
 
     game.load.spritesheet('fly', 'assets/imgs/fly.png', 40, 40);
-    game.load.image('beetle', 'assets/imgs/beetle.png');
+    game.load.spritesheet('beetle', 'assets/imgs/beetle.png', 65, 65);
     game.load.spritesheet('moth', 'assets/imgs/moth.png', 130, 60);
 
     game.load.spritesheet('explosion','assets/imgs/explosion.png', 125, 125);

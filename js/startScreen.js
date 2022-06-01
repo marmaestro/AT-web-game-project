@@ -12,6 +12,7 @@ function loadStartScreen() {
     game.load.image("stageB", "assets/imgs/stageB.png");
     game.load.image("stageC", "assets/imgs/stageC.png");
     game.load.image("about", "assets/imgs/about.png");
+    game.load.image("tittle", "assets/imgs/tittle.png");
 
     game.load.audio('bgmusic', 'assets/snds/music.wav');
 }
