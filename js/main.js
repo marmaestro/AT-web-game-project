@@ -56,6 +56,16 @@ let music;
 let btnCredits;
 let btnStart;
 
+// Start screen ——————————————————————————————————————————————
+let btnStageA;
+let btnStageABlurring;
+let btnStageB;
+let btnStageBBlurring;
+let btnStageC;
+let btnStageCBlurring;
+let btnAbout;
+let btnAboutBlurring;
+
 // HUD screen ————————————————————————————————————————————————
 let death;              // to know if the HUD was reached through death or not
 let color = 'white';    // color for the titles in the HUD screen, to avoid typing the same sentence too many times

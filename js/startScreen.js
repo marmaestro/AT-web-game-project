@@ -32,21 +32,21 @@ function createStartScreen() {
     gameTitle.anchor.setTo(0.5);
 
     // Position the buttons in the game area
-    let btnStageA = game.add.button(GAME_AREA_WIDTH / 2, GAME_AREA_HEIGHT / 2 - 20,
-        "stageA", goToStageA);
+    btnStageA = game.add.button(GAME_AREA_WIDTH / 2, GAME_AREA_HEIGHT / 2 - 20,
+        "stageA", blurButtons, this);
     btnStageA.anchor.setTo(0.5);
     //scale?
-    let btnStageB = game.add.button(GAME_AREA_WIDTH / 2, GAME_AREA_HEIGHT / 2 + BUTTON_OFFSET_Y - 20,
-        "stageB", goToStageB);
+    btnStageB = game.add.button(GAME_AREA_WIDTH / 2, GAME_AREA_HEIGHT / 2 + BUTTON_OFFSET_Y - 20,
+        "stageB", blurButtons, this);
     btnStageB.anchor.setTo(0.5);
     //scale?
-    let btnStageC = game.add.button(GAME_AREA_WIDTH / 2, GAME_AREA_HEIGHT / 2 + 2 * BUTTON_OFFSET_Y -20,
-        "stageC", goToStageC);
+    btnStageC = game.add.button(GAME_AREA_WIDTH / 2, GAME_AREA_HEIGHT / 2 + 2 * BUTTON_OFFSET_Y -20,
+        "stageC", blurButtons, this);
     btnStageC.anchor.setTo(0.5);
     //scale?
 
-    let btnAbout = game.add.button(GAME_AREA_WIDTH / 2, GAME_AREA_HEIGHT / 2 + 3.2 * BUTTON_OFFSET_Y -20,
-        "about", goToAboutScreen);
+    btnAbout = game.add.button(GAME_AREA_WIDTH / 2, GAME_AREA_HEIGHT / 2 + 3.2 * BUTTON_OFFSET_Y -20,
+        "about", blurButtons, this);
     btnAbout.anchor.setTo(0.5);
     //scale?
 
@@ -79,6 +79,60 @@ function createStartScreen() {
     flyTween.loop(true);
     flyTween.start();
 }
+
+function blurButtons(btn) {
+    disableButtonsInput();
+    createButtonsBlurring();
+    determineNextState(btn);
+    startButtonsBlurring();
+}
+
+function disableButtonsInput() {
+    btnStageA.inputEnabled = false;
+    btnStageB.inputEnabled = false;
+    btnStageC.inputEnabled = false;
+    btnAbout.inputEnabled = false;
+}
+
+function createButtonsBlurring() {
+    btnStageABlurring = game.add.tween(btnStageA).to({
+        alpha: 0
+    }, 1500, Phaser.Easing.Linear.None);
+    btnStageBBlurring = game.add.tween(btnStageB).to({
+        alpha: 0
+    }, 1500, Phaser.Easing.Linear.None);
+    btnStageCBlurring = game.add.tween(btnStageC).to({
+        alpha: 0
+    }, 1500, Phaser.Easing.Linear.None);
+    btnAboutBlurring = game.add.tween(btnAbout).to({
+        alpha: 0
+    }, 1500, Phaser.Easing.Linear.None);
+}
+
+function determineNextState(btn) {
+    switch (btn) {
+        case btnStageA:
+            btnStageABlurring.onComplete.add(goToStageA, this);
+            break;
+        case btnStageB:
+            btnStageBBlurring.onComplete.add(goToStageB, this);
+            break;
+        case btnStageC:
+            btnStageCBlurring.onComplete.add(goToStageC, this);
+            break;
+        default:
+            btnAboutBlurring.onComplete.add(goToAboutScreen, this);
+            break;
+    }
+}
+
+function startButtonsBlurring() {
+    btnStageABlurring.start();
+    btnStageBBlurring.start();
+    btnStageCBlurring.start();
+    btnAboutBlurring.start();
+}
+
 
 function goToAboutScreen() {
     game.state.start('aboutScreen');
