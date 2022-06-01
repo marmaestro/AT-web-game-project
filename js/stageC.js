@@ -44,16 +44,16 @@ function createStageC() {
 
     let infoText;
 
-    infoText = game.add.text(WORD_OFFSET + 5, WORD_OFFSET, 'WORK IN PROGRESS', { font: 'Source Sans Pro', fontSize: '60px', fontWeight: 'bold' } );
+    infoText = game.add.text(TITLE_OFFSET, TITLE_OFFSET, 'WORK IN PROGRESS', { font: 'Source Sans Pro', fontSize: '60px', fontWeight: 'bold' } );
     infoText.addColor(color, 0);
 
-    infoText = game.add.text(WORD_OFFSET + 5, 15 * WORD_OFFSET, 'Please click on the button to go back.', { font: 'Source Sans Pro', fontSize: '20px' } );
+    infoText = game.add.text(TITLE_OFFSET, 7 * TITLE_OFFSET, 'Please click on the button to go back.', { font: 'Source Sans Pro', fontSize: '20px' } );
     infoText.addColor(color, 0);
 
     //button for going  back to the start screen
     btnStart = game.add.button(20, 20, 'start', clickBackToStart);
     btnStart.anchor.setTo(0.5);
-    btnStart.position.setTo(GAME_AREA_WIDTH/2, 790);
+    btnStart.position.setTo(GAME_AREA_WIDTH / 2, 670);
 }
 
 function updateStageC() {
