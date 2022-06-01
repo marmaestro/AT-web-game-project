@@ -28,8 +28,8 @@ function createStartScreen() {
     music.play();
 
     // Add the game title at the top
-    let gameTitle = game.add.image(GAME_AREA_WIDTH / 2, 150, "tittle");
-    gameTitle.anchor.setTo(0.5);
+    titleStartScreen = game.add.image(GAME_AREA_WIDTH / 2, 150, "tittle");
+    titleStartScreen.anchor.setTo(0.5);
 
     // Position the buttons in the game area
     btnStageA = game.add.button(GAME_AREA_WIDTH / 2, GAME_AREA_HEIGHT / 2 - 20,
@@ -107,6 +107,9 @@ function createButtonsBlurring() {
     btnAboutBlurring = game.add.tween(btnAbout).to({
         alpha: 0
     }, 1500, Phaser.Easing.Linear.None);
+    titleStartScreenBlurring = game.add.tween(titleStartScreen).to({
+        alpha: 0
+    }, 1500, Phaser.Easing.Linear.None);
 }
 
 function determineNextState(btn) {
@@ -131,6 +134,7 @@ function startButtonsBlurring() {
     btnStageBBlurring.start();
     btnStageCBlurring.start();
     btnAboutBlurring.start();
+    titleStartScreenBlurring.start();
 }
 
 

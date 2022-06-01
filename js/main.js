@@ -57,6 +57,8 @@ let btnCredits;
 let btnStart;
 
 // Start screen ——————————————————————————————————————————————
+let titleStartScreen;
+let titleStartScreenBlurring;
 let btnStageA;
 let btnStageABlurring;
 let btnStageB;
