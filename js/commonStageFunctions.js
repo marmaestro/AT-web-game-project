@@ -181,7 +181,7 @@ function getRandomBetween(min, max) { // random between min and max (both includ
 }
 
 function proceedWave() {
-    if (createdInsects == totalInsects || death) {
+    if ((owps.list.length == 0 && createdInsects == totalInsects) || death) {
         wave++;
         game.state.start('HUD');
     }
