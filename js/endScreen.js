@@ -5,7 +5,7 @@ let endScreen = {
 
 function loadEndScreen() {
     game.load.image('bg', 'assets/imgs/background.png');
-    //game.load.image('start', 'assets/imgs/start.png');
+    game.load.image('start', 'assets/imgs/start.png');
 }
 
 function createEndScreen() {
