@@ -1,6 +1,6 @@
 // game constants ————————————————————————————————————————————
 const GAME_AREA_WIDTH = 600;
-const GAME_AREA_HEIGHT = 900;
+const GAME_AREA_HEIGHT = 800;
 
 // typist sprite size ————————————————————————————————————————
 const SPRITE_FROG_WIDTH = 90;
