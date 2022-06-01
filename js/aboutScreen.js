@@ -17,7 +17,7 @@ function createAbout() {
     game.add.image(-1, -1, "bg");
 
     //text describing the game (Ab-out)
-    let titleAb = 'FROG TYPING GAME';
+    let titleAb = 'BUBBLE FROG';
     let style = {
         font: 'Source Sans Pro',
         fontWeight: '600',
@@ -41,7 +41,7 @@ function createAbout() {
     introduction.anchor.setTo(0.5, 0);
     introduction.position.setTo(GAME_AREA_WIDTH/2, 95);
 
-    let imgFrog = game.add.image(GAME_AREA_WIDTH/2, 220, 'frog');
+    let imgFrog = game.add.image(GAME_AREA_WIDTH/2, 200, 'frog');
     imgFrog.anchor.setTo(0.5, 0);
 
 
@@ -54,15 +54,11 @@ function createAbout() {
     }
     let titleTutorial = game.add.text(0, 0, titleAT, style);
     titleTutorial.anchor.setTo(0.5, 0);
-    titleTutorial.position.setTo(GAME_AREA_WIDTH/2, 355);
+    titleTutorial.position.setTo(GAME_AREA_WIDTH/2, 320);
 
-    let textAT = 'This game has simple controls. Type\n';
-    textAT += 'the words that appear on the screen to\n';
-    textAT += 'eat the insects.\n';
-    textAT += '\n';
-    textAT += 'On levels B and C you can also move\n';
-    textAT += 'your mouse left and right to avoid\n';
-    textAT += 'being hit.\n';
+    let textAT = 'Type the words that appear on the screen\n';
+    textAT += 'screen to eat the insects. On stage B, you\n';
+    textAT += 'can move your mouse to avoid being hit.\n';
     textAT += '\n';
     textAT += "Make sure to not get hit or you'll die, and\n";
     textAT += 'be careful with the bigger ones: they will\n';
@@ -78,13 +74,13 @@ function createAbout() {
     }
     let tutorial = game.add.text(0, 0, textAT, style);
     tutorial.anchor.setTo(0.5, 0);
-    tutorial.position.setTo(GAME_AREA_WIDTH/2, 395);
+    tutorial.position.setTo(GAME_AREA_WIDTH/2, 365);
 
 
     //button for showing credits
     btnCredits = game.add.button(20, 20, 'credits', showCredits);
     btnCredits.anchor.setTo(0.5);
-    btnCredits.position.setTo(GAME_AREA_WIDTH/2, 790);
+    btnCredits.position.setTo(GAME_AREA_WIDTH/2, 700);
 
     //button for going  back to the start screen
     btnStart = game.add.button(20, 20, 'back', clickBackToStart);
@@ -105,7 +101,7 @@ function showCredits() {
     }
     let titleCredits = game.add.text(10, 5, titleAC, style);
     titleCredits.anchor.setTo(0.5, 0);
-    titleCredits.position.setTo(GAME_AREA_WIDTH/2, 200);
+    titleCredits.position.setTo(GAME_AREA_WIDTH/2, 140);
 
     let textAC = 'This game has been created by\n';
     textAC += '\n';
@@ -117,9 +113,12 @@ function showCredits() {
     textAC += 'for the Design and Development\n';
     textAC += 'of Web Games course.\n';
     textAC += '\n';
-    textAC += '\n';
     textAC += 'All the art on this game has been\n';
     textAC += 'created by @brgfx.\n';
+    textAC += '\n';
+    textAC += 'The animations have been made by\n';
+    textAC += 'Sergio Angulo Gómez.\n';
+
     style = {
         font: 'Source Sans Pro',
         fontWeight: '400',
@@ -128,12 +127,12 @@ function showCredits() {
     }
     let credits = game.add.text(10, 50, textAC, style);
     credits.anchor.setTo(0.5, 0);
-    credits.position.setTo(GAME_AREA_WIDTH/2, 260);
+    credits.position.setTo(GAME_AREA_WIDTH/2, 230);
 
     //button for showing about
     btnCredits = game.add.button(20, 20, 'about', createAbout);
     btnCredits.anchor.setTo(0.5);
-    btnCredits.position.setTo(GAME_AREA_WIDTH/2, 790);
+    btnCredits.position.setTo(GAME_AREA_WIDTH/2, 670);
 
     //button for going  back to the start screen
     btnStart = game.add.button(20, 20, 'back', clickBackToStart);

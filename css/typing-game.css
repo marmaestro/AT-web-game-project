@@ -1,4 +1,8 @@
 #gameArea {
     width: 0;
     height: 0;
+    margin-left: 35%;
+}
+body {
+    background-color: rgba(30, 36, 36, 0.482);
 }

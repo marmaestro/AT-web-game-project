@@ -5,7 +5,7 @@ let endScreen = {
 
 function loadEndScreen() {
     game.load.image('bg', 'assets/imgs/background.png');
-    //game.load.image('start', 'assets/imgs/start.png');
+    game.load.image('start', 'assets/imgs/start.png');
 }
 
 function createEndScreen() {
@@ -29,9 +29,10 @@ function createEndScreen() {
     //button for going  back to the start screen
     btnStart = game.add.button(20, 20, 'start', clickBackToStart);
     btnStart.anchor.setTo(0.5);
-    btnStart.position.setTo(GAME_AREA_WIDTH/2, 790);
+    btnStart.position.setTo(GAME_AREA_WIDTH/2, 670);
 }
 
 function calculateAccuracy() {
+    if (typedLetters==0) return 0;
     return ((correctLetters / typedLetters) * 100).toFixed(2);
 }

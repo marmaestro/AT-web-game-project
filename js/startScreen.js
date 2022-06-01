@@ -6,12 +6,13 @@ let startScreen = {
 
 function loadStartScreen() {
     game.load.image('bg', 'assets/imgs/background.png')
-    game.load.spritesheet("fly", "assets/imgs/fly.png");
+    game.load.spritesheet('fly', 'assets/imgs/fly.png', 40, 40);
 
     game.load.image("stageA", "assets/imgs/stageA.png");
     game.load.image("stageB", "assets/imgs/stageB.png");
     game.load.image("stageC", "assets/imgs/stageC.png");
     game.load.image("about", "assets/imgs/about.png");
+    game.load.image("tittle", "assets/imgs/tittle.png");
 
     game.load.audio('bgmusic', 'assets/snds/music.wav');
 }
@@ -27,33 +28,34 @@ function createStartScreen() {
     music.play();
 
     // Add the game title at the top
-    let gameTitle = "FROG TYPING GAME";
-    let title = game.add.text(GAME_AREA_WIDTH / 2, 150, gameTitle, { font: 'Source Sans Pro', fontSize: '60px', fontWeight: 'bold' } );
-    title.anchor.setTo(0.5);
+    let gameTitle = game.add.image(GAME_AREA_WIDTH / 2, 150, "tittle");
+    gameTitle.anchor.setTo(0.5);
 
     // Position the buttons in the game area
-    let btnStageA = game.add.button(GAME_AREA_WIDTH / 2, GAME_AREA_HEIGHT / 2,
+    let btnStageA = game.add.button(GAME_AREA_WIDTH / 2, GAME_AREA_HEIGHT / 2 - 20,
         "stageA", goToStageA);
     btnStageA.anchor.setTo(0.5);
     //scale?
-    let btnStageB = game.add.button(GAME_AREA_WIDTH / 2, GAME_AREA_HEIGHT / 2 + BUTTON_OFFSET_Y,
+    let btnStageB = game.add.button(GAME_AREA_WIDTH / 2, GAME_AREA_HEIGHT / 2 + BUTTON_OFFSET_Y - 20,
         "stageB", goToStageB);
     btnStageB.anchor.setTo(0.5);
     //scale?
-    let btnStageC = game.add.button(GAME_AREA_WIDTH / 2, GAME_AREA_HEIGHT / 2 + 2 * BUTTON_OFFSET_Y,
+    let btnStageC = game.add.button(GAME_AREA_WIDTH / 2, GAME_AREA_HEIGHT / 2 + 2 * BUTTON_OFFSET_Y -20,
         "stageC", goToStageC);
     btnStageC.anchor.setTo(0.5);
     //scale?
 
-    let btnAbout = game.add.button(GAME_AREA_WIDTH / 2, GAME_AREA_HEIGHT / 2 + 3.5 * BUTTON_OFFSET_Y,
+    let btnAbout = game.add.button(GAME_AREA_WIDTH / 2, GAME_AREA_HEIGHT / 2 + 3.2 * BUTTON_OFFSET_Y -20,
         "about", goToAboutScreen);
     btnAbout.anchor.setTo(0.5);
     //scale?
 
     // Fly tween: a fly just chilling around the game area borders
     let bouncingFly = game.add.sprite(SPRITE_FLY_WIDTH / 2 + 5,
-        GAME_AREA_HEIGHT - SPRITE_FLY_HEIGHT - 5, "fly"
+        GAME_AREA_HEIGHT - SPRITE_FLY_HEIGHT - 5, 'fly',0
         /*, índice que queremos cargar si tenemos una sábana de sprites*/);
+    let anima = bouncingFly.animations.add('fly');
+    anima.play(ANIM_FPS, true, true);
     bouncingFly.anchor.setTo(0.5);
 
     let flyTween = game.add.tween(bouncingFly).to({

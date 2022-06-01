@@ -66,7 +66,7 @@ class Enemy {
     }
 
     configEnemySprite() {
-        this.sprite.anchor.setTo(0.5);
+        this.sprite.anchor.setTo(0.5,0.5);
 
         game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
 
@@ -212,6 +212,8 @@ class Enemy {
 
         let owp = new Enemy(x, y, 'fly', true);
         owp.sprite = game.add.sprite(owp.x, owp.y, 'fly' /*, frame*/);
+        let anima = owp.sprite.animations.add('fly');
+        anima.play(ANIM_FPS, true, true);
         owp.configEnemySprite();
         owps.add(owp);
     }
@@ -232,6 +234,8 @@ class Enemy {
 
             let owp = new Enemy(x, y, '', true);
             owp.sprite = game.add.sprite(owp.x, owp.y, 'fly' /*, frame*/);
+            let anima = owp.sprite.animations.add('fly');
+            anima.play(ANIM_FPS, true, true);
             owp.configEnemySprite();
             owps.add(owp);
         }

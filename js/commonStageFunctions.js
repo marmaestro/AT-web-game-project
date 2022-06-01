@@ -8,12 +8,13 @@ function loadStages(s) {
     game.load.image('frog', 'assets/imgs/frog.png');
     game.load.image('bubble', 'assets/imgs/bubble.png');
 
-    game.load.image('fly', 'assets/imgs/fly.png');
-    game.load.image('beetle', 'assets/imgs/beetle.png');
-    game.load.image('moth', 'assets/imgs/moth.png');
+    game.load.spritesheet('fly', 'assets/imgs/fly.png', 40, 40);
+    game.load.spritesheet('beetle', 'assets/imgs/beetle.png', 65, 65);
+    game.load.spritesheet('moth', 'assets/imgs/moth.png', 130, 60);
 
-    game.load.spritesheet('explosion','assets/imgs/explosion.png', 128, 128);
+    game.load.spritesheet('explosion','assets/imgs/explosion.png', 125, 125);
     game.load.audio('sndexplosion', 'assets/snds/hit.wav');
+    game.load.audio('sndbubble','assets/snds/bubble.mp3');
 
     game.load.audio('frogs', 'assets/snds/frogs.wav');
 
@@ -77,6 +78,8 @@ function createOWP(type) {
     let owp = new Enemy(randomX(type), randomY(type), type);
     owp.sprite = game.add.sprite(owp.x, owp.y, type /*, frame*/);
     owp.configEnemySprite();
+    let anima = owp.sprite.animations.add(type);
+    anima.play(ANIM_FPS, true, true);
     owps.add(owp);
 }
 
@@ -146,6 +149,7 @@ function moveTypist() {
 function collision() {
     death = true;
     displayExplosion(typist);
+    typist.sprite.kill();
 }
 
 //————————————————————————————————————————————————————————————
@@ -159,6 +163,8 @@ function shootBubble(owp) {
         bubble.sprite = game.add.sprite(bubble.x, bubble.y, 'bubble', /*frame*/);
         bubble.configureBubble();
         bubbles.add(bubble);
+        playBubbleSound();
+
     }
 }
 
@@ -175,7 +181,7 @@ function getRandomBetween(min, max) { // random between min and max (both includ
 }
 
 function proceedWave() {
-    if (createdInsects == totalInsects || death) {
+    if ((owps.list.length == 0 && createdInsects == totalInsects) || death) {
         wave++;
         game.state.start('HUD');
     }
@@ -190,7 +196,7 @@ function getTime() {
 
 function displayExplosion(obj) {
     let explosion = game.add.sprite(obj.sprite.body.x, obj.sprite.body.y, 'explosion');
-    explosion.anchor.setTo(0.5);
+    explosion.anchor.setTo(0.25, 0.25);
 
     switch (obj.type) {
         case 'fly':
@@ -217,5 +223,9 @@ function displayExplosion(obj) {
 
 function playExplosionSound() {
     let sound = game.add.sound('sndexplosion', 0.25);
+    sound.play();
+}
+function playBubbleSound(){
+    let sound = game.add.sound('sndbubble',0.05);
     sound.play();
 }

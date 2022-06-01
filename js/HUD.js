@@ -15,7 +15,7 @@ function createHUD() {
     let infoText;
 
     if (death) {
-        infoText = game.add.text(WORD_OFFSET + 5, WORD_OFFSET, 'YOU DIED ON WAVE ' + (wave), { font: 'Source Sans Pro', fontSize: '60px', fontWeight: 'bold', fill: color  } );
+        infoText = game.add.text(WORD_OFFSET + 5, WORD_OFFSET, 'YOU DIED ON WAVE ' + (wave - 1), { font: 'Source Sans Pro', fontSize: '60px', fontWeight: 'bold', fill: color  } );
     } else {
         infoText = game.add.text(WORD_OFFSET + 5, WORD_OFFSET, 'WAVE ' + (wave - 1) + ' FINISHED', { font: 'Source Sans Pro', fontSize: '60px', fontWeight: 'bold', fill: color  } );
     }
