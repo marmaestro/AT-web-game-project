@@ -149,7 +149,7 @@ function moveTypist() {
 function collision() {
     death = true;
     displayExplosion(typist);
-    typist.sprite.kill();
+    typist.sprite.destroy();
 }
 
 //————————————————————————————————————————————————————————————
