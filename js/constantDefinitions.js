@@ -21,7 +21,6 @@ const SPRITE_BUBBLE_HEIGHT = 14;
 // game angles ———————————————————————————————————————————————
 const RADIANS_TO_DEGREES = 180 / Math.PI;
 const ENEMY_SPRITE_LEFT_ANGLE = 90;
-const HALF_TRIANGLE_ANGLES_SUM = 180;
 const MAX_ANGLE_DEVIATION = 10;
 
 // lengths of the arrays in the dictionary JSON ——————————————

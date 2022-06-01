@@ -17,7 +17,9 @@ class Typist {
     }
 
     refocusTypist(owp) {
-        this.sprite.angle = owp.sprite.angle - HALF_TRIANGLE_ANGLES_SUM;
+        let typistToOWPX = owp.sprite.x - this.sprite.x;
+        let typistToOWPY = this.sprite.y - owp.sprite.y;
+        this.sprite.angle = Math.atan2(typistToOWPX, typistToOWPY) * RADIANS_TO_DEGREES;
     }
 
     resetTypist() {
