@@ -13,10 +13,10 @@ function loadStages(s) {
     game.load.spritesheet('moth', 'assets/imgs/moth.png', 130, 60);
 
     game.load.spritesheet('explosion','assets/imgs/explosion.png', 125, 125);
-    game.load.audio('sndexplosion', 'assets/snds/hit.wav');
+    game.load.audio('sndexplosion', 'assets/snds/hit.mp3');
     game.load.audio('sndbubble','assets/snds/bubble.mp3');
 
-    game.load.audio('frogs', 'assets/snds/frogs.wav');
+    game.load.audio('frogs', 'assets/snds/frogs.mp3');
 
     game.load.text('dictionary', 'assets/json/dictionary.json');
     game.load.text('waves' + s, 'assets/json/stage' + s + '.json');

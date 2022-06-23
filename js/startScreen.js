@@ -14,7 +14,7 @@ function loadStartScreen() {
     game.load.image("about", "assets/imgs/about.png");
     game.load.image("tittle", "assets/imgs/tittle.png");
 
-    game.load.audio('bgmusic', 'assets/snds/music.wav');
+    game.load.audio('bgmusic', 'assets/snds/music.mp3');
 }
 
 function createStartScreen() {
